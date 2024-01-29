@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
 import { Routes, Route, HashRouter } from 'react-router-dom';
-import Authorization from './pages/Authorization';
+import Authorization from './pages/Auth/Authorization';
 import Home from './pages/MainPage';
 import { ChakraProvider, extendBaseTheme } from '@chakra-ui/react';
+import './App.css';
 // const theme = extendBaseTheme({
 //     components: {
 //         Button: {
@@ -20,8 +20,8 @@ function App() {
         <ChakraProvider>
             <HashRouter>
                 <Routes>
-                    <Route path="/authorization" element={<Authorization />} />
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Authorization />} />
+                    <Route path="/home" element={<Home />} />
                 </Routes>
             </HashRouter>
         </ChakraProvider>

@@ -1,6 +1,10 @@
-import { Box, Button, Checkbox, Flex } from '@chakra-ui/react';
-import { FormControl, Input } from '@chakra-ui/react';
+import { FormEvent, useState } from 'react';
+import { Box, Button, Checkbox, Flex, FormControl } from '@chakra-ui/react';
 import styles from './Login.module.css';
+import { CustomInput } from './custom-input';
+import { User, useLoginMutation } from '../app/services/auth';
+import { isErrorWithMessage } from '../utils/is-error-with-msg';
+import { useNavigate } from 'react-router';
 const boxStyles = {
     display: 'flex',
     flexDirection: 'column',
@@ -10,14 +14,28 @@ const boxStyles = {
     width: '595px',
     textAlign: 'center',
 };
-const InputStyles = {
-    size: 'sm',
-    borderRadius: '2px',
-    _focus: {
-        borderColor: '#314659',
-    },
-};
+
 const Login = () => {
+    const [loginUser, loginUserResult] = useLoginMutation()
+    const [error, setError] = useState('')
+    const navigate = useNavigate()
+    const login = async (event: FormEvent) => {
+        event.preventDefault(); 
+        const formData = new FormData(event.target as HTMLFormElement);
+        const data : User = {
+            login: formData.get('login') as string,
+            password: formData.get('password') as string
+        }
+        try{
+            await loginUser(data).unwrap();
+            navigate('/taskBoard')
+        } catch(error) {
+            const err = isErrorWithMessage(error)
+            if(err) {
+            console.log(error)}
+            console.log(error)
+        }
+    }
     return (
         <Box sx={boxStyles}>
             <h1>Вход</h1>
@@ -25,21 +43,18 @@ const Login = () => {
                 Для входа в систему введите
                 <br /> логин и пароль
             </p>
-            <form className={styles.login}>
-                <FormControl>
-                    <Input
+            <form className={styles.login} onSubmit={login}>
+                    <CustomInput
                         placeholder="Логин"
-                        sx={InputStyles}
-                        focusBorderColor="#314659"
-                    ></Input>
-                </FormControl>
-                <FormControl>
-                    <Input
+                        name='login'
+                        requare={true}
+                    ></CustomInput>
+                    <CustomInput
                         placeholder="Пароль"
-                        sx={InputStyles}
-                        focusBorderColor="#314659"
-                    ></Input>
-                </FormControl>
+                        name='password'
+                        type='password'
+                        requare={true}
+                    ></CustomInput>
                 <FormControl>
                     <Checkbox
                         _checked={{
@@ -64,6 +79,7 @@ const Login = () => {
                     color="#fff"
                     borderRadius="2px"
                     _hover={{ bg: '#24323E' }}
+                    type='submit'
                 >
                     Войти
                 </Button>

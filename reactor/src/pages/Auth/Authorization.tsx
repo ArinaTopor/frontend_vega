@@ -1,4 +1,4 @@
-import Login from '../components/Login';
+import Login from '../../components/Login';
 import { Flex } from '@chakra-ui/react';
 const Authorization = () => {
     return (

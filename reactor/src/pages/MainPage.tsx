@@ -1,7 +1,17 @@
 import { Navigate } from 'react-router-dom';
-
+import { UseDispatch, useDispatch } from 'react-redux';
+import { Button } from '@chakra-ui/react';
 const Home = () => {
-    return <Navigate to="/authorization" />;
+    // const {isAuth, email} = useAuth();
+    // const dispatch = useDispatch()
+    // return isAuth? (
+    //     <div>
+    //         <h1>Hello</h1>
+    //         <Button>Log out from {email}</Button>
+    //     </div>
+    // ) :
+    //  (<Navigate to="/authorization" />)
+    return(<p>Home</p>)
 };
 
 export default Home;
