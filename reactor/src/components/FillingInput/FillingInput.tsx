@@ -27,8 +27,8 @@ const FillingInput = ({name,type,required}:Props) =>{
 		<FormControl mb='3vh' width='90%'>
 			{type === 'password'?
 				<Box position='relative'>
-					<Image src={!isVisible?notVisible:visible} pos='absolute' zIndex='2' w='44px' right='26px' top='7px' cursor='pointer' onClick={()=>{setIsVisible(!isVisible)}}/>
-					<Input name={name} type={isVisible?'text':'password'} sx={InputStyles} required={required} order='1'/>
+					<Image src={!isVisible?notVisible:visible} pos='absolute' zIndex='2' w='2.3vw' right='1.35vw' top='0.6vh' cursor='pointer' onClick={()=>{setIsVisible(!isVisible)}}/>
+					<Input name={name} type={isVisible?'text':'password'} sx={InputStyles} required={required}/>
 				</Box>
 			:<Input name={name} type={type} sx={InputStyles} required={required} />
 			}
