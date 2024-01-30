@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --auth-background: linear-gradient(
+      296deg,
+      #314659 8.26%,
+      rgba(49, 70, 89, 0) 81.63%
+  );
+}
