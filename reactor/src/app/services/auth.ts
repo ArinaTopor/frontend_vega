@@ -1,7 +1,7 @@
 import { api } from "./api";
 
 export type User = {
-    login: string;
+    userLogin: string;
     password: string;
 }
 type ResponseLoginData = User & {token: string}
@@ -10,9 +10,10 @@ export const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
         login: builder.mutation<ResponseLoginData, User>(
         {query: (user) => 
-       ({url: `/api/Auth?userLogin=${user.login}&password=${user.password}`,
+       ({url: `/api/Auth`,
         method: 'POST', 
-        mode: 'no-cors'})}
+        mode: 'no-cors',
+        body: user})}
         )
     })
 })

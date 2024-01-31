@@ -5,6 +5,7 @@ import { CustomInput } from './custom-input';
 import { User, useLoginMutation } from '../app/services/auth';
 import { isErrorWithMessage } from '../utils/is-error-with-msg';
 import { useNavigate } from 'react-router';
+import { ErrorWithMessage } from '../types';
 const boxStyles = {
     display: 'flex',
     flexDirection: 'column',
@@ -17,23 +18,26 @@ const boxStyles = {
 
 const Login = () => {
     const [loginUser, loginUserResult] = useLoginMutation()
-    const [error, setError] = useState('')
     const navigate = useNavigate()
+    const [isAuth, setIsAuth] = useState(false)
     const login = async (event: FormEvent) => {
+    
         event.preventDefault(); 
         const formData = new FormData(event.target as HTMLFormElement);
         const data : User = {
-            login: formData.get('login') as string,
+            userLogin: formData.get('login') as string,
             password: formData.get('password') as string
         }
         try{
-            await loginUser(data).unwrap();
-            navigate('/taskBoard')
+            const response = await loginUser(data).unwrap();
+            navigate('/home')
         } catch(error) {
-            const err = isErrorWithMessage(error)
-            if(err) {
-            console.log(error)}
-            console.log(error)
+            const err = error as ErrorWithMessage;
+            if(err.data){
+                console.log(err.data)
+            } else{
+                console.log('такого пользователя нет')
+            }
         }
     }
     return (

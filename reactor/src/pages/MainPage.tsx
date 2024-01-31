@@ -1,10 +1,9 @@
 import { Navigate } from 'react-router-dom';
 import { UseDispatch, useDispatch } from 'react-redux';
 import { Button } from '@chakra-ui/react';
+import { selectIsAuth } from '../features/auth/authSlice';
 const Home = () => {
-    // const {isAuth, email} = useAuth();
-    // const dispatch = useDispatch()
-    // return isAuth? (
+    // return selectIsAuth()? (
     //     <div>
     //         <h1>Hello</h1>
     //         <Button>Log out from {email}</Button>
