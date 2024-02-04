@@ -1,22 +1,38 @@
-import { api } from "./api";
+import { api } from './api';
 
-export type User = {
-    userLogin: string;
+export type ResponseLoginData = {
+    accessToken: string | null;
+    refreshToken: string | null;
+};
+type UserData = {
+    login: string;
     password: string;
-}
-type ResponseLoginData = User & {token: string}
+};
+export type InfoUser = {
+    login: string;
+    role: string;
+};
 
 export const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        login: builder.mutation<ResponseLoginData, User>(
-        {query: (user) => 
-       ({url: `/api/Auth`,
-        method: 'POST', 
-        mode: 'no-cors',
-        body: user})}
-        )
-    })
-})
+        login: builder.mutation<ResponseLoginData, UserData>({
+            query: (userData) => ({
+                url: '/Auth',
+                method: 'POST',
+                body: userData,
+            }),
+        }),
+        current: builder.query<InfoUser, void>({
+            query: () => ({
+                url: '/VegaUser',
+                method: 'GET',
+            }),
+        }),
+    }),
+});
 
-export const {useLoginMutation} = authApi
-export const {endpoints: {login}} = authApi
+export const { useLoginMutation, useCurrentQuery } = authApi;
+
+export const {
+    endpoints: { login, current },
+} = authApi;
