@@ -1,11 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import FillingPage from './pages/FillingPage'
+import AddingEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
 function App() {
     return (
         <div className="App">
-            <FillingPage/>
+            <AddingEmployeePage/>
         </div>
     );
 }

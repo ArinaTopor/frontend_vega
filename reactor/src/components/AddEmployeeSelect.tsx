@@ -1,11 +1,11 @@
-import {useState} from 'react';
-import { FormControl, Select } from "@chakra-ui/react"
+import { FormControl, FormLabel, Select } from "@chakra-ui/react"
 
 type Props = {
     name: string,
     placeholder?: string,
     required?: boolean,
-	options:string[]
+	options:string[],
+	label?:string
 }
 
 const SelectStyles={
@@ -17,9 +17,10 @@ const SelectStyles={
 	_hover:{border:'1px solid #4f5454'}
 }
 
-const FillingSelect = ({name,placeholder,required,options}:Props) =>{
+const AddEmployeeSelect = ({name,placeholder,required,options, label}:Props) =>{
 	return (
 		<FormControl mb='3vh' width='90%'>
+			<FormLabel fontSize='1.1vw' fontWeight='500' mb='1.8vh'>{label}</FormLabel>
 			<Select sx={SelectStyles} placeholder={placeholder} 
 			required={required} name={name}>
 				{
@@ -30,4 +31,4 @@ const FillingSelect = ({name,placeholder,required,options}:Props) =>{
 	)
 }
 
-export default FillingSelect
+export default AddEmployeeSelect
