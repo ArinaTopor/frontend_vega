@@ -6,6 +6,7 @@ import { ChakraProvider, extendBaseTheme } from '@chakra-ui/react';
 import './App.css';
 import { RequareAuth } from './hoc/RequaireAuth';
 import BossPage from './pages/BossPage';
+import { Paths } from './paths';
 // const theme = extendBaseTheme({
 //     components: {
 //         Button: {
@@ -22,9 +23,9 @@ function App() {
         <ChakraProvider>
             <HashRouter>
                 <Routes>
-                    <Route path='/authorization' element={<Authorization />} />
+                    <Route path='/' element={<Authorization />} />
                     <Route
-                        path='/home'
+                        path={Paths.workerMain}
                         element={
                             <RequareAuth>
                                 <Home />
@@ -32,7 +33,7 @@ function App() {
                         }
                     />
                     <Route
-                        path='/bosshome'
+                        path={Paths.adminMain}
                         element={
                             <RequareAuth>
                                 <BossPage />

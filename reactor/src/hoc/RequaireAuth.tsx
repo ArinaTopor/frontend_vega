@@ -5,7 +5,7 @@ const RequareAuth = ({ children }: { children: JSX.Element }) => {
     const location = useLocation();
     const auth = useSelector(selectIsAuthenticated);
     if (!auth) {
-        return <Navigate to='/authorization' state={{ from: location }} />;
+        return <Navigate to='/' state={{ from: location }} />;
     }
     return children;
 };

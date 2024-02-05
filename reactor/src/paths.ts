@@ -1,7 +1,14 @@
 export const Paths = {
-    home: '/',
     products: '/products',
     nomenclature: '/nomenclature',
-    login: '/authorization',
-    tasksBoadr: '/taskBoard'
+    login: '/',
+    tasksBoadr: '/taskBoard',
+    workerMain: '/home',
+    adminMain: '/adminHome',
+    stkMain: '/stkHome',
 } as const;
+export const MainPageRoles: { worker: string; admin: string; stk: string } = {
+    worker: '/home',
+    admin: '/adminHome',
+    stk: '/stkHome',
+};
