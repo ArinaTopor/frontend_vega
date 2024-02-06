@@ -19,8 +19,8 @@ const SelectStyles={
 
 const AddEmployeeSelect = ({name,placeholder,required,options, label}:Props) =>{
 	return (
-		<FormControl mb='3vh' width='90%'>
-			<FormLabel fontSize='1.1vw' fontWeight='500' mb='1.8vh'>{label}</FormLabel>
+		<FormControl mb='1.8vh' width='90%'>
+			<FormLabel fontSize='1.1vw' fontWeight='500' mb='1.8vh' color='#000'>{label}</FormLabel>
 			<Select sx={SelectStyles} placeholder={placeholder} 
 			required={required} name={name}>
 				{

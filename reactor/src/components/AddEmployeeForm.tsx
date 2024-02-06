@@ -21,10 +21,10 @@ const AddEmployeeForm=({isAdmin}:Props)=>{
 	return(
 		<form>
 			<FillingInput name='name' required={true} type='text' label='ФИО'/>
+			<FillingInput name='login' required={true} type='text' label='Логин'/>
 			{
 				isAdmin ? 
 				<>
-				<FillingInput name='login' required={true} type='text' label='Логин'/>
 				<FillingInput name='password' required={true} type='password' label='Пароль для входа'/>
 				</>:
 				<>
