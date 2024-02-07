@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Sidebar from './components/Sidebar'
+import {Layout} from './components/Layout'
 import {Box} from '@chakra-ui/react';
 
 function App() {
     return (
         <Box>
-            <Sidebar/>
+            <Layout role='admin'/>
         </Box>
     )
 }

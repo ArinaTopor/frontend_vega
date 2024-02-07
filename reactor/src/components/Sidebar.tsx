@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
-import {Flex,Image, Heading,Avatar,Link,Box} from '@chakra-ui/react';
+import {Flex,Image, Heading,Link} from '@chakra-ui/react';
 import avatar from '../image/avatar.svg'
 import list from '../image/list.svg'
 import plan from '../image/plan.svg'
 import nomenclature from '../image/nomenclature.svg'
 import setting from '../image/setting.svg'
-import styles from './Sidebar.module.css'
 
+type Props={
+	isAdmin: boolean
+}
 
-const Sidebar = () =>{
-
-	const isAdmin = true
-
+export function Sidebar({isAdmin}:Props) {
 
 	return(
 		<Flex align='center' flexDirection='column' mr='auto' w='6.3vw' backgroundColor='#314659' h='100vh' position='relative'>
@@ -42,5 +40,3 @@ const Sidebar = () =>{
 		</Flex>
 	)
 }
-
-export default Sidebar 
