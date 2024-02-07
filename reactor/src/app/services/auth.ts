@@ -24,7 +24,7 @@ export const authApi = api.injectEndpoints({
         }),
         current: builder.query<InfoUser, void>({
             query: () => ({
-                url: '/VegaUser',
+                url: '/User',
                 method: 'GET',
             }),
         }),

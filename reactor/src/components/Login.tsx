@@ -36,7 +36,6 @@ const Login = () => {
         if (user) {
             navigate(MainPageRoles[user.role] || '/');
         }
-        console.log('я пошел');
     }, [user, navigate]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
