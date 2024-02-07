@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router';
 import { logout } from '../features/auth/authSlice';
 import { useDispatch } from 'react-redux';
+import { Button } from '@chakra-ui/react';
 
 const BossPage = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const BossPage = () => {
     return (
         <div>
             <p>It's Boss </p>
-            <button onClick={handleLogout}>Выход</button>
+            <Button onClick={handleLogout}>Выход</Button>
         </div>
     );
 };

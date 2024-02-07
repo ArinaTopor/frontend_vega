@@ -1,13 +1,14 @@
-import { FormEvent, useEffect, useState } from 'react';
-import { Box, Button, Checkbox, Flex, FormControl } from '@chakra-ui/react';
-import styles from './Login.module.css';
-import { CustomInput } from './custom-input';
+import { useEffect, useState } from 'react';
+import { Box, Button } from '@chakra-ui/react';
+import { CustomInput } from './custom-input/LoginInput';
 import { useCurrentQuery, useLoginMutation } from '../app/services/auth';
 import { Error } from '../utils/Error';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/auth/authSlice';
 import { MainPageRoles } from '../paths';
+import { FormData } from '../utils/FormData';
+import styles from './Login.module.css';
 
 const boxStyles = {
     display: 'flex',
@@ -15,48 +16,56 @@ const boxStyles = {
     bg: '#fff',
     p: '50px',
     m: 'auto',
-    width: '595px',
+    width: '35vw',
     textAlign: 'center',
 };
 
 const Login = () => {
-    const [loginUser] = useLoginMutation();
+    const [loginUser, { isLoading }] = useLoginMutation();
     const navigate = useNavigate();
-    const { data } = useCurrentQuery();
+    const { data, refetch } = useCurrentQuery();
     const user = useSelector(selectUser);
-    const [isError, setIsError] = useState<boolean>(false);
-    const [isFormSubmit, setIsFormSubmit] = useState<boolean>(false);
+    const [isError, setIsErrors] = useState<boolean>(false);
+    const [formDataError, setFormDataError] = useState<boolean>(false);
+    const [formData, setFormData] = useState<FormData>({
+        login: '',
+        password: '',
+    });
 
     useEffect(() => {
         if (user) {
             navigate(MainPageRoles[user.role] || '/');
         }
+        console.log('я пошел');
     }, [user, navigate]);
-    const validateForm = (data: { login: string; password: string }) => {
-        if (!data.password.trim() || !data.login.trim()) {
-            setIsFormSubmit(true);
-        }
-        setIsFormSubmit(false);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
     };
 
-    const login = async (event: FormEvent) => {
-        event.preventDefault();
-        const formData = new FormData(event.target as HTMLFormElement);
-        const dataUser = {
-            login: formData.get('login') as string,
-            password: formData.get('password') as string,
-        };
-        validateForm(dataUser);
-        if (!isFormSubmit) {
+    const validateForm = (data: FormData) => {
+        if (!data.login.trim() || !data.password.trim()) {
+            setFormDataError(true);
+        } else {
+            setFormDataError(false);
+            setIsErrors(false);
+        }
+    };
+
+    const handleAuth = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        validateForm(formData);
+        if (!formDataError) {
             try {
-                await loginUser(dataUser).unwrap();
-                if (data) {
-                    navigate(MainPageRoles[data.role] || '/');
-                }
+                await loginUser(formData).unwrap();
+                refetch();
             } catch (err) {
                 if ((err as Error).originalStatus === 400) {
-                    setIsError(true);
-                    setIsFormSubmit(true);
+                    setIsErrors(true);
                 } else {
                     console.log(err);
                 }
@@ -71,22 +80,27 @@ const Login = () => {
                 Для входа в систему введите
                 <br /> логин и пароль
             </p>
-            <form className={styles.login} onSubmit={login}>
+            <form className={styles.login} onSubmit={handleAuth}>
                 <CustomInput
                     placeholder='Логин'
                     name='login'
-                    requare={true}
-                    errors={isFormSubmit}
+                    value={formData.login}
+                    onChange={handleChange}
                 ></CustomInput>
                 <CustomInput
                     placeholder='Пароль'
                     name='password'
+                    value={formData.password}
                     type='password'
-                    requare={true}
-                    errors={isFormSubmit}
+                    onChange={handleChange}
                 ></CustomInput>
                 {isError ? (
                     <p style={{ color: 'red' }}>Неверный логин или пароль</p>
+                ) : null}
+                {formDataError ? (
+                    <p style={{ color: 'red' }}>
+                        Необходимо заполнить все поля
+                    </p>
                 ) : null}
                 <Button
                     bg='#314659'
@@ -95,6 +109,9 @@ const Login = () => {
                     borderRadius='2px'
                     _hover={{ bg: '#24323E' }}
                     type='submit'
+                    isLoading={isLoading}
+                    isDisabled={isLoading}
+                    _disabled={{ cursor: 'not-allowed' }}
                 >
                     Войти
                 </Button>
