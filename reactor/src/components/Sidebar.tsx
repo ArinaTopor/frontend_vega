@@ -12,7 +12,7 @@ type Props={
 export function Sidebar({isAdmin}:Props) {
 
 	return(
-		<Flex align='center' flexDirection='column' mr='auto' w='6.3vw' backgroundColor='#314659' h='100vh' position='relative'>
+		<Flex align='center' flexDirection='column' mr='auto' w='6.3vw' backgroundColor='#314659' h='100vh' position='fixed'>
 			<Flex align='center' flexDirection='column' gap='13px' mt='6.1vh' 
 			mb='22vh'>
 				<Image src={avatar} w='4.5vw'/>

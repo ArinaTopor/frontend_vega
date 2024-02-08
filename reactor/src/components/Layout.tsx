@@ -1,12 +1,10 @@
 import { Outlet } from 'react-router-dom'
 import { Sidebar } from './Sidebar'
+import { selectUser } from '../features/auth/authSlice'
+import { useSelector } from 'react-redux'
 
-type Props ={
-	role:string
-}
-
-export function Layout({role}:Props) {
-
+export function Layout() {
+	const role = useSelector(selectUser)?.role
 	const isAdmin = role === "admin"
 	return (
 		<>
