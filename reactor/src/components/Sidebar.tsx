@@ -1,9 +1,9 @@
 import {Flex,Image, Heading,Link} from '@chakra-ui/react';
-import avatar from '../image/avatar.svg'
-import list from '../image/list.svg'
-import plan from '../image/plan.svg'
-import nomenclature from '../image/nomenclature.svg'
-import setting from '../image/setting.svg'
+import avatar from '../assets/image/avatar.svg'
+import list from '../assets/image/list.svg'
+import plan from '../assets/image/plan.svg'
+import nomenclature from '../assets/image/nomenclature.svg'
+import setting from '../assets/image/setting.svg'
 
 type Props={
 	isAdmin: boolean
