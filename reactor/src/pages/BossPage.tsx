@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router';
 import { logout } from '../features/auth/authSlice';
 import { useDispatch } from 'react-redux';
 import { Box, Button } from '@chakra-ui/react';
-import styled from '@emotion/styled'
 
 const BossPage = () => {
     const navigate = useNavigate();

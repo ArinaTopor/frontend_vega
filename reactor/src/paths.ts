@@ -1,8 +1,8 @@
 export const Paths = {
     products: '/products',
     nomenclature: '/nomenclature',
-    login: '/login',
-    tasksBoadr: '/taskBoard',
+    login: '/',
+    tasksBoard: '/taskBoard',
     workerMain: '/home',
     adminMain: '/adminHome',
     stkMain: '/stkHome',
