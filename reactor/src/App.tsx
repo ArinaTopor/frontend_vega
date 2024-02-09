@@ -8,16 +8,6 @@ import { RequareAuth } from './hoc/RequaireAuth';
 import BossPage from './pages/BossPage';
 import { Paths } from './paths';
 import { Layout } from './components/Layout';
-// const theme = extendBaseTheme({
-//     components: {
-//         Button: {
-//             background: '#314659',
-//             _hover: {
-//                 background: '#24323E',
-//             },
-//         },
-//     },
-// });
 
 function App() {
     return (

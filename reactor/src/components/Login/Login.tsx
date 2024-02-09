@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Box, Button } from '@chakra-ui/react';
-import { CustomInput } from './custom-input/LoginInput';
-import { useCurrentQuery, useLoginMutation } from '../app/services/auth';
-import { Error } from '../utils/Error';
+import { CustomInput } from '../custom-input/LoginInput';
+import { useCurrentQuery, useLoginMutation } from '../../app/services/auth';
+import { Error } from '../../utils/Error';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../features/auth/authSlice';
-import { MainPageRoles } from '../paths';
-import { FormData } from '../utils/FormData';
+import { selectUser } from '../../features/auth/authSlice';
+import { MainPageRoles } from '../../paths';
+import { FormData } from '../../utils/FormData';
 import styles from './Login.module.css';
 
 const boxStyles = {

@@ -11,6 +11,7 @@ type UserData = {
 export type InfoUser = {
     login: string;
     role: 'admin' | 'worker' | 'stk';
+    name: string | null;
 };
 
 export const authApi = api.injectEndpoints({
