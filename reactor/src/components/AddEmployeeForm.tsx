@@ -1,14 +1,22 @@
+import { useSelector, useDispatch } from 'react-redux';
 import FormInput from './custom-input/FormInput';
 import Select from './CustomSelect';
+import {} from '../features/employeesSlice';
+import {
+    getRoles,
+    useGetAreasQuery,
+    useGetRolesQuery,
+} from '../app/services/employees';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../app/hooks';
 type Props = {
     isAdmin: boolean;
 };
 
-const roles = ['role1', 'role2', 'role3'];
-
-const sites = ['site1', 'site2', 'site3'];
-
 const AddEmployeeForm = ({ isAdmin }: Props) => {
+    const dispatch = useAppDispatch();
+    const { data: dataAreas, error: errorAreas } = useGetAreasQuery();
+    const { data: dataRoles, error: errorRoles } = useGetRolesQuery();
     return (
         <form>
             <FormInput name='name' required={true} type='text' label='ФИО' />
@@ -28,14 +36,14 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                         name='role'
                         placeholder=' '
                         required={true}
-                        options={roles}
+                        options={dataRoles ?? {}}
                         label='Роль'
                     />
                     <Select
-                        name='site'
+                        name='area'
                         placeholder=' '
                         required={true}
-                        options={sites}
+                        options={dataAreas ?? {}}
                         label='Участок'
                     />
                     <FormInput
