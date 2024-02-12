@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -14,6 +14,7 @@
     );
     --accent: '#314659';
     --hover-background-green: '#24323E';
+    --button-base-background: '#314659';
 }
 body {
     margin: 0;
@@ -32,7 +33,7 @@ h1 {
     font-size: 25px;
     font-weight: 700;
 }
-a{
+a {
     text-decoration: none;
 }
 code {
