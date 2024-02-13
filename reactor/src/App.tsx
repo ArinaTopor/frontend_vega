@@ -29,7 +29,31 @@ function App() {
                             element={
                                 <RequareAuth>
                                     <BossPage />
-                                </RequareAuth>
+                                </RequareAuth>      
+                            }
+                        />
+                        <Route
+                            path={Paths.nomenclature}
+                            element={
+                                    <BossPage />
+                            }
+                        />
+                        <Route
+                            path={Paths.products}
+                            element={
+                                    <BossPage />
+                            }
+                        />
+                        <Route
+                            path={Paths.tasksBoard}
+                            element={
+                                    <BossPage />
+                            }
+                        />
+                        <Route
+                            path={Paths.options}
+                            element={
+                                    <BossPage />
                             }
                         />
                     </Route>

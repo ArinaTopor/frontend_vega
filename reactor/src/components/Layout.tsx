@@ -1,15 +1,16 @@
 import { Outlet } from 'react-router-dom'
-import { Sidebar } from './Sidebar'
+import { Sidebar } from './Sidebar/Sidebar'
 import { selectUser } from '../features/auth/authSlice'
 import { useSelector } from 'react-redux'
+import { Flex } from '@chakra-ui/react'
 
 export function Layout() {
-	const role = useSelector(selectUser)?.role
-	const isAdmin = role === "admin"
+	const user = useSelector(selectUser)
 	return (
-		<>
-			<Sidebar isAdmin={isAdmin}/>
+		<Flex justify='start'>
+			{/*user?.role === 'Администратор'*/}
+			<Sidebar user={user}/>
 			<Outlet/>
-		</>
+		</Flex>
 	)
 }
