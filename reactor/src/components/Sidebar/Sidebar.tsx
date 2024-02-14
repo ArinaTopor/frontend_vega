@@ -17,8 +17,8 @@ export function Sidebar({user}:Props) {
 
 	const createName = function(nameBack:string){
 		const nameArray:string[] = nameBack.split(' ')
-		const initials:string = `${nameArray[1][0]}${nameArray[0][0]}`
-		const name:string = nameArray && `${nameArray[1]} ${nameArray[0][0]}.`
+		const initials:string = `${nameArray[0][0]}${nameArray[1][0]}`
+		const name:string = nameArray && `${nameArray[0]} ${nameArray[1][0]}.`
 		return{
 			initials,
 			name
