@@ -14,14 +14,14 @@ function App() {
         <ChakraProvider>
             <HashRouter>
                 <Routes>
-                    <Route path='/' element={<Authorization />} />
+                    {/*<Route path='' element={<Authorization />} />*/}
                     <Route element={<Layout />}>
                         <Route
-                            path={Paths.workerMain}
+                            path='/'
                             element={
-                                <RequareAuth>
+                                
                                     <Home />
-                                </RequareAuth>
+                                
                             }
                         />
                         <Route
