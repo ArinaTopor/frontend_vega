@@ -1,26 +1,45 @@
-import React from 'react';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 import Authorization from './pages/Auth/Authorization';
 import Home from './pages/MainPage';
-import { ChakraProvider, extendBaseTheme } from '@chakra-ui/react';
 import './App.css';
 import { RequareAuth } from './hoc/RequaireAuth';
 import BossPage from './pages/BossPage';
 import { Paths } from './paths';
-// const theme = extendBaseTheme({
-//     components: {
-//         Button: {
-//             background: '#314659',
-//             _hover: {
-//                 background: '#24323E',
-//             },
-//         },
-//     },
-// });
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+
+const theme = extendTheme({
+    components: {
+        Button: {
+            baseStyle: {
+                fontWeight: 'medium',
+                p: '1.5',
+                borderRadius: '2px',
+            },
+            variants: {
+                brand: {
+                    bg: '#314659',
+                    color: '#fff',
+                    _hover: {
+                        bg: '#24323E',
+                    },
+                },
+                additionally: {
+                    bg: '#D9D9D9',
+                    p: '1.5',
+                    color: '#314659',
+                    border: '1.8px solid #B1B1B1',
+                    _hover: {
+                        bg: '#B1B1B1',
+                    },
+                },
+            },
+        },
+    },
+});
 
 function App() {
     return (
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
             <HashRouter>
                 <Routes>
                     <Route path='/' element={<Authorization />} />
