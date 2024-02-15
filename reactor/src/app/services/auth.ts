@@ -10,6 +10,7 @@ type UserData = {
 };
 export type InfoUser = {
     login: string;
+    name: string;
     role: 'admin' | 'worker' | 'stk' | 'storage';
 };
 
