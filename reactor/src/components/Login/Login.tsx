@@ -103,11 +103,7 @@ const Login = () => {
                     </p>
                 ) : null}
                 <Button
-                    bg='#314659'
-                    p='1.5'
-                    color='#fff'
-                    borderRadius='2px'
-                    _hover={{ bg: '#24323E' }}
+                    variant='brand'
                     type='submit'
                     isLoading={isLoading}
                     isDisabled={isLoading}

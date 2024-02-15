@@ -1,13 +1,17 @@
-import {Flex, Heading} from '@chakra-ui/react';
+import {Button, Flex, Heading, Image} from '@chakra-ui/react';
 import list from '../../assets/icons/list.svg'
 import plan from '../../assets/icons/plan.svg'
 import nomenclature from '../../assets/icons/nomenclature.svg'
 import setting from '../../assets/icons/setting.svg'
+import exit from '../../assets/icons/exit.svg'
 import { InfoUser } from '../../app/services/auth'
 import { Paths } from '../../paths'
 import style from './Sidebar.module.css'
 import { useState } from 'react'
 import { SidebarNavLink } from '../custom-nav_link/SidebarNavLink'
+import { useNavigate } from 'react-router'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../features/auth/authSlice'
 
 type Props={
 	user: InfoUser | null
@@ -24,14 +28,12 @@ export function Sidebar({user}:Props) {
 			name
 		}
 	}
-	const names =user ? createName('Кочнев Сергей Валерьевич') :
+	const names = user?.name ? createName(user.name) :
 	{
 		initials: '',
 		name:''
 	}
-	/*const nameArray:string[]|undefined = user?.name?'Кочнев Сергей Валерьевич'.split(' ')
-	const initials:string | undefined = nameArray && `${nameArray[1][0]}${nameArray[0][0]}`
-	const name:string | undefined = nameArray && `${nameArray[1]} ${nameArray[0][0]}.`*/
+
 	const [isHovered, setIsHovering] = useState(false)
 
 	const sidebarStyle={
@@ -41,6 +43,14 @@ export function Sidebar({user}:Props) {
 		backgroundColor:'#314659', 
 		h:'100vh'
 	}
+
+	const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const handleLogout = () => {
+        dispatch(logout());
+        localStorage.removeItem('token');
+        navigate('/');
+    };
 
 	return(
 		<Flex sx={sidebarStyle} onMouseEnter={()=>setIsHovering(last => !last)}
@@ -61,6 +71,10 @@ export function Sidebar({user}:Props) {
 				<SidebarNavLink path={Paths.tasksBoard} linkStyle={style.link} srcImage={plan} isHovered={isHovered} text='Заказы'/>
 				<SidebarNavLink path={Paths.products} linkStyle={style.link} srcImage={list} isHovered={isHovered} text='Лист ожидания'/>
 				<SidebarNavLink path={Paths.options} linkStyle={style.link_options} srcImage={setting} isHovered={isHovered} text='Настройки'/>
+				<Button onClick={handleLogout} bg='' _hover={{opacity:0.3}} p='0 0 0 0' ml='5px' display='flex' fontFamily='Roboto' color='#fff' alignItems='center' fontWeight='500' gap='9.5px'>
+					<Image src={exit} w='1.4vw'/>
+					{isHovered && 'Выход'}
+				</Button>
 			</Flex>		
 		</Flex>
 	)
