@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../app/store';
+import { RootState } from '../../app/store';
 import {
     CommonResponse,
     employeesApi,
     useGetAreasQuery,
-} from '../app/services/employees';
+} from '../../app/services/employees';
 
 interface InitialState {
     roles: CommonResponse | null;

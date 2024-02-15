@@ -1,20 +1,12 @@
-import { useSelector, useDispatch } from 'react-redux';
 import FormInput from './custom-input/FormInput';
 import Select from './CustomSelect';
-import {} from '../features/employeesSlice';
-import {
-    getRoles,
-    useGetAreasQuery,
-    useGetRolesQuery,
-} from '../app/services/employees';
-import { useEffect } from 'react';
-import { useAppDispatch } from '../app/hooks';
+import {} from '../features/auth/employeesSlice';
+import { useGetAreasQuery, useGetRolesQuery } from '../app/services/employees';
 type Props = {
     isAdmin: boolean;
 };
 
 const AddEmployeeForm = ({ isAdmin }: Props) => {
-    const dispatch = useAppDispatch();
     const { data: dataAreas, error: errorAreas } = useGetAreasQuery();
     const { data: dataRoles, error: errorRoles } = useGetRolesQuery();
     return (
