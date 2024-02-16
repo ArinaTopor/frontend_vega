@@ -10,7 +10,6 @@ export const boxStyle = {
 
 export const buttonStyle = {
     w: '11.6vw',
-    h: '4.9vh',
     m: '0 2.2vw 5.4vh 0',
     position: 'absolute',
     bottom: '0',

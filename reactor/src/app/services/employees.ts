@@ -11,6 +11,7 @@ export type NewUser = {
     name: string;
     roleId: number;
     areaId: number;
+    [key: string]: string | number;
 };
 
 export const employeesApi = api.injectEndpoints({
@@ -18,12 +19,6 @@ export const employeesApi = api.injectEndpoints({
         getAreas: builder.query<CommonResponse, void>({
             query: () => ({
                 url: '/Config/area',
-                method: 'GET',
-            }),
-        }),
-        getRoles: builder.query<CommonResponse, void>({
-            query: () => ({
-                url: '/Config/role',
                 method: 'GET',
             }),
         }),
@@ -37,8 +32,7 @@ export const employeesApi = api.injectEndpoints({
     }),
 });
 
-export const { useAddUserMutation, useGetAreasQuery, useGetRolesQuery } =
-    employeesApi;
+export const { useAddUserMutation, useGetAreasQuery } = employeesApi;
 export const {
-    endpoints: { getAreas, getRoles, addUser },
+    endpoints: { getAreas, addUser },
 } = employeesApi;

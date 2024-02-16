@@ -38,9 +38,6 @@ const AddEmployeePage = () => {
                     </Button>
                 </Flex>
                 <FillingForm isAdmin={isAdmin} />
-                <Button variant='brand' sx={buttonStyle}>
-                    {isAdmin ? 'Сохранить' : 'Создать'}
-                </Button>
             </Box>
         </Flex>
     );
