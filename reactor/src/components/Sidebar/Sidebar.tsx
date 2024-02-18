@@ -1,4 +1,4 @@
-import {Button, Flex, Heading, Image} from '@chakra-ui/react';
+import {Box, Button, Flex, Heading, Image} from '@chakra-ui/react';
 import list from '../../assets/icons/list.svg'
 import plan from '../../assets/icons/plan.svg'
 import nomenclature from '../../assets/icons/nomenclature.svg'
@@ -69,11 +69,13 @@ export function Sidebar({user}:Props) {
 				<SidebarNavLink path={Paths.nomenclature} linkStyle={style.link} srcImage={nomenclature} isHovered={isHovered} text='Номенклатура'/>
 				<SidebarNavLink path={Paths.tasksBoard} linkStyle={style.link} srcImage={plan} isHovered={isHovered} text='Заказы'/>
 				<SidebarNavLink path={Paths.products} linkStyle={style.link} srcImage={list} isHovered={isHovered} text='Лист ожидания'/>
-				<SidebarNavLink path={Paths.options} linkStyle={style.link_options} srcImage={setting} isHovered={isHovered} text='Настройки'/>
-				<Button onClick={handleLogout} bg='' _hover={{opacity:0.3}} p='0 0 0 0' display='flex' ml='0.2vw' fontFamily='Roboto' color='#fff' alignItems='center' fontWeight='500' gap='9.5px' h='1.8vw' fontSize='2.1vh'>
-					<Image src={exit} w='1.8vw' h='1.8vw'/>
-					{isHovered && 'Выход'}
-				</Button>
+				<Flex position='absolute' bottom='0' mb='4vh' gap='3vh' flexDirection='column' align={isHovered ? 'start' : 'center'}>
+					<SidebarNavLink path={Paths.options} linkStyle={style.link} srcImage={setting} isHovered={isHovered} text='Настройки'/>
+					<Button onClick={handleLogout} bg='' _hover={{opacity:0.3}} p='0 0 0 0' display='flex' fontFamily='Roboto' color='#fff' alignItems='center' ml='0.1vw' fontWeight='500' gap='9.5px' h='1.8vw' fontSize='2.1vh'>
+						<Image src={exit} w='1.8vw' h='1.8vw'/>
+						{isHovered && 'Выход'}
+					</Button>
+				</Flex>
 			</Flex>		
 		</Flex>
 	)
