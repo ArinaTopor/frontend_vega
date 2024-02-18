@@ -43,8 +43,8 @@ function App() {
         <ChakraProvider theme={theme}>
             <HashRouter>
                 <Routes>
+                    <Route path='' element={<Authorization/>} />
                     <Route element={<Layout />}>
-                        <Route path='' element={<Home />} />
                         <Route
                             path={Paths.workerMain}
                             element={
