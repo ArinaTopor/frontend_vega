@@ -17,9 +17,11 @@ const slice = createSlice({
     initialState,
     reducers: {
         logout: () => initialState,
-        // refreshToken: (initialState) => {
-
-        // }
+        refresh: (state, action) => {
+            state.token = action.payload;
+            localStorage.setItem('accessToken', action.payload.accessToken);
+            localStorage.setItem('refreshToken', action.payload.refreshToken);
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -28,6 +30,19 @@ const slice = createSlice({
                 (state, action) => {
                     state.token = action.payload;
                     state.isAuth = true;
+                    if (
+                        action.payload.accessToken &&
+                        action.payload.refreshToken
+                    ) {
+                        localStorage.setItem(
+                            'accessToken',
+                            action.payload.accessToken
+                        );
+                        localStorage.setItem(
+                            'refreshToken',
+                            action.payload.refreshToken
+                        );
+                    }
                 }
             )
             .addMatcher(
@@ -40,9 +55,8 @@ const slice = createSlice({
     },
 });
 
-export const { logout } = slice.actions;
+export const { logout, refresh } = slice.actions;
 export default slice.reducer;
 
 export const selectIsAuthenticated = (state: RootState) => state.auth.isAuth;
 export const selectUser = (state: RootState) => state.auth.user;
-export const selectToken = (state: RootState) => state.auth.token;

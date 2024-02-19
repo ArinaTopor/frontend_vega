@@ -29,18 +29,11 @@ export const authApi = api.injectEndpoints({
                 method: 'GET',
             }),
         }),
-        refreshToken: builder.query<ResponseLoginData, ResponseLoginData>({
-            query: (data) => ({
-                url: '/Auth/refresh-token',
-                method: 'POST',
-                body: { data },
-            }),
-        }),
     }),
 });
 
 export const { useLoginMutation, useCurrentQuery } = authApi;
 
 export const {
-    endpoints: { login, current, refreshToken },
+    endpoints: { login, current },
 } = authApi;
