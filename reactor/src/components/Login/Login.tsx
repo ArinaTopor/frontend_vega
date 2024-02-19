@@ -31,6 +31,7 @@ const Login = () => {
         login: '',
         password: '',
     });
+    console.log(localStorage.getItem('refresh'));
 
     useEffect(() => {
         if (user) {

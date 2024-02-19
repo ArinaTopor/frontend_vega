@@ -8,8 +8,21 @@ listenerMiddleware.startListening({
     effect: async (action, listenerApi) => {
         listenerApi.cancelActiveListeners();
 
-        if (action.payload.accessToken) {
+        if (action.payload.accessToken && action.payload.refreshToken) {
             localStorage.setItem('token', action.payload.accessToken);
+            localStorage.setItem('refresh', action.payload.refreshToken);
+        }
+    },
+});
+
+listenerMiddleware.startListening({
+    matcher: authApi.endpoints.refreshToken.matchFulfilled,
+    effect: async (action, listenerApi) => {
+        listenerApi.cancelActiveListeners();
+
+        if (action.payload.accessToken && action.payload.refreshToken) {
+            localStorage.setItem('token', action.payload.accessToken);
+            localStorage.setItem('refresh', action.payload.refreshToken);
         }
     },
 });
