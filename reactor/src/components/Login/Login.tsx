@@ -29,10 +29,11 @@ const Login = () => {
     const [formDataError, setFormDataError] = useState<boolean>(false);
     const [formData, setFormData] = useState<FormData>({
         login: '',
-        password: '',
+        password: '', 
     });
     console.log(localStorage.getItem('refresh'));
 
+    console.log(user)
     useEffect(() => {
         if (user) {
             navigate(MainPageRoles[user.role] || '/');

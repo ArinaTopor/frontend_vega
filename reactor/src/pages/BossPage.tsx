@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router';
 import { logout } from '../features/auth/authSlice';
 import { useDispatch } from 'react-redux';
-import { Button } from '@chakra-ui/react';
-import { useEffect } from 'react';
+import { Box, Button } from '@chakra-ui/react';
 import { useCurrentQuery } from '../app/services/auth';
+import { useEffect } from 'react';
 
 const BossPage = () => {
     const navigate = useNavigate();
@@ -19,10 +19,10 @@ const BossPage = () => {
         console.log(error);
     }, [data, error]);
     return (
-        <div>
+        <Box p='15px'>
             <p>It's Boss </p>
             <Button onClick={handleLogout}>Выход</Button>
-        </div>
+        </Box>
     );
 };
 export default BossPage;
