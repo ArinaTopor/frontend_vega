@@ -1,0 +1,4 @@
+.authorization_wrapper {
+    height: 100vh;
+    background: var(--auth-background);
+}
