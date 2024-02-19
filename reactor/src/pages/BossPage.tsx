@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router';
 import { logout } from '../features/auth/authSlice';
 import { useDispatch } from 'react-redux';
-import { Button } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 
 const BossPage = () => {
     const navigate = useNavigate();
@@ -12,10 +12,10 @@ const BossPage = () => {
         navigate('/');
     };
     return (
-        <div>
+        <Box p='15px'>
             <p>It's Boss </p>
             <Button onClick={handleLogout}>Выход</Button>
-        </div>
+        </Box>
     );
 };
 export default BossPage;

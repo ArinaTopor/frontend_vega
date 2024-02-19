@@ -6,6 +6,7 @@ import { RequareAuth } from './hoc/RequaireAuth';
 import BossPage from './pages/BossPage';
 import { Paths } from './paths';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { Layout } from './components/Layout'
 
 const theme = extendTheme({
     components: {
@@ -42,23 +43,49 @@ function App() {
         <ChakraProvider theme={theme}>
             <HashRouter>
                 <Routes>
-                    <Route path='/' element={<Authorization />} />
-                    <Route
-                        path={Paths.workerMain}
-                        element={
-                            <RequareAuth>
-                                <Home />
-                            </RequareAuth>
-                        }
-                    />
-                    <Route
-                        path={Paths.adminMain}
-                        element={
-                            <RequareAuth>
-                                <BossPage />
-                            </RequareAuth>
-                        }
-                    ></Route>
+                    <Route path='' element={<Authorization/>} />
+                    <Route element={<Layout />}>
+                        <Route
+                            path={Paths.workerMain}
+                            element={
+                                <RequareAuth>
+                                    <Home />
+                                </RequareAuth>
+                            }
+                        />
+                        <Route
+                            path={Paths.adminMain}
+                            element={
+                                <RequareAuth>
+                                    <BossPage />
+                                </RequareAuth>      
+                            }
+                        />
+                        <Route
+                            path={Paths.nomenclature}
+                            element={
+                                    <BossPage />
+                            }
+                        />
+                        <Route
+                            path={Paths.products}
+                            element={
+                                    <BossPage />
+                            }
+                        />
+                        <Route
+                            path={Paths.tasksBoard}
+                            element={
+                                    <BossPage />
+                            }
+                        />
+                        <Route
+                            path={Paths.options}
+                            element={
+                                    <BossPage />
+                            }
+                        />
+                    </Route>
                 </Routes>
             </HashRouter>
         </ChakraProvider>
