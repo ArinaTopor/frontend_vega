@@ -1,4 +1,4 @@
-import {Box, Button, Flex, Heading, Image} from '@chakra-ui/react';
+import {Button, Flex, Heading, Image} from '@chakra-ui/react';
 import list from '../../assets/icons/list.svg'
 import plan from '../../assets/icons/plan.svg'
 import nomenclature from '../../assets/icons/nomenclature.svg'

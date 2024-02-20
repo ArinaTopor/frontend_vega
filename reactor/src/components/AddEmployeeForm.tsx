@@ -1,41 +1,93 @@
-import FillingInput from './CustomInput/FormInput'
-import FillingSelect from './AddEmployeeSelect'
-type Props={
-	isAdmin:boolean
-}
+import FormInput from './custom-input/FormInput';
+import Select from './CustomSelect';
+import { roles } from '../features/auth/employeesSlice';
+import {
+    NewUser,
+    useAddUserMutation,
+    useGetAreasQuery,
+} from '../app/services/employees';
+import { buttonStyle } from '../pages/AddEmployeePage/style';
+import { Button } from '@chakra-ui/react';
+import { FormEvent } from 'react';
 
-const roles=[
-	'role1',
-	'role2',
-	'role3'
-]
+type Props = {
+    isAdmin: boolean;
+};
 
-const sites=[
-	'site1',
-	'site2',
-	'site3'
-]
+const AddEmployeeForm = ({ isAdmin }: Props) => {
+    const { data: dataAreas, error: errorAreas } = useGetAreasQuery();
+    const [addUser, { isLoading }] = useAddUserMutation();
 
-const AddEmployeeForm=({isAdmin}:Props)=>{
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        if (isAdmin) {
+            console.log(isAdmin);
+        } else {
+            const formDataObject: NewUser = {
+                login: '',
+                password: '',
+                name: '',
+                areaId: 0,
+                roleId: 0,
+            };
+            formData.forEach((value: FormDataEntryValue, key: string) => {
+                formDataObject[key] = value.toString();
+            });
+            try {
+                // addUser(formDataObject);
+                console.log('add');
+            } catch (e) {
+                console.log(e);
+            }
+            console.log(formDataObject);
+        }
+    };
+    return (
+        <form onSubmit={handleSubmit}>
+            <FormInput name='name' required={true} type='text' label='ФИО' />
+            <FormInput name='login' required={true} type='text' label='Логин' />
+            {isAdmin ? (
+                <>
+                    <FormInput
+                        name='password'
+                        required={true}
+                        type='password'
+                        label='Пароль для входа'
+                    />
+                    <Button variant='brand' sx={buttonStyle} type='submit'>
+                        Cохранить
+                    </Button>
+                </>
+            ) : (
+                <>
+                    <Select
+                        name='roleId'
+                        placeholder=' '
+                        required={true}
+                        options={roles ?? {}}
+                        label='Роль'
+                    />
+                    <Select
+                        name='areaId'
+                        placeholder=' '
+                        required={true}
+                        options={dataAreas ?? {}}
+                        label='Участок'
+                    />
+                    <FormInput
+                        name='password'
+                        required={true}
+                        type='text'
+                        label='Пароль'
+                    />
+                    <Button variant='brand' sx={buttonStyle} type='submit'>
+                        Создать
+                    </Button>
+                </>
+            )}
+        </form>
+    );
+};
 
-	return(
-		<form>
-			<FillingInput name='name' required={true} type='text' label='ФИО'/>
-			<FillingInput name='login' required={true} type='text' label='Логин'/>
-			{
-				isAdmin ? 
-				<>
-				<FillingInput name='password' required={true} type='password' label='Пароль для входа'/>
-				</>:
-				<>
-				<FillingSelect name='role' placeholder=' ' required={true} 
-				options={roles} label='Роль'/>
-				<FillingSelect name='site' placeholder=' ' required={true} options={sites} label='Участок'/>
-				<FillingInput name='password' required={true} type='text' label='Пароль'/>
-				</>
-			}
-		</form>
-	)
-}
-
-export default AddEmployeeForm
+export default AddEmployeeForm;

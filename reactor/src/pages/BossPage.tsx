@@ -12,7 +12,7 @@ const BossPage = () => {
         navigate('/');
     };
     return (
-        <Box p='15px'>
+        <Box p='15px' flexGrow='1'>
             <p>It's Boss </p>
             <Button onClick={handleLogout}>Выход</Button>
         </Box>

@@ -7,6 +7,7 @@ import BossPage from './pages/BossPage';
 import { Paths } from './paths';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { Layout } from './components/Layout'
+import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage'
 import { WaitingList } from './pages/WaitingList'
 
 const theme = extendTheme({
@@ -82,17 +83,21 @@ function App() {
                             path={Paths.tasksBoard}
                             element={
                                 <RequareAuth>
-                                    <WaitingList /> 
-                                </RequareAuth>           
+                                    <WaitingList/>
+                                </RequareAuth>
+                                    
                             }
                         />
                         <Route
                             path={Paths.options}
                             element={
-                                    <BossPage />
+                                <RequareAuth>
+                                    <AddEmployeePage/>
+                                </RequareAuth> 
                             }
                         />
                     </Route>
+                    
                 </Routes>
             </HashRouter>
         </ChakraProvider>
