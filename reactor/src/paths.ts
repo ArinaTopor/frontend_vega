@@ -8,8 +8,14 @@ export const Paths = {
     stkMain: '/stkHome',
     options: '/options'
 } as const;
-export const MainPageRoles: { worker: string; admin: string; stk: string } = {
+export const MainPageRoles: {
+    worker: string;
+    admin: string;
+    stk: string;
+    storage: string;
+} = {
     worker: '/home',
     admin: '/adminHome',
     stk: '/stkHome',
+    storage: 'storageHome',
 };

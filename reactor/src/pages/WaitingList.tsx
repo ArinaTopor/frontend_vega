@@ -14,14 +14,14 @@ export function WaitingList(){
 
 
 return(
-	<Box p="5.7vh 3.95vw 0 4.1vw">
-		<Box color="#314659" fontSize="4.62vh" fontWeight='800' mb='8.3vh' fontFamily='Roboto'>
+	<Box p="5.7vh 3.95vw 0 4.1vw" position='relative' flexGrow='1'>
+		<Box color="#314659" fontSize="4.62vh" fontWeight='800' mb='7vh' fontFamily='Roboto'>
 			{getDate()}
 		</Box>
 		<Orders/>
 		<Popover placement='left-start' trigger='hover'>
 			<PopoverTrigger>
-			<Button display='flex' alignItems='center' justifyContent='center' w='6.1vw' h='6.1vw' background='#314659' borderRadius='15px' position= 'fixed' right='4vw' bottom='5.6vh' _hover={{opacity:0.7}}>
+			<Button display='flex' alignItems='center' justifyContent='center' w='6.1vw' h='6.1vw' background='#314659' borderRadius='15%' position='absolute' right='4vw' bottom='5.6vh' _hover={{opacity:0.7}}>
 				<Image src={plus}/>
 			</Button>
 			</PopoverTrigger>

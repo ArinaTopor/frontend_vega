@@ -9,7 +9,7 @@ export function Orders(){
 			{orders.length!==0?
 			<Box>Заказы</Box>
 			:
-			<Box fontSize='3vh' color='#314659' textAlign='center' ml='29vw' fontFamily='Roboto'>
+			<Box fontSize='3vh' color='#314659' textAlign='center' ml='28vw'  w='25vw' fontFamily='Roboto'>
 				<Image src={emptyBox} w='25vw'/>
 				<Text>Заказов пока нет...</Text>
 				<Text>Создайте новый заказ!</Text>

@@ -39,6 +39,30 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
 }
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+h1 {
+    font-size: 25px;
+    font-weight: 700;
+}
+a{
+    text-decoration: none;
+}
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
 
 :root {
   --auth-background: linear-gradient(

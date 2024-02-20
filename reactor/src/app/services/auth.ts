@@ -10,15 +10,15 @@ type UserData = {
 };
 export type InfoUser = {
     login: string;
-    role: 'admin' | 'worker' | 'stk';
     name: string | null;
+    role: 'admin' | 'worker' | 'stk' | 'storage';
 };
 
 export const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
         login: builder.mutation<ResponseLoginData, UserData>({
             query: (userData) => ({
-                url: '/Auth',
+                url: '/Auth/login',
                 method: 'POST',
                 body: userData,
             }),

@@ -1,23 +1,51 @@
-import React from 'react';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 import Authorization from './pages/Auth/Authorization';
 import Home from './pages/MainPage';
-import { ChakraProvider, extendBaseTheme } from '@chakra-ui/react';
 import './App.css';
 import { RequareAuth } from './hoc/RequaireAuth';
 import BossPage from './pages/BossPage';
 import { Paths } from './paths';
-import { Layout } from './components/Layout';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { Layout } from './components/Layout'
 import { WaitingList } from './pages/WaitingList'
+
+const theme = extendTheme({
+    components: {
+        Button: {
+            baseStyle: {
+                fontWeight: 'medium',
+                p: '1.5',
+                borderRadius: '2px',
+            },
+            variants: {
+                brand: {
+                    bg: '#314659',
+                    color: '#fff',
+                    _hover: {
+                        bg: '#24323E',
+                    },
+                },
+                additionally: {
+                    bg: '#D9D9D9',
+                    p: '1.5',
+                    color: '#314659',
+                    border: '1.8px solid #B1B1B1',
+                    _hover: {
+                        bg: '#B1B1B1',
+                    },
+                },
+            },
+        },
+    },
+});
 
 function App() {
     return (
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
             <HashRouter>
                 <Routes>
-                
+                    <Route path='' element={<Authorization/>} />
                     <Route element={<Layout />}>
-                        <Route path='/' element={<WaitingList />}/>
                         <Route
                             path={Paths.workerMain}
                             element={
@@ -37,19 +65,25 @@ function App() {
                         <Route
                             path={Paths.nomenclature}
                             element={
+                                <RequareAuth>
                                     <BossPage />
+                                </RequareAuth>
                             }
                         />
                         <Route
                             path={Paths.products}
                             element={
+                                <RequareAuth>
                                     <BossPage />
+                                </RequareAuth>
                             }
                         />
                         <Route
                             path={Paths.tasksBoard}
                             element={
-                                    <WaitingList />
+                                <RequareAuth>
+                                    <WaitingList /> 
+                                </RequareAuth>           
                             }
                         />
                         <Route
