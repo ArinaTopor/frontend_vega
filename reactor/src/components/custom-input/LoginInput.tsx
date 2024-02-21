@@ -4,7 +4,7 @@ type Props = {
     placeholder: string;
     requare?: boolean;
     type?: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     value: string;
 };
 

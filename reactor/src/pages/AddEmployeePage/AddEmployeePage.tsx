@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, Button, Flex } from '@chakra-ui/react';
-import FillingForm from '../../components/AddEmployeeForm';
-import { boxStyle,activeChoiceStyle, choiceStyle } from './style';
+import { boxStyle, activeChoiceStyle, choiceStyle } from './style';
+import AddEmployeeForm from '../../components/AddEmployeeForm';
 
 const AddEmployeePage = () => {
     const [isAdmin, setIsAdmin] = useState(true);
@@ -38,7 +38,7 @@ const AddEmployeePage = () => {
                         Новый работник
                     </Button>
                 </Flex>
-                <FillingForm isAdmin={isAdmin} />
+                <AddEmployeeForm isAdmin={isAdmin} />
             </Box>
         </Flex>
     );

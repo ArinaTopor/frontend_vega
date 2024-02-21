@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../../app/store';
-import { CommonResponse, employeesApi } from '../../app/services/employees';
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../app/store';
+import { CommonResponse, employeesApi } from '../app/services/employees';
 
 interface InitialState {
     areas: CommonResponse | null;

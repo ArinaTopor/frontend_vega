@@ -1,6 +1,6 @@
 import FormInput from './custom-input/FormInput';
 import Select from './CustomSelect';
-import { roles } from '../features/auth/employeesSlice';
+import { roles } from '../features/employeesSlice';
 import {
     NewUser,
     useAddUserMutation,
@@ -8,7 +8,8 @@ import {
 } from '../app/services/employees';
 import { buttonStyle } from '../pages/AddEmployeePage/style';
 import { Button } from '@chakra-ui/react';
-import { FormEvent } from 'react';
+import EditAdminInfoForm from './forms/EditAdminForm';
+import { useRef } from 'react';
 
 type Props = {
     isAdmin: boolean;
@@ -17,50 +18,49 @@ type Props = {
 const AddEmployeeForm = ({ isAdmin }: Props) => {
     const { data: dataAreas, error: errorAreas } = useGetAreasQuery();
     const [addUser, { isLoading }] = useAddUserMutation();
+    const formRef = useRef<HTMLFormElement>(null);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        if (isAdmin) {
-            console.log(isAdmin);
-        } else {
-            const formDataObject: NewUser = {
-                login: '',
-                password: '',
-                name: '',
-                areaId: 0,
-                roleId: 0,
-            };
-            formData.forEach((value: FormDataEntryValue, key: string) => {
-                formDataObject[key] = value.toString();
-            });
-            try {
-                // addUser(formDataObject);
-                console.log('add');
-            } catch (e) {
-                console.log(e);
+        const formDataObject: NewUser = {
+            login: '',
+            password: '',
+            name: '',
+            areaId: 0,
+            roleId: 0,
+        };
+        formData.forEach((value: FormDataEntryValue, key: string) => {
+            formDataObject[key] = value.toString();
+        });
+        try {
+            addUser(formDataObject);
+            if (formRef.current) {
+                formRef.current.reset();
             }
-            console.log(formDataObject);
+        } catch (e) {
+            console.log(e);
         }
     };
+
     return (
-        <form onSubmit={handleSubmit}>
-            <FormInput name='name' required={true} type='text' label='ФИО' />
-            <FormInput name='login' required={true} type='text' label='Логин' />
+        <>
             {isAdmin ? (
-                <>
-                    <FormInput
-                        name='password'
-                        required={true}
-                        type='password'
-                        label='Пароль для входа'
-                    />
-                    <Button variant='brand' sx={buttonStyle} type='submit'>
-                        Cохранить
-                    </Button>
-                </>
+                <EditAdminInfoForm />
             ) : (
-                <>
+                <form ref={formRef} onSubmit={handleSubmit}>
+                    <FormInput
+                        name='name'
+                        required={true}
+                        type='text'
+                        label='ФИО'
+                    />
+                    <FormInput
+                        name='login'
+                        required={true}
+                        type='text'
+                        label='Логин'
+                    />
                     <Select
                         name='roleId'
                         placeholder=' '
@@ -81,12 +81,17 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                         type='text'
                         label='Пароль'
                     />
-                    <Button variant='brand' sx={buttonStyle} type='submit'>
+                    <Button
+                        variant='brand'
+                        sx={buttonStyle}
+                        type='submit'
+                        isLoading={isLoading}
+                    >
                         Создать
                     </Button>
-                </>
+                </form>
             )}
-        </form>
+        </>
     );
 };
 

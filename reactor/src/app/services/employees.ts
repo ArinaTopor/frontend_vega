@@ -1,5 +1,6 @@
 import { ReturnedData } from '../../utils/ReturnedData';
 import { api } from './api';
+import { InfoUser } from './auth';
 
 export type CommonResponse = {
     [key: string]: string;
@@ -12,6 +13,12 @@ export type NewUser = {
     roleId: number;
     areaId: number;
     [key: string]: string | number;
+};
+
+export type EditAdminInfo = {
+    login: string;
+    password?: string;
+    name: string | null;
 };
 
 export const employeesApi = api.injectEndpoints({
@@ -29,10 +36,21 @@ export const employeesApi = api.injectEndpoints({
                 body: data,
             }),
         }),
+        editAdminInfo: builder.mutation<InfoUser, EditAdminInfo>({
+            query: (data) => ({
+                url: '/Config/user',
+                method: 'PATCH',
+                body: data,
+            }),
+        }),
     }),
 });
 
-export const { useAddUserMutation, useGetAreasQuery } = employeesApi;
 export const {
-    endpoints: { getAreas, addUser },
+    useAddUserMutation,
+    useGetAreasQuery,
+    useEditAdminInfoMutation,
+} = employeesApi;
+export const {
+    endpoints: { getAreas, addUser, editAdminInfo },
 } = employeesApi;
