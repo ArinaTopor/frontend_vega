@@ -1,10 +1,12 @@
-import { Button, Flex, FormControl, FormLabel, Input, Text } from '@chakra-ui/react'
-import { useRef, useState } from 'react'
+import { Button, ComponentWithAs, Flex, FormControl, FormLabel, Input, InputProps, Text } from '@chakra-ui/react'
+import { log } from 'console'
+import { useEffect, useRef, useState } from 'react' 
 
 type Props = {
     name: string,
     required: boolean,
-	label:string
+	label:string,
+	isClear:boolean
 }
 
 const InputStyle={
@@ -17,19 +19,23 @@ const InputStyle={
 	m:'0'
 }
 
-export function FileInput({name,label,required}:Props){
+export function FileInput({name,label,required, isClear}:Props){
 	const [selectedFile, setSelectedFile] = useState<File>()
-	const filePicker = useRef(null)
+	const filePicker = useRef<HTMLInputElement>(null)
 
 	const handleChange = (event:React.ChangeEvent<HTMLInputElement>)=>{
+		console.log(12);
 		if (event.target.files)
 			setSelectedFile(event.target.files[0])
-		
 	}
 
 	const handleClick = ()=>{
 		filePicker.current && filePicker.current.click()
 	}
+	
+	useEffect(()=>{
+		setSelectedFile(undefined)
+	}, [isClear])
 
 	return(
 		<FormControl>

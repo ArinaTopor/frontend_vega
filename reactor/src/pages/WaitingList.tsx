@@ -7,7 +7,7 @@ import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOve
 import FormInput from '../components/custom-input/FormInput'
 import { FileInput } from '../components/custom-input/FileInput'
 import { CustomTextarea } from '../components/CustomTextarea/CustomTextarea'
-import { NewOrderForm } from '../components/NewOrderForm/NewOrderForm'
+import { NewOrderForm } from '../components/NewOrderForm'
 import { useRef } from 'react'
 
 export function WaitingList(){

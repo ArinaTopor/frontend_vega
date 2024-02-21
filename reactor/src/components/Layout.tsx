@@ -8,7 +8,7 @@ export function Layout() {
 	const user = useSelector(selectUser)
 	return (
 		<Flex justify='start'>
-			{/*user?.role === 'admin' && */<Sidebar user={user}/>}
+			{user?.role === 'admin' && <Sidebar user={user}/>}
 			<Outlet/>
 		</Flex>
 	)
