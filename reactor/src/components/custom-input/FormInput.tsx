@@ -25,7 +25,7 @@ const FormInput = ({name,type,required,label}:Props) =>{
 	const [isVisible,setIsVisible]=useState(false)
 
 	return (
-		<FormControl mb='1.8vh' width='90%'>
+		<FormControl mb='1.8vh' width='100%'>
 			<FormLabel fontSize='1.1vw' fontWeight='500' mb='1.8vh' color='#000'>{label}</FormLabel>
 			{type === 'password'?
 				<Box position='relative'>

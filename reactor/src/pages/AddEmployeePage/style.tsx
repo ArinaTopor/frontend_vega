@@ -4,7 +4,7 @@ export const boxStyle = {
     bg: '#fff',
     h: '93.4vh',
     position: 'relative',
-    p: '9.2vh 3.8vw 3vh 4.1vw',
+    p: '9.2vh 5.8vw 3vh 4.15vw',
     w: '46.6vw',
 };
 

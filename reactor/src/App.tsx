@@ -45,8 +45,9 @@ function App() {
         <ChakraProvider theme={theme}>
             <HashRouter>
                 <Routes>
-                    <Route path='' element={<Authorization/>} />
+                    
                     <Route element={<Layout />}>
+                        <Route path='' element={<WaitingList/>} />
                         <Route
                             path={Paths.workerMain}
                             element={
