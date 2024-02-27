@@ -16,7 +16,9 @@ const InputStyle={
 	lineHeight:'0',
 	overflow:'hidden', 
 	p:'0', 
-	m:'0'
+	m:'0',
+	outline:'',
+	border:''
 }
 
 export function FileInput({name,label,required, isClear}:Props){
@@ -24,7 +26,6 @@ export function FileInput({name,label,required, isClear}:Props){
 	const filePicker = useRef<HTMLInputElement>(null)
 
 	const handleChange = (event:React.ChangeEvent<HTMLInputElement>)=>{
-		console.log(12);
 		if (event.target.files)
 			setSelectedFile(event.target.files[0])
 	}
@@ -39,7 +40,7 @@ export function FileInput({name,label,required, isClear}:Props){
 
 	return(
 		<FormControl>
-			<FormLabel mb='1.85vh' fontSize='2vh'>
+			<FormLabel mb='1.85vh' fontSize='2vh' fontFamily='Roboto' fontWeight='500'>
 				{label}
 			</FormLabel>
 			<Flex justify='space-between'>
