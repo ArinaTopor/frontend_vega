@@ -1,7 +1,25 @@
 .login {
     display: flex;
     flex-direction: column;
-    gap: 24px 0;
+    gap: 2px 0;
     margin-top: 24px;
     text-align: start;
+}
+
+.login_wrapper {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 50px;
+    margin: auto;
+    width: 35vw;
+    text-align: center;
+}
+
+.ant-btn {
+    vertical-align: middle;
+    align-items: center;
+    text-align: center !important;
+    height: auto;
+    padding: 0.4rem;
 }

@@ -1,12 +1,14 @@
 import Login from '../../components/Login/Login';
-import { Flex } from '@chakra-ui/react';
+import { Flex } from 'antd';
 const Authorization = () => {
     return (
         <Flex
-            height='100vh'
-            display='flex'
-            alignItems='center'
-            background='var(--auth-background)'
+            style={{
+                height: '100vh',
+                background: 'var(--auth-background)',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}
         >
             <Login></Login>
         </Flex>
