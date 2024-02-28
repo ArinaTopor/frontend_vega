@@ -1,40 +1,25 @@
-import { FormControl, Input } from '@chakra-ui/react';
+// import { FormControl, Input } from '@chakra-ui/react';
+import { Input, Form } from 'antd';
+
 type Props = {
     name: string;
     placeholder: string;
-    requare?: boolean;
     type?: string;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    value: string;
 };
 
-const InputStyles = {
-    size: 'sm',
-    borderRadius: '2px',
-    _focus: {
-        borderColor: '#314659',
-    },
-    _invalid: { borderColor: 'red.500' },
-};
-
-export const CustomInput = ({
-    name,
-    placeholder,
-    type = 'text',
-    value,
-    onChange,
-}: Props) => {
+export const CustomInput = ({ name, placeholder, type = 'text' }: Props) => {
     return (
-        <FormControl>
-            <Input
-                name={name}
-                placeholder={placeholder}
-                sx={InputStyles}
-                focusBorderColor='#314659'
-                type={type}
-                onChange={onChange}
-                value={value}
-            ></Input>
-        </FormControl>
+        <Form.Item
+            name={name}
+            shouldUpdate={true}
+            rules={[
+                {
+                    required: true,
+                    message: 'Обязательное поле',
+                },
+            ]}
+        >
+            <Input placeholder={placeholder} type={type}></Input>
+        </Form.Item>
     );
 };

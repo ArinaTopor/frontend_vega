@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 16;
 }
 
 :root {
@@ -32,7 +33,7 @@ h1 {
     font-size: 25px;
     font-weight: 700;
 }
-a{
+a {
     text-decoration: none;
 }
 code {
