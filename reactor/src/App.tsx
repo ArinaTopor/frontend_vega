@@ -5,49 +5,38 @@ import './App.css';
 import { RequareAuth } from './hoc/RequaireAuth';
 import BossPage from './pages/BossPage';
 import { Paths } from './paths';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import { Layout } from './components/Layout'
-import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage'
-import { WaitingList } from './pages/WaitingList'
-
-const theme = extendTheme({
+import { CustomLayout } from './components/CustomLayout';
+import { ConfigProvider, ThemeConfig } from 'antd';
+import { WaitingList } from './pages/WaitingList';
+const theme: ThemeConfig = {
     components: {
         Button: {
-            baseStyle: {
-                fontWeight: 'medium',
-                p: '1.5',
-                borderRadius: '2px',
-            },
-            variants: {
-                brand: {
-                    bg: '#314659',
-                    color: '#fff',
-                    _hover: {
-                        bg: '#24323E',
-                    },
-                },
-                additionally: {
-                    bg: '#D9D9D9',
-                    p: '1.5',
-                    color: '#314659',
-                    border: '1.8px solid #B1B1B1',
-                    _hover: {
-                        bg: '#B1B1B1',
-                    },
-                },
-            },
+            fontSize: 16,
+            colorPrimary: '#314659',
+            colorPrimaryHover: '#24323E',
+            colorPrimaryActive: '#24323E',
+            colorBgContainerDisabled: '#B1B1B1',
+            colorTextDisabled: '#ffffff',
+            borderRadius: 2,
+            fontWeight: 500,
+        },
+        Input: {
+            activeBorderColor: '#314659',
+            borderRadius: 2,
+            activeShadow: 'none',
+            fontSize: 16,
+            hoverBorderColor: '#314659',
         },
     },
-});
+};
 
 function App() {
     return (
-        <ChakraProvider theme={theme}>
+        <ConfigProvider theme={theme}>
             <HashRouter>
                 <Routes>
-                    
-                    <Route element={<Layout />}>
-                    <Route path='/' element={<WaitingList/>} />
+                    <Route path='/' element={<Authorization/>} />
+                    <Route element={<CustomLayout />}>
                         <Route
                             path={Paths.workerMain}
                             element={
@@ -61,47 +50,20 @@ function App() {
                             element={
                                 <RequareAuth>
                                     <BossPage />
-                                </RequareAuth>      
+                                </RequareAuth>
                             }
                         />
                         <Route
                             path={Paths.nomenclature}
-                            element={
-                                <RequareAuth>
-                                    <BossPage />
-                                </RequareAuth>
-                            }
+                            element={<BossPage />}
                         />
-                        <Route
-                            path={Paths.products}
-                            element={
-                                <RequareAuth>
-                                    <BossPage />
-                                </RequareAuth>
-                            }
-                        />
-                        <Route
-                            path={Paths.tasksBoard}
-                            element={
-                                <RequareAuth>
-                                    <WaitingList/>
-                                </RequareAuth>
-                                    
-                            }
-                        />
-                        <Route
-                            path={Paths.options}
-                            element={
-                                <RequareAuth>
-                                    <AddEmployeePage/>
-                                </RequareAuth> 
-                            }
-                        />
+                        <Route path={Paths.products} element={<BossPage />} />
+                        <Route path={Paths.tasksBoard} element={<BossPage />} />
+                        <Route path={Paths.options} element={<BossPage />} />
                     </Route>
-                    
                 </Routes>
             </HashRouter>
-        </ChakraProvider>
+        </ConfigProvider>
     );
 }
 
