@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { CustomInput } from '../custom-input/LoginInput';
 import {
-    UserData,
+    LoginData,
     useCurrentQuery,
     useLoginMutation,
 } from '../../app/services/auth';
@@ -19,24 +19,15 @@ const Login = () => {
     const { data, refetch } = useCurrentQuery();
     const user = useSelector(selectUser);
     const [isError, setIsErrors] = useState<boolean>(false);
-<<<<<<< HEAD
-    const [formDataError, setFormDataError] = useState<boolean>(false);
-    const [formData, setFormData] = useState<FormData>({
-        login: '',
-        password: '',
-    });
-
-=======
 
     console.log(user);
->>>>>>> 138c15d46c22059737b4f2460beb7726dd11c44e
     useEffect(() => {
         if (user) {
             navigate(MainPageRoles[user.role] || '/');
         }
     }, [user, navigate]);
 
-    const handleAuth = async (data: UserData) => {
+    const handleAuth = async (data: LoginData) => {
         try {
             await loginUser(data).unwrap();
             refetch();
