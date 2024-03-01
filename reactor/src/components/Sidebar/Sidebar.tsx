@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-import {Button, Flex, Heading, Image} from '@chakra-ui/react';
-import list from '../../assets/icons/list.svg'
-import plan from '../../assets/icons/plan.svg'
-import nomenclature from '../../assets/icons/nomenclature.svg'
-import setting from '../../assets/icons/setting.svg'
-import exit from '../../assets/icons/exit.svg'
-import { InfoUser } from '../../app/services/auth'
-import { Paths } from '../../paths'
-import style from './Sidebar.module.css'
-import { useState } from 'react'
-import { SidebarNavLink } from '../custom-nav_link/SidebarNavLink'
-import { useNavigate } from 'react-router'
-import { useDispatch } from 'react-redux'
-import { logout } from '../../features/auth/authSlice'
-=======
 import { Flex, Button, Image } from 'antd';
 import list from '../../assets/icons/list.svg';
 import plan from '../../assets/icons/plan.svg';
@@ -30,7 +14,6 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../features/auth/authSlice';
 import Sider from 'antd/es/layout/Sider';
 import { Typography } from 'antd';
->>>>>>> 138c15d46c22059737b4f2460beb7726dd11c44e
 
 const { Text } = Typography;
 

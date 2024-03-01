@@ -1,25 +1,36 @@
-import FormInput from './custom-input/FormInput';
-import Select from './CustomSelect';
-import { roles } from '../features/employeesSlice';
+import FormInput from '../custom-input/FormInput/FormInput';
+import {AddEmployeeSelect} from '../AddEmployeeSelect/AddEmployeeSelect';
+import { roles } from '../../features/employeesSlice';
 import {
+    CommonResponse,
     NewUser,
     useAddUserMutation,
     useGetAreasQuery,
-} from '../app/services/employees';
-import { buttonStyle } from '../pages/AddEmployeePage/style';
-import { Button } from '@chakra-ui/react';
-import EditAdminInfoForm from './forms/EditAdminForm';
+} from '../../app/services/employees';
+import { buttonStyle } from '../../pages/AddEmployeePage/style';
+//import { Button } from '@chakra-ui/react';
+import style from './AddEmployeeForm.module.css'
 import { useRef } from 'react';
+import EditAdminInfoForm from '../forms/EditAdminInfoForm.css/EditAdminForm';
+import { Button, Form, FormInstance } from 'antd';
+
 
 type Props = {
     isAdmin: boolean;
 };
 
 const AddEmployeeForm = ({ isAdmin }: Props) => {
+    const [form] = Form.useForm();
     const { data: dataAreas, error: errorAreas } = useGetAreasQuery();
     const [addUser, { isLoading }] = useAddUserMutation();
-    const formRef = useRef<HTMLFormElement>(null);
-
+    const formRef = useRef<FormInstance<any>>(null);
+    const arrayAreas:  Array<{value:number, label: string}>= dataAreas ? Object.keys(dataAreas).map((key)=>{
+        const item = {
+            value:Number(key),
+            label:dataAreas[key]
+        }
+        return item
+    }) : []
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -30,14 +41,13 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
             areaId: 0,
             roleId: 0,
         };
+        console.log(formData);
         formData.forEach((value: FormDataEntryValue, key: string) => {
             formDataObject[key] = value.toString();
         });
         try {
+            console.log(formDataObject)
             addUser(formDataObject);
-            if (formRef.current) {
-                formRef.current.reset();
-            }
         } catch (e) {
             console.log(e);
         }
@@ -48,7 +58,7 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
             {isAdmin ? (
                 <EditAdminInfoForm />
             ) : (
-                <form ref={formRef} onSubmit={handleSubmit}>
+                <Form ref={formRef} onSubmitCapture={handleSubmit}>
                     <FormInput
                         name='name'
                         required={true}
@@ -61,18 +71,18 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                         type='text'
                         label='Логин'
                     />
-                    <Select
+                    <AddEmployeeSelect
                         name='roleId'
                         placeholder=' '
                         required={true}
-                        options={roles ?? {}}
+                        options={roles ?? []}
                         label='Роль'
                     />
-                    <Select
+                    <AddEmployeeSelect
                         name='areaId'
                         placeholder=' '
                         required={true}
-                        options={dataAreas ?? {}}
+                        options={arrayAreas ?? []}
                         label='Участок'
                     />
                     <FormInput
@@ -82,14 +92,14 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                         label='Пароль'
                     />
                     <Button
-                        variant='brand'
-                        sx={buttonStyle}
-                        type='submit'
-                        isLoading={isLoading}
+                        className={style.btnSave}
+                        htmlType='submit'
+                        loading={isLoading}
+                        onClick={()=>form.resetFields()}
                     >
                         Создать
                     </Button>
-                </form>
+                </Form>
             )}
         </>
     );

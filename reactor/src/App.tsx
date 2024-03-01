@@ -7,6 +7,7 @@ import BossPage from './pages/BossPage';
 import { Paths } from './paths';
 import { CustomLayout } from './components/CustomLayout';
 import { ConfigProvider, ThemeConfig } from 'antd';
+import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -26,6 +27,12 @@ const theme: ThemeConfig = {
             fontSize: 16,
             hoverBorderColor: '#314659',
         },
+        Select:{
+            selectorBg:'#EBECEF',
+            borderRadius:0,
+            colorPrimaryHover:'#000',
+            colorPrimaryTextActive:'#000',  
+        }
     },
 };
 
@@ -34,8 +41,9 @@ function App() {
         <ConfigProvider theme={theme}>
             <HashRouter>
                 <Routes>
-                    <Route path='/' element={<Authorization />} />
+                    
                     <Route element={<CustomLayout />}>
+                        <Route path='/' element={<AddEmployeePage />} />
                         <Route
                             path={Paths.workerMain}
                             element={

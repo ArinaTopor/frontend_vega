@@ -12,7 +12,7 @@ export function CustomLayout() {
 
 	return (
 		<Layout>
-			{user?.role === 'admin' && <Sidebar user={user} />}
+			{/*user?.role === 'admin' &&*/ <Sidebar user={user} />}
 			<Layout>
 				<Content>
 					<Outlet />

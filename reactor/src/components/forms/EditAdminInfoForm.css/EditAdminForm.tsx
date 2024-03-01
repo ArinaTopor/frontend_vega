@@ -1,14 +1,16 @@
-import { Button } from '@chakra-ui/react';
-import FormInput from '../custom-input/FormInput';
-import { buttonStyle } from '../../pages/AddEmployeePage/style';
+//import { Button } from '@chakra-ui/react';
+import FormInput from '../../custom-input/FormInput/FormInput';
+import { buttonStyle } from '../../../pages/AddEmployeePage/style';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout, selectUser } from '../../features/auth/authSlice';
+import { logout, selectUser } from '../../../features/auth/authSlice';
 import {
     EditAdminInfo,
     useEditAdminInfoMutation,
-} from '../../app/services/employees';
+} from '../../../app/services/employees';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { Button, Form } from 'antd';
+import style from './EditAdminInfoForm.module.css'
 
 const EditAdminInfoForm = () => {
     const [editProfile] = useEditAdminInfoMutation();
@@ -42,11 +44,12 @@ const EditAdminInfoForm = () => {
         await submitEditInfo(formData);
     };
     return (
-        <form onSubmit={handleSubmit}>
+        <Form onSubmitCapture={handleSubmit}>
             <FormInput
+                required={true}
                 name='name'
                 type='text'
-                placeholder='ФИО'
+                label='ФИО'
                 value={formData.name ? formData.name : ''}
                 onChange={(e) => {
                     const { name, value } = e.target;
@@ -56,6 +59,28 @@ const EditAdminInfoForm = () => {
                     }));
                 }}
             />
+            <FormInput
+                name='login'
+                label='Логин'
+                type='text'
+                value={formData.login}
+                onChange={handleChange}
+                required={true}
+            />
+            <FormInput
+                name='password'
+                type='password'
+                label='Пароль для входа'
+                value={formData.password}
+                onChange={handleChange}
+                required={true}
+            />
+            <Button className={style.btnSave} htmlType='submit'>
+                Cохранить
+            </Button>
+        </Form>
+        /*<form onSubmit={handleSubmit}>
+            
             <FormInput
                 name='login'
                 placeholder='Логин'
@@ -73,7 +98,7 @@ const EditAdminInfoForm = () => {
             <Button variant='brand' sx={buttonStyle} type='submit'>
                 Cохранить
             </Button>
-        </form>
+        </form>*/
     );
 };
 export default EditAdminInfoForm;
