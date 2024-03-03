@@ -8,8 +8,9 @@ export const store = configureStore({
         auth,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(api.middleware),
-    // .prepend(listenerMiddleware.middleware),
+        getDefaultMiddleware()
+            .concat(api.middleware)
+            .prepend(listenerMiddleware.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;

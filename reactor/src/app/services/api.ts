@@ -4,54 +4,68 @@ import {
     FetchBaseQueryError,
     createApi,
     fetchBaseQuery,
-    retry,
 } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
 import { logout, refresh } from '../../features/auth/authSlice';
 import { ResponseLoginData } from './auth';
 
-const baseQuery = fetchBaseQuery({
-    baseUrl: 'https://localhost:7185/api',
-    prepareHeaders: (headers, { getState }) => {
-        const token =
-            (getState() as RootState).auth.token?.accessToken ||
-            localStorage.getItem('accessToken');
+const baseQuery: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> =
+    fetchBaseQuery({
+        baseUrl: process.env.REACT_APP_BASE_URL,
+        prepareHeaders: (headers, { getState }) => {
+            const token =
+                (getState() as RootState).auth.token?.accessToken ||
+                localStorage.getItem('accessToken');
 
-        if (token) {
-            headers.set('authorization', `Bearer ${token}`);
-        }
-        return headers;
-    },
-});
+            if (token) {
+                headers.set('authorization', `Bearer ${token}`);
+            }
+            return headers;
+        },
+    });
+
+let refreshPromise: Promise<unknown> | null = null;
+
+interface RefreshResult {
+    data: ResponseLoginData;
+}
 
 const baseQueryWithReauth: BaseQueryFn<
     string | FetchArgs,
     unknown,
     FetchBaseQueryError
 > = async (args, api, extraOptions) => {
+    if (refreshPromise) await refreshPromise;
+
     let result = await baseQuery(args, api, extraOptions);
 
     if (result.error && result.error.status === 401) {
-        const refreshResult = await baseQuery(
-            {
-                url: `/Auth/refresh-token`,
-                method: 'POST',
-                body: {
-                    accessToken: localStorage.getItem('accessToken'),
-                    refreshToken: localStorage.getItem('refreshToken'),
+        refreshPromise = Promise.resolve(
+            baseQuery(
+                {
+                    url: `/Auth/refresh-token`,
+                    method: 'POST',
+                    body: {
+                        accessToken: localStorage.getItem('accessToken'),
+                        refreshToken: localStorage.getItem('refreshToken'),
+                    },
                 },
-            },
-            api,
-            extraOptions
+                api,
+                extraOptions
+            )
         );
 
-        if (refreshResult.data) {
-            const refeshTokenResult = refreshResult.data as ResponseLoginData;
+        const refreshResult = await refreshPromise;
+        refreshPromise = null;
+
+        if ((refreshResult as RefreshResult).data) {
+            const refeshTokenResult = (refreshResult as RefreshResult)
+                .data as ResponseLoginData;
             api.dispatch(refresh(refeshTokenResult));
-            localStorage.setItem('kk', 'fffff');
             result = await baseQuery(args, api, extraOptions);
         } else {
             api.dispatch(logout());
+            localStorage.clear();
         }
     }
     return result;

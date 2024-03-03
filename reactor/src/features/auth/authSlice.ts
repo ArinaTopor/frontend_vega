@@ -16,7 +16,10 @@ const slice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        logout: () => initialState,
+        logout: () => {
+            localStorage.clear();
+            return initialState;
+        },
         refresh: (state, action) => {
             state.token = action.payload;
             localStorage.setItem('accessToken', action.payload.accessToken);
@@ -30,19 +33,6 @@ const slice = createSlice({
                 (state, action) => {
                     state.token = action.payload;
                     state.isAuth = true;
-                    if (
-                        action.payload.accessToken &&
-                        action.payload.refreshToken
-                    ) {
-                        localStorage.setItem(
-                            'accessToken',
-                            action.payload.accessToken
-                        );
-                        localStorage.setItem(
-                            'refreshToken',
-                            action.payload.refreshToken
-                        );
-                    }
                 }
             )
             .addMatcher(
