@@ -4,7 +4,7 @@ export type ResponseLoginData = {
     accessToken: string | null;
     refreshToken: string | null;
 };
-type UserData = {
+export type UserData = {
     login: string;
     password: string;
 };
