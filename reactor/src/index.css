@@ -42,9 +42,13 @@ code {
 }
 
 :root {
-  --auth-background: linear-gradient(
-      296deg,
-      #314659 8.26%,
-      rgba(49, 70, 89, 0) 81.63%
-  );
+    --auth-background: linear-gradient(
+        296deg,
+        #314659 8.26%,
+        rgba(49, 70, 89, 0) 81.63%
+    );
+}
+
+.ant-checkbox-checked .ant-checkbox-inner:after {
+    display: none !important;
 }

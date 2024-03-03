@@ -7,6 +7,7 @@ import BossPage from './pages/BossPage';
 import { Paths } from './paths';
 import { CustomLayout } from './components/CustomLayout';
 import { ConfigProvider, ThemeConfig } from 'antd';
+import TableOrders from './components/table/TableOrders';
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -26,6 +27,11 @@ const theme: ThemeConfig = {
             fontSize: 16,
             hoverBorderColor: '#314659',
         },
+        Checkbox: {
+            colorPrimary: '#314659',
+            colorPrimaryHover: '#24323E',
+            colorBorder: '#314659',
+        },
     },
 };
 
@@ -34,7 +40,7 @@ function App() {
         <ConfigProvider theme={theme}>
             <HashRouter>
                 <Routes>
-                    <Route path='/' element={<Authorization />} />
+                    <Route path='/' element={<TableOrders />} />
                     <Route element={<CustomLayout />}>
                         <Route
                             path={Paths.workerMain}
