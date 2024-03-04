@@ -1,6 +1,4 @@
-//import { Button } from '@chakra-ui/react';
 import FormInput from '../../custom-input/FormInput/FormInput';
-import { buttonStyle } from '../../../pages/AddEmployeePage/style';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, selectUser } from '../../../features/auth/authSlice';
 import {
@@ -17,10 +15,12 @@ const EditAdminInfoForm = () => {
     const user = useSelector(selectUser);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const [formData, setFormData] = useState<EditAdminInfo>({
         login: user?.login!,
         name: user?.name!,
     });
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -39,25 +39,18 @@ const EditAdminInfoForm = () => {
             console.error('Ошибка при отправке данных:', error);
         }
     };
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         await submitEditInfo(formData);
     };
     return (
-        <Form onSubmitCapture={handleSubmit}>
+        <Form onFinish={handleSubmit}>
             <FormInput
-                required={true}
+                required={false}
                 name='name'
                 type='text'
                 label='ФИО'
                 value={formData.name ? formData.name : ''}
-                onChange={(e) => {
-                    const { name, value } = e.target;
-                    setFormData((prevData) => ({
-                        ...prevData,
-                        [name]: value,
-                    }));
-                }}
+                onChange={handleChange}
             />
             <FormInput
                 name='login'
@@ -65,7 +58,7 @@ const EditAdminInfoForm = () => {
                 type='text'
                 value={formData.login}
                 onChange={handleChange}
-                required={true}
+                required={false}
             />
             <FormInput
                 name='password'
@@ -73,32 +66,12 @@ const EditAdminInfoForm = () => {
                 label='Пароль для входа'
                 value={formData.password}
                 onChange={handleChange}
-                required={true}
+                required={false}
             />
             <Button className={style.btnSave} htmlType='submit'>
                 Cохранить
             </Button>
         </Form>
-        /*<form onSubmit={handleSubmit}>
-            
-            <FormInput
-                name='login'
-                placeholder='Логин'
-                type='text'
-                value={formData.login}
-                onChange={handleChange}
-            />
-            <FormInput
-                name='password'
-                type='password'
-                label='Пароль для входа'
-                value={formData.password}
-                onChange={handleChange}
-            />
-            <Button variant='brand' sx={buttonStyle} type='submit'>
-                Cохранить
-            </Button>
-        </form>*/
     );
 };
 export default EditAdminInfoForm;

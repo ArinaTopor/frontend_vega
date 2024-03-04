@@ -2,17 +2,13 @@ import FormInput from '../custom-input/FormInput/FormInput';
 import {AddEmployeeSelect} from '../AddEmployeeSelect/AddEmployeeSelect';
 import { roles } from '../../features/employeesSlice';
 import {
-    CommonResponse,
     NewUser,
     useAddUserMutation,
     useGetAreasQuery,
 } from '../../app/services/employees';
-import { buttonStyle } from '../../pages/AddEmployeePage/style';
-//import { Button } from '@chakra-ui/react';
 import style from './AddEmployeeForm.module.css'
-import { useRef } from 'react';
 import EditAdminInfoForm from '../forms/EditAdminInfoForm.css/EditAdminForm';
-import { Button, Form, FormInstance } from 'antd';
+import { Button, Form} from 'antd';
 
 
 type Props = {
@@ -23,7 +19,6 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
     const [form] = Form.useForm();
     const { data: dataAreas, error: errorAreas } = useGetAreasQuery();
     const [addUser, { isLoading }] = useAddUserMutation();
-    const formRef = useRef<FormInstance<any>>(null);
     const arrayAreas:  Array<{value:number, label: string}>= dataAreas ? Object.keys(dataAreas).map((key)=>{
         const item = {
             value:Number(key),
@@ -31,34 +26,23 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
         }
         return item
     }) : []
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const formDataObject: NewUser = {
-            login: '',
-            password: '',
-            name: '',
-            areaId: 0,
-            roleId: 0,
-        };
-        console.log(formData);
-        formData.forEach((value: FormDataEntryValue, key: string) => {
-            formDataObject[key] = value.toString();
-        });
+
+    const handleAdd= async (data:NewUser)=>{
         try {
-            console.log(formDataObject)
-            addUser(formDataObject);
+            console.log(data)
+            addUser(data);
+            form.resetFields();
         } catch (e) {
             console.log(e);
         }
-    };
+    }
 
     return (
         <>
             {isAdmin ? (
                 <EditAdminInfoForm />
             ) : (
-                <Form ref={formRef} onSubmitCapture={handleSubmit}>
+                <Form onFinish={handleAdd} form={form}>
                     <FormInput
                         name='name'
                         required={true}
@@ -95,7 +79,6 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                         className={style.btnSave}
                         htmlType='submit'
                         loading={isLoading}
-                        onClick={()=>form.resetFields()}
                     >
                         Создать
                     </Button>
