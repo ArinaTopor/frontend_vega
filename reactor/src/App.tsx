@@ -31,6 +31,7 @@ const theme: ThemeConfig = {
             colorPrimary: '#314659',
             colorPrimaryHover: '#24323E',
             colorBorder: '#314659',
+            fontSize: 16,
         },
     },
 };

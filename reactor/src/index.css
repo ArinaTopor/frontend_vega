@@ -15,6 +15,7 @@
     );
     --accent: '#314659';
     --hover-background-green: '#24323E';
+    --red: '#D13D3D';
 }
 body {
     margin: 0;

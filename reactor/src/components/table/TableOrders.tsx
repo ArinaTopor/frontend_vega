@@ -42,10 +42,47 @@ const data: DataType[] = [
             },
         ],
     },
+    {
+        key: 90,
+        name: '984hhebejejb',
+        responsible: '',
+        checked: false,
+        children: [
+            {
+                key: 8,
+                name: 'Технические данные и т.д',
+                responsible: 'admin1',
+                checked: true,
+            },
+            {
+                key: 9,
+                name: 'Разработка КД',
+                responsible: 'admin2',
+                checked: true,
+            },
+            {
+                key: 10,
+                name: 'Согласование КД',
+                responsible: 'admin3',
+                checked: false,
+            },
+            {
+                key: 11,
+                name: 'Отдел поставки',
+                responsible: 'admin4',
+            },
+        ],
+    },
 ];
 
 const TableOrders = () => {
-    const [show, setSwow] = useState(false);
+    const [visible, setVisible] = useState(data.map(() => false));
+
+    const toggleVisibility = (index: number) => {
+        setVisible((prevState) =>
+            prevState.map((state, idx) => (idx === index ? !state : state))
+        );
+    };
 
     return (
         <>
@@ -57,17 +94,11 @@ const TableOrders = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((item) => (
+                    {data.map((item, index) => (
                         <>
                             <tr>
                                 <td
-                                    style={{
-                                        display: 'flex',
-                                        gap: '2vw',
-                                        justifyContent: 'start',
-                                        alignItems: 'center',
-                                        margin: '2vw 0',
-                                    }}
+                                    className={styles.child_table}
                                     key={item.key}
                                 >
                                     <MinusSquareFilled
@@ -78,11 +109,11 @@ const TableOrders = () => {
                                     />
                                     <button
                                         className={
-                                            !show
-                                                ? styles.burger
-                                                : `${styles.burger} ${styles.active}`
+                                            visible[index]
+                                                ? `${styles.open_btn} ${styles.active}`
+                                                : styles.open_btn
                                         }
-                                        onClick={() => setSwow(!show)}
+                                        onClick={() => toggleVisibility(index)}
                                     ></button>
                                     <p>{item.name}</p>
                                 </td>
@@ -91,28 +122,25 @@ const TableOrders = () => {
                             {item.children?.map((child) => (
                                 <tr
                                     className={
-                                        show
-                                            ? styles.hidden
-                                            : `${styles.fadeInDown} ${styles.active2}`
+                                        visible[index]
+                                            ? `${styles.fadeInDown} ${styles.active2}`
+                                            : styles.hidden
                                     }
                                     key={child.key}
                                 >
                                     <td
                                         style={{
                                             paddingLeft: '6vw',
-                                            paddingBottom: '1vw',
+                                            paddingBottom: '1vh',
                                         }}
                                     >
-                                        <Checkbox
-                                            checked={child.checked}
-                                            style={{ fontSize: '16px' }}
-                                        >
+                                        <Checkbox checked={child.checked}>
                                             {child.name}
                                         </Checkbox>
                                     </td>
                                     <td
                                         style={{
-                                            paddingBottom: '1vw',
+                                            paddingBottom: '1vh',
                                             textAlign: 'center',
                                         }}
                                     >
