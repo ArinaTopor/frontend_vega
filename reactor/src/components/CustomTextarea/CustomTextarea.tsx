@@ -1,20 +1,22 @@
-import { Box, FormControl, FormLabel } from '@chakra-ui/react'
 import style from './CustomTextarea.module.css'
+import { Flex, Form, Typography } from 'antd';
+import TextArea from 'antd/es/input/TextArea';
 
 type Props={
 	name: string,
-	required: boolean
+	required: boolean,
+	label:string
 }
 
-export function CustomTextarea({name, required}:Props){
+export function CustomTextarea({name, required, label}:Props){
 	return(
-		<FormControl>
-			<FormLabel fontSize='2vh' mb='1.8vh' fontFamily='Roboto' fontWeight='500'>
-				Комментарий/описание
-			</FormLabel>
-			<Box p='1.1vh 1.25vw 1.1vh 0.94vw' background='#EBECEF' borderRadius='5px'>
-				<textarea className={style.textarea} name={name} required={required}/>
-			</Box>
-		</FormControl>
+		<>
+			<Typography.Text className={style.label}>{label}</Typography.Text>
+			<Form.Item name={name}>
+				<Flex className={style.textareaWrapper}>
+					<TextArea className={style.textarea}/>
+				</Flex>
+			</Form.Item>
+		</>
 	)  
 }

@@ -1,12 +1,31 @@
+.label{
+	display: inline-block;
+	font-size:2.03vh;
+	font-weight:500;
+	margin-bottom:1.8vh;
+	color:#24323E;
+	margin-bottom: 1.8vh;
+	margin-top: 1vh;
+}
+
+.textareaWrapper{
+	padding:1.1vh 1.25vw 1.1vh 0.94vw;
+	background:#EBECEF;
+	width: 100%;
+	height: 16.8vh;
+}
+
 .textarea{
 	width: 100%;
 	height:14.7vh;
-	background: #EBECEF;
+	background: #EBECEF !important;
 	font-size: 1.85vh;
 	color: #314659;
 	padding-right: 2.3vw;
-	outline: none;
-	resize:none;
+	border:0 solid #fff !important;
+	outline: none !important;
+	resize:none !important;
+	border-radius: 0 !important;
 }
 
 .textarea::-webkit-scrollbar{

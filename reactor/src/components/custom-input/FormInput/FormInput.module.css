@@ -1,0 +1,45 @@
+.label{ 
+	display: inline-block;
+	font-size:2.03vh;
+	font-weight:500;
+	margin-bottom:1.8vh;
+	color:#24323E;
+	margin-bottom: 1.8vh;
+}
+
+.visible{
+	position:absolute;
+	z-index:2;
+	width:2.3vw;
+	right:1.35vw;
+	top:0.6vh;
+	cursor:pointer;
+	width:4vh;
+	height: 4vh;
+	display: inline-block;
+}
+
+.wrapperInputPassword{
+	position:relative;
+}
+
+.input{
+	background: #EBECEF;
+    border-radius: 0;
+    height: 5.3vh;
+    padding-left:1vw;
+    font-size: 1.1vw;
+}
+
+.input:hover{
+	border: 1px solid #4f5454;
+}
+
+.input:focus{
+	border: 1px solid #4f5454;
+}
+
+.inputForm{
+	width:100%;
+	margin-bottom:1.8vh;
+}

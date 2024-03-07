@@ -20,13 +20,12 @@ const Login = () => {
     const user = useSelector(selectUser);
     const [isError, setIsErrors] = useState<boolean>(false);
 
-    console.log(user);
     useEffect(() => {
         if (user) {
             navigate(MainPageRoles[user.role] || '/');
         }
     }, [user, navigate]);
-
+    
     const handleAuth = async (data: LoginData) => {
         try {
             await loginUser(data).unwrap();

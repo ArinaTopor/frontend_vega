@@ -1,4 +1,3 @@
-// import { FormControl, Input } from '@chakra-ui/react';
 import { Input, Form } from 'antd';
 
 type Props = {
