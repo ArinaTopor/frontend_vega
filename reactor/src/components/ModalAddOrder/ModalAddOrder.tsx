@@ -11,16 +11,21 @@ type Props={
 
 type newOrder={
 	kks:string,
-	files:File[],
+	files:{
+        file:File,
+        fileList:File[]
+    },
 	description:string,
-	[key: string]: string | File[] | null;
+	[key: string]: string | 
+    {file:File,fileList:File[]} | null;
 }
 
 export const ModalAddOrder=({open, setOpen}:Props)=>{
     const [form] = Form.useForm();
 
-    const handleSubmit=(data:newOrder)=>{
-		console.log(data)
+    const handleSubmit=(currentData:newOrder)=>{
+        const finallyData={...currentData, files:currentData.files.fileList}
+		console.log(finallyData)
 		form.resetFields();
 	}
 
