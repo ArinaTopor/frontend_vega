@@ -1,6 +1,6 @@
 .btnSave{
 	background-color:#314659;
-	color: #fff;
+	color: #fff !important;
 	width:11.6vw;
 	height: 5vh;
     margin: 0 2.2vw 5.4vh 0;
@@ -14,5 +14,5 @@
 }
 
 .btnSave:hover{
-	background-color:#24323E;
+	background-color:#24323E !important;
 }

@@ -41,8 +41,9 @@ function App() {
         <ConfigProvider theme={theme}>
             <HashRouter>
                 <Routes>
-                    <Route path='/' element={<Authorization />} />
+                    
                     <Route element={<CustomLayout />}>
+						<Route path='/' element={<AddEmployeePage />} />
                         <Route
                             path={Paths.workerMain}
                             element={

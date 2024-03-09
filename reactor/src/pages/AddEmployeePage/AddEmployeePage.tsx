@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import AddEmployeeForm from '../../components/AddEmployeeForm/AddEmployeeForm';
+import AddEmployeeForm from '../../components/forms/AddEmployeeForm/AddEmployeeForm';
 import { Button, Flex} from 'antd';
 import style from './AddEmployeePage.module.css'
 

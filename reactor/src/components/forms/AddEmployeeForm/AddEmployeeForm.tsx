@@ -1,13 +1,13 @@
-import FormInput from '../custom-input/FormInput/FormInput';
-import { AddEmployeeSelect } from '../custom-input/CustomSelect/CustomSelect';
-import { roles } from '../../features/employeesSlice';
+import FormInput from '../../custom-input/FormInput/FormInput';
+import { AddEmployeeSelect } from '../../custom-input/CustomSelect/CustomSelect';
+import { roles } from '../../../features/employeesSlice';
 import {
     NewUser,
     useAddUserMutation,
     useGetAreasQuery,
-} from '../../app/services/employees';
+} from '../../../app/services/employees';
 import style from './AddEmployeeForm.module.css';
-import EditAdminInfoForm from '../forms/EditAdminInfoForm.css/EditAdminForm';
+import EditAdminInfoForm from '../EditAdminInfoForm.css/EditAdminForm';
 import { Button, Cascader, Form, Typography } from 'antd';
 
 type Props = {
