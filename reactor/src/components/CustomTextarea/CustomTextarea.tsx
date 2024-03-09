@@ -12,7 +12,12 @@ export function CustomTextarea({name, required, label}:Props){
 	return(
 		<>
 			<Typography.Text className={style.label}>{label}</Typography.Text>
-			<Form.Item name={name}>
+			<Form.Item name={name} rules={[
+				{
+					required: required,
+					message: 'Обязательное поле',
+				},
+			]}>
 				<Flex className={style.textareaWrapper}>
 					<TextArea className={style.textarea}/>
 				</Flex>

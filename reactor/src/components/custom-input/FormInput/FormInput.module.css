@@ -31,14 +31,6 @@
     font-size: 1.1vw;
 }
 
-.input:hover{
-	border: 1px solid #4f5454;
-}
-
-.input:focus{
-	border: 1px solid #4f5454;
-}
-
 .inputForm{
 	width:100%;
 	margin-bottom:1.8vh;

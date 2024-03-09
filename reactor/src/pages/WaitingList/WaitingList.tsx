@@ -1,13 +1,12 @@
 import { Orders } from '../../components/Orders/Orders';
 import plus from '../../assets/icons/plus.svg';
-import { NewOrderForm } from '../../components/NewOrderForm/NewOrderForm';
 import { useState } from 'react';
-import { Button, Flex, Popover, Typography, Image, Modal } from 'antd';
+import { Button, Flex, Popover, Typography, Image } from 'antd';
 import style from './WaitingList.module.css';
+import { ModalAddOrder } from '../../components/ModalAddOrder/ModalAddOrder';
 
 export function WaitingList() {
 	const [open, setOpen] = useState(false);
-	const [isClear, setIsClear] = useState(true);
 	const getDate = () => {
 		const currentDate = new Date();
 		const stringDate: string = `${String(currentDate.getDate()).padStart(
@@ -19,10 +18,6 @@ export function WaitingList() {
 		)}.${currentDate.getFullYear()}`;
 		return stringDate;
 	};
-
-	const clearForm=()=>{
-		setIsClear((last)=>!last)
-	}
 
 	return (
 		<Flex className={style.page}>
@@ -50,19 +45,7 @@ export function WaitingList() {
 					<Image src={plus} preview={false} />
 				</Button>
 			</Popover>
-			<Modal
-				width="46.6vw"
-				open={open}
-				footer={false}
-				onCancel={() => setOpen(false)}
-				className={style.modal}
-				centered
-				maskClosable={false}
-				afterClose={clearForm}
-			>
-				<Typography.Text className={style.titleModal}>Новый заказ</Typography.Text>
-				<NewOrderForm isClear={isClear}/>
-			</Modal>
+			<ModalAddOrder open={open} setOpen={setOpen}/>
 		</Flex>
 	);
 }

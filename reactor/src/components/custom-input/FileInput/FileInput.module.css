@@ -19,11 +19,12 @@
 	gap:10px;
 	width:15.3vw;
 	height:5.5vh;
-	border-radius: 8px;
+	border-radius: 2px;
 	font-size: 2vh;
 	font-weight: 500;
 	color: #314659;
 	margin-bottom: 2.87vh;
+	border:2px solid #C5C5C5;
 }
 
 .image{
