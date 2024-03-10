@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Box, Button } from '@chakra-ui/react';
 import { logout } from '../features/auth/authSlice';
 
 const Home = () => {
@@ -11,10 +10,10 @@ const Home = () => {
         navigate('/');
     };
     return (
-        <Box ml='6.3vw' p='15px'>
+        <div>
             <p>It's worker</p>
-            <Button onClick={handleLogout}>Выйти</Button>
-        </Box>
+            <button onClick={handleLogout}>Выйти</button>
+        </div>
     );
 };
 
