@@ -16,15 +16,7 @@ const slice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        logout: () => {
-            localStorage.clear();
-            return initialState;
-        },
-        refresh: (state, action) => {
-            state.token = action.payload;
-            localStorage.setItem('accessToken', action.payload.accessToken);
-            localStorage.setItem('refreshToken', action.payload.refreshToken);
-        },
+        logout: () => initialState,
     },
     extraReducers: (builder) => {
         builder
@@ -45,7 +37,7 @@ const slice = createSlice({
     },
 });
 
-export const { logout, refresh } = slice.actions;
+export const { logout } = slice.actions;
 export default slice.reducer;
 
 export const selectIsAuthenticated = (state: RootState) => state.auth.isAuth;

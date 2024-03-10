@@ -1,4 +1,4 @@
-import { Routes, Route, HashRouter, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import Authorization from './pages/Auth/Authorization';
 import Home from './pages/MainPage';
 import './App.css';
@@ -32,7 +32,7 @@ const theme: ThemeConfig = {
 function App() {
     return (
         <ConfigProvider theme={theme}>
-            <BrowserRouter>
+            <HashRouter>
                 <Routes>
                     <Route path='/' element={<Authorization />} />
                     <Route element={<CustomLayout />}>
@@ -61,7 +61,7 @@ function App() {
                         <Route path={Paths.options} element={<BossPage />} />
                     </Route>
                 </Routes>
-            </BrowserRouter>
+            </HashRouter>
         </ConfigProvider>
     );
 }
