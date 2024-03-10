@@ -1,12 +1,12 @@
-import { Routes, Route, HashRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Authorization from './pages/Auth/Authorization';
 import Home from './pages/MainPage';
-import './App.css';
 import { RequareAuth } from './hoc/RequaireAuth';
 import BossPage from './pages/BossPage';
 import { Paths } from './paths';
 import { CustomLayout } from './components/CustomLayout';
 import { ConfigProvider, ThemeConfig } from 'antd';
+import './App.css';
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -32,7 +32,7 @@ const theme: ThemeConfig = {
 function App() {
     return (
         <ConfigProvider theme={theme}>
-            <HashRouter>
+            <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Authorization />} />
                     <Route element={<CustomLayout />}>
@@ -61,7 +61,7 @@ function App() {
                         <Route path={Paths.options} element={<BossPage />} />
                     </Route>
                 </Routes>
-            </HashRouter>
+            </BrowserRouter>
         </ConfigProvider>
     );
 }

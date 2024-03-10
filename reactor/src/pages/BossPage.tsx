@@ -8,7 +8,6 @@ const BossPage = () => {
     const dispatch = useDispatch();
     const handleLogout = () => {
         dispatch(logout());
-        localStorage.removeItem('token');
         navigate('/');
     };
     return (

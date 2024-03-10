@@ -8,7 +8,6 @@ const Home = () => {
     const dispatch = useDispatch();
     const handleLogout = () => {
         dispatch(logout());
-        localStorage.removeItem('token');
         navigate('/');
     };
     return (
