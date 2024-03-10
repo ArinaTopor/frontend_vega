@@ -1,13 +1,13 @@
-import { Routes, Route, HashRouter, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Authorization from './pages/Auth/Authorization';
+import TableOrders from './components/table/TableOrders';
 import Home from './pages/MainPage';
-import './App.css';
 import { RequareAuth } from './hoc/RequaireAuth';
 import BossPage from './pages/BossPage';
 import { Paths } from './paths';
 import { CustomLayout } from './components/CustomLayout';
 import { ConfigProvider, ThemeConfig } from 'antd';
-import TableOrders from './components/table/TableOrders';
+import './App.css';
 const theme: ThemeConfig = {
     components: {
         Button: {

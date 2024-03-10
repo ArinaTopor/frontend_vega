@@ -14,8 +14,3 @@ listenerMiddleware.startListening({
         }
     },
 });
-
-// listenerMiddleware.clearListening(() => {
-//     localStorage.removeItem('accessToken');
-//     localStorage.removeItem('refreshToken');
-// });

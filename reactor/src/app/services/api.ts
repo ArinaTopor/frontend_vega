@@ -6,7 +6,6 @@ import {
     fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
-import { logout, refresh } from '../../features/auth/authSlice';
 import { ResponseLoginData } from './auth';
 
 const baseQuery: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> =
@@ -61,10 +60,10 @@ const baseQueryWithReauth: BaseQueryFn<
         if ((refreshResult as RefreshResult).data) {
             const refeshTokenResult = (refreshResult as RefreshResult)
                 .data as ResponseLoginData;
-            api.dispatch(refresh(refeshTokenResult));
+            api.dispatch({ type: 'auth/refresh', payload: refeshTokenResult });
             result = await baseQuery(args, api, extraOptions);
         } else {
-            api.dispatch(logout());
+            api.dispatch({ type: 'auth/logout' });
             localStorage.clear();
         }
     }

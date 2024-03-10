@@ -25,7 +25,6 @@ export function Sidebar({ user }: Props) {
     const [isCollapsed, setIsCollapsed] = useState(true);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const createName = function (nameBack: string) {
         const nameArray: string[] = nameBack.split(' ');
         const initials: string = `${nameArray[0][0]}${nameArray[1][0]}`;
@@ -38,8 +37,8 @@ export function Sidebar({ user }: Props) {
     const names = user?.name
         ? createName(user.name)
         : {
-              initials: ' ',
-              name: ' ',
+              initials: ' k.ss',
+              name: ' sadsadsad s',
           };
 
     const handleLogout = () => {
