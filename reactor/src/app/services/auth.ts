@@ -4,7 +4,7 @@ export type ResponseLoginData = {
     accessToken: string | null;
     refreshToken: string | null;
 };
-export type UserData = {
+export type LoginData = {
     login: string;
     password: string;
 };
@@ -16,7 +16,7 @@ export type InfoUser = {
 
 export const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        login: builder.mutation<ResponseLoginData, UserData>({
+        login: builder.mutation<ResponseLoginData, LoginData>({
             query: (userData) => ({
                 url: '/Auth/login',
                 method: 'POST',

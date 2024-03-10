@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { CustomInput } from '../custom-input/LoginInput';
 import {
-    UserData,
+    LoginData,
     useCurrentQuery,
     useLoginMutation,
 } from '../../app/services/auth';
@@ -27,12 +27,12 @@ const Login = () => {
         }
     }, [user, navigate]);
 
-    const handleAuth = async (data: UserData) => {
+    const handleAuth = async (data: LoginData) => {
         try {
             await loginUser(data).unwrap();
             refetch();
         } catch (err) {
-            if ((err as Error).originalStatus === 400) {
+            if ((err as Error).originalStatus === 401) {
                 setIsErrors(true);
             } else {
                 console.log(err);
@@ -55,12 +55,16 @@ const Login = () => {
                     type='password'
                 ></CustomInput>
                 {isError ? (
-                    <p style={{ color: 'red' }}>Неверный логин или пароль</p>
+                    <p style={{ color: 'red', marginBottom: '2vh' }}>
+                        Неверный логин или пароль
+                    </p>
                 ) : null}
                 <Button
                     type='primary'
                     className={styles['ant-btn']}
                     htmlType='submit'
+                    loading={isLoading}
+                    disabled={isLoading}
                 >
                     <div>
                         <p>Войти</p>
