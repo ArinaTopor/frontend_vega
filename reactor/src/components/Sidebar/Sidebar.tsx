@@ -38,8 +38,8 @@ export function Sidebar({ user }: Props) {
     const names = user?.name
         ? createName(user.name)
         : {
-              initials: ' ',
-              name: ' ',
+              initials: ' k.ss',
+              name: ' sadsadsad s',
           };
 
     const handleLogout = () => {
