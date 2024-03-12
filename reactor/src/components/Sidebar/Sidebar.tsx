@@ -44,7 +44,7 @@ export function Sidebar({ user }: Props) {
 
     const handleLogout = () => {
         dispatch(logout());
-        localStorage.removeItem('token');
+        
         navigate('/');
     };
 
