@@ -3,7 +3,7 @@ import plus from '../../assets/icons/plus.svg';
 import { useState } from 'react';
 import { Button, Flex, Popover, Typography, Image } from 'antd';
 import style from './WaitingList.module.css';
-import { ModalAddOrder } from '../../components/ModalAddOrder/ModalAddOrder';
+import { ModalAddOrder } from '../../components/modal/ModalAddOrder/ModalAddOrder';
 
 export function WaitingList() {
 	const [open, setOpen] = useState(false);

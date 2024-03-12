@@ -42,11 +42,10 @@ export function Sidebar({ user }: Props) {
               name: ' ',
           };
 
-	const handleLogout = () => {
-		dispatch(logout());
-		localStorage.removeItem('token');
-		navigate('/');
-	};
+    const handleLogout = () => {
+        dispatch(logout());
+        navigate('/');
+    };
 
     return (
         <Sider

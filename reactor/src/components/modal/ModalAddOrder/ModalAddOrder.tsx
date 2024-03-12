@@ -1,7 +1,7 @@
 import { Button, Form, Modal, Typography } from "antd"
-import FormInput from "../custom-input/FormInput/FormInput"
-import { FileInput } from "../custom-input/FileInput/FileInput"
-import { CustomTextarea } from "../CustomTextarea/CustomTextarea"
+import FormInput from "../../custom-input/FormInput/FormInput"
+import { FileInput } from "../../custom-input/FileInput/FileInput"
+import { CustomTextarea } from "../../custom-input/CustomTextarea/CustomTextarea"
 import style from './ModalAddOrder.module.css'
 
 type Props={
