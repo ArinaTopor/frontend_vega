@@ -1,5 +1,5 @@
 import FormInput from '../../custom-input/FormInput/FormInput';
-import { AddEmployeeSelect } from '../../custom-input/CustomSelect/CustomSelect';
+import { CustomSelect } from '../../custom-input/CustomSelect/CustomSelect';
 import { roles } from '../../../features/employeesSlice';
 import {
     NewUser,
@@ -83,7 +83,7 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                         />
                     </Form.Item>
 
-                    <AddEmployeeSelect
+                    <CustomSelect
                         name='areaId'
                         placeholder=' '
                         required={false}

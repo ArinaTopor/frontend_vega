@@ -9,7 +9,7 @@ type Props = {
     label?: string;
 };
 
-export function AddEmployeeSelect({
+export function CustomSelect({
     name,
     placeholder,
     required,
