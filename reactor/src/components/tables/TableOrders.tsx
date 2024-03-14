@@ -2,6 +2,7 @@ import { Checkbox } from 'antd';
 import { useState } from 'react';
 import styles from './tableOrders.module.css';
 import { MinusSquareFilled } from '@ant-design/icons';
+import OrderStatistics from '../stat';
 interface DataType {
     key: number | string;
     name: string;
@@ -152,6 +153,7 @@ const TableOrders = () => {
                     ))}
                 </tbody>
             </table>
+            <OrderStatistics />
         </>
     );
 };

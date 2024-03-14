@@ -61,3 +61,16 @@ code {
 .ant-select-single .ant-select-selector {
     font-size: 1.1vw !important;
 }
+::-webkit-scrollbar {
+    width: 0.57vw;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #717171;
+    border-radius: 20px;
+}

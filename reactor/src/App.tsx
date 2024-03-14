@@ -1,6 +1,6 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Authorization from './pages/Auth/Authorization';
-import TableOrders from './components/table/TableOrders';
+import TableOrders from './components/tables/TableOrders';
 import Home from './pages/MainPage';
 import { RequareAuth } from './hoc/RequaireAuth';
 import BossPage from './pages/BossPage';
@@ -37,7 +37,7 @@ function App() {
         <ConfigProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<Authorization />} />
+                    <Route path='/' element={<TableOrders />} />
                     <Route element={<CustomLayout />}>
                         <Route
                             path={Paths.workerMain}
