@@ -25,7 +25,6 @@ export function Sidebar({ user }: Props) {
     const [isCollapsed, setIsCollapsed] = useState(true);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const createName = function (nameBack: string) {
         const nameArray: string[] = nameBack.split(' ');
         const initials: string = `${nameArray[0][0]}${nameArray[1][0]}`;
@@ -44,7 +43,6 @@ export function Sidebar({ user }: Props) {
 
     const handleLogout = () => {
         dispatch(logout());
-        localStorage.removeItem('token');
         navigate('/');
     };
 
