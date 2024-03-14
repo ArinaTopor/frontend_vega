@@ -2,11 +2,10 @@ import { Checkbox } from 'antd';
 import { useState } from 'react';
 import styles from './tableOrders.module.css';
 import { MinusSquareFilled } from '@ant-design/icons';
-import OrderStatistics from '../stat';
 interface DataType {
     key: number | string;
     name: string;
-    responsible: string;
+    responsible?: string;
     checked?: boolean;
     children?: DataType[];
 }
@@ -28,7 +27,20 @@ const data: DataType[] = [
                 key: 3,
                 name: 'Разработка КД',
                 responsible: 'admin2',
-                checked: true,
+                children: [
+                    {
+                        key: 1111,
+                        name: 'Dev 1',
+                        responsible: 'admin 1.2',
+                        checked: false,
+                    },
+                    {
+                        key: 11151,
+                        name: 'Dev 2',
+                        responsible: 'admin 2.2',
+                        checked: false,
+                    },
+                ],
             },
             {
                 key: 4,
@@ -97,11 +109,8 @@ const TableOrders = () => {
                 <tbody>
                     {data.map((item, index) => (
                         <>
-                            <tr>
-                                <td
-                                    className={styles.child_table}
-                                    key={item.key}
-                                >
+                            <tr key={item.key}>
+                                <td className={styles.child_table}>
                                     <MinusSquareFilled
                                         style={{
                                             color: '#4A505C',
@@ -147,13 +156,13 @@ const TableOrders = () => {
                                     >
                                         {child.responsible}
                                     </td>
+                                    <tr></tr>
                                 </tr>
                             ))}
                         </>
                     ))}
                 </tbody>
             </table>
-            <OrderStatistics />
         </>
     );
 };

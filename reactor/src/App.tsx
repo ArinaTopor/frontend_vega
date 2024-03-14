@@ -21,6 +21,11 @@ const theme: ThemeConfig = {
             borderRadius: 2,
             fontWeight: 500,
         },
+        Checkbox: {
+            colorPrimary: '#314659',
+            colorPrimaryHover: '#24323E',
+            colorBorder: '#314659',
+        },
         Input: {
             activeBorderColor: '#314659',
             borderRadius: 2,
