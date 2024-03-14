@@ -41,7 +41,6 @@ export const ModalAddOrder=({open, setOpen}:Props)=>{
             open={open}
             footer={false}
             onCancel={handleCLose}
-            className={style.modal}
             centered
             maskClosable={false}
         >
