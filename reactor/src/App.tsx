@@ -8,6 +8,7 @@ import { Paths } from './paths';
 import { CustomLayout } from './components/CustomLayout';
 import { ConfigProvider, ThemeConfig } from 'antd';
 import './App.css';
+import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -25,13 +26,8 @@ const theme: ThemeConfig = {
             borderRadius: 2,
             activeShadow: 'none',
             fontSize: 16,
+            colorPrimaryBorderHover: '#314659',
             hoverBorderColor: '#314659',
-        },
-        Checkbox: {
-            colorPrimary: '#314659',
-            colorPrimaryHover: '#24323E',
-            colorBorder: '#314659',
-            fontSize: 16,
         },
     },
 };
@@ -41,7 +37,7 @@ function App() {
         <ConfigProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<TableOrders />} />
+                    <Route path='/' element={<Authorization />} />
                     <Route element={<CustomLayout />}>
                         <Route
                             path={Paths.workerMain}
@@ -65,7 +61,14 @@ function App() {
                         />
                         <Route path={Paths.products} element={<BossPage />} />
                         <Route path={Paths.tasksBoard} element={<BossPage />} />
-                        <Route path={Paths.options} element={<BossPage />} />
+                        <Route
+                            path={Paths.options}
+                            element={
+                                <RequareAuth>
+                                    <AddEmployeePage />
+                                </RequareAuth>
+                            }
+                        />
                     </Route>
                 </Routes>
             </BrowserRouter>

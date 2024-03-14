@@ -1,45 +1,34 @@
 import { useState } from 'react';
-import { Box, Button, Flex } from '@chakra-ui/react';
-import { boxStyle, activeChoiceStyle, choiceStyle } from './style';
-import AddEmployeeForm from '../../components/AddEmployeeForm';
+import AddEmployeeForm from '../../components/forms/AddEmployeeForm/AddEmployeeForm';
+import { Button, Flex} from 'antd';
+import style from './AddEmployeePage.module.css'
 
 const AddEmployeePage = () => {
     const [isAdmin, setIsAdmin] = useState(true);
 
-    function handlerClick(e: React.FormEvent) {
-        const { target } = e;
-        const value = (target as HTMLButtonElement).value;
-        setIsAdmin(value === 'admin');
-    }
-
     return (
-        <Flex
-            height='100vh'
-            display='flex'
-            alignItems='center'
-            justify='center'
-            flexGrow='1'
-            background='var(--auth-background)'
-        >
-            <Box sx={boxStyle}>
-                <Flex mb='1.9vh'>
+        <Flex align='center' justify='center' className={style.wrapper}>
+            <Flex vertical className={style.window}>
+                <Flex className={style.choice}>
                     <Button
-                        sx={isAdmin ? activeChoiceStyle : choiceStyle}
+                        className={isAdmin ? style.activeChoiceStyle : style.choiceStyle}
                         value='admin'
-                        onClick={(e) => handlerClick(e)}
+                        onClick={() => setIsAdmin(true)}
+                        type='text'
                     >
                         Начальник
                     </Button>
                     <Button
-                        sx={!isAdmin ? activeChoiceStyle : choiceStyle}
+                        className={!isAdmin ? style.activeChoiceStyle : style.choiceStyle}
                         value='worker'
-                        onClick={(e) => handlerClick(e)}
+                        onClick={() => setIsAdmin(false)}
+                        type='text'
                     >
                         Новый работник
                     </Button>
                 </Flex>
                 <AddEmployeeForm isAdmin={isAdmin} />
-            </Box>
+            </Flex>
         </Flex>
     );
 };

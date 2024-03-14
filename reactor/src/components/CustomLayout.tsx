@@ -1,8 +1,7 @@
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { selectUser } from '../features/auth/authSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Layout } from 'antd';
-import { useState } from 'react';
 import { Sidebar } from './Sidebar/Sidebar';
 
 const { Content } = Layout;
