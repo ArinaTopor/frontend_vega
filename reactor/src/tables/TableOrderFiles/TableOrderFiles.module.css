@@ -1,0 +1,29 @@
+.file_title {
+    display: flex;
+    gap: 0 1.25vw;
+    margin-bottom: 10vh;
+    color: #2d3748;
+    font-size: 2.6vw;
+}
+.table_container {
+    width: 67.71vw;
+    box-shadow: 0 0 5px 2px #e2e8f0;
+    border-radius: 11px;
+    font-size: 1.25vw;
+    color: #2d3748;
+    padding: 1vw 0;
+}
+.table_container th {
+    text-align: left;
+    padding-left: 5.73vw;
+    padding-bottom: 1vw;
+}
+.table_container td {
+    padding-left: 5.73vw;
+}
+.table_container td span {
+    font-weight: 500;
+}
+.file span:hover {
+    color: #4a6089;
+}

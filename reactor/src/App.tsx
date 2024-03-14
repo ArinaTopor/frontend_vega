@@ -7,6 +7,8 @@ import { Paths } from './paths';
 import { CustomLayout } from './components/CustomLayout';
 import { ConfigProvider, ThemeConfig } from 'antd';
 import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
+import TableFiles from './tables/TableFiles';
+import TabeOrderFiles from './tables/TableOrderFiles/TableOrderFiles';
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -31,6 +33,15 @@ const theme: ThemeConfig = {
             borderRadius: 0,
             colorPrimaryHover: '#000',
         },
+        Table: {
+            cellFontSize: 28,
+            borderRadius: 2,
+            borderColor: '#fff',
+            headerBg: '#fff',
+            headerColor: '#2D3748',
+            boxShadow: '#E2E8F0',
+            rowHoverBg: '#E2E8F0',
+        },
     },
 };
 
@@ -39,7 +50,7 @@ function App() {
         <ConfigProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<Authorization />} />
+                    <Route path='/' element={<TableFiles />} />
                     <Route element={<CustomLayout />}>
                         <Route
                             path={Paths.workerMain}
@@ -64,6 +75,10 @@ function App() {
                         <Route path={Paths.products} element={<BossPage />} />
                         <Route path={Paths.tasksBoard} element={<BossPage />} />
                         <Route path={Paths.options} element={<BossPage />} />
+                        <Route
+                            path={Paths.files}
+                            element={<TabeOrderFiles />}
+                        ></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

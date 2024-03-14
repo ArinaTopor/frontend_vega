@@ -6,7 +6,9 @@ export const Paths = {
     workerMain: '/home',
     adminMain: '/adminHome',
     stkMain: '/stkHome',
-    options: '/options'
+    options: '/options',
+    orderFiles: '/orderFiles',
+    files: '/files',
 } as const;
 export const MainPageRoles: {
     worker: string;
