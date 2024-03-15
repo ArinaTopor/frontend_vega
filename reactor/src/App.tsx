@@ -8,7 +8,7 @@ import { CustomLayout } from './components/CustomLayout';
 import { ConfigProvider, ThemeConfig } from 'antd';
 import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
 import TableFiles from './tables/TableFiles';
-import TabeOrderFiles from './tables/TableOrderFiles/TableOrderFiles';
+import TableOrderFiles from './tables/TableOrderFiles/TableOrderFiles';
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -50,7 +50,15 @@ function App() {
         <ConfigProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<TableFiles />} />
+                    <Route path='/' element={<Authorization />} />
+                    <Route
+                        path={Paths.tableFiles}
+                        element={<TableFiles />}
+                    ></Route>
+                    <Route
+                        path={Paths.files}
+                        element={<TableOrderFiles />}
+                    ></Route>
                     <Route element={<CustomLayout />}>
                         <Route
                             path={Paths.workerMain}
@@ -75,10 +83,6 @@ function App() {
                         <Route path={Paths.products} element={<BossPage />} />
                         <Route path={Paths.tasksBoard} element={<BossPage />} />
                         <Route path={Paths.options} element={<BossPage />} />
-                        <Route
-                            path={Paths.files}
-                            element={<TabeOrderFiles />}
-                        ></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

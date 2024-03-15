@@ -3,8 +3,7 @@ import { Table } from 'antd';
 import { FolderOutlined } from '@ant-design/icons';
 import styles from './TableFiles.module.css';
 import { useNavigate } from 'react-router';
-
-const { Column } = Table;
+import { Link } from 'react-router-dom';
 interface DataType {
     key: number | string;
     orderName: string;
@@ -23,47 +22,48 @@ const data2: DataType[] = [
     },
     {
         key: 2,
-        orderName: '30SAM46AH501',
+        orderName: '30SAM46AH308',
     },
     {
         key: 3,
-        orderName: '30SAM46AH501',
+        orderName: '09SAM54AH598',
     },
     {
         key: 4,
-        orderName: '30SAM46AH501',
+        orderName: '80SAM46AH560',
     },
 ];
 
 const TableFiles = () => {
-    const navigate = useNavigate();
-    const handleClick = () => {
-        navigate('/files');
-    };
     return (
         <div>
             <table className={styles.orderfiles_table}>
-                <tr>
-                    <th>Название</th>
-                </tr>
-                {data2.map((child) => (
-                    <tr
-                        key={child.key}
-                        className={styles.order_file}
-                        onClick={handleClick}
-                    >
-                        <td>
-                            <FolderOutlined
-                                style={{
-                                    marginRight: '1.77vw',
-                                    color: '#2D3748',
-                                    fontSize: '1.6vw',
-                                }}
-                            />
-                            <span>{child.orderName}</span>
-                        </td>
+                <thead>
+                    <tr>
+                        <th>Название</th>
                     </tr>
-                ))}
+                </thead>
+                <tbody>
+                    {data2.map((child) => (
+                        <tr key={child.key} className={styles.order_file}>
+                            <td>
+                                <FolderOutlined
+                                    style={{
+                                        marginRight: '1.77vw',
+                                        color: '#2D3748',
+                                        fontSize: '1.6vw',
+                                    }}
+                                />
+                                <Link
+                                    to={`/files/${child.key}`}
+                                    style={{ color: '#2D3748' }}
+                                >
+                                    <span>{child.orderName}</span>
+                                </Link>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
             </table>
             {/* <Table
                 dataSource={data2}

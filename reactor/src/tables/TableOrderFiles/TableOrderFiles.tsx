@@ -1,11 +1,13 @@
 import { FolderOutlined } from '@ant-design/icons';
 import styles from './TableOrderFiles.module.css';
 import { Flex } from 'antd';
-const TabeOrderFiles = () => {
+import { useParams } from 'react-router';
+const TableOrderFiles = () => {
+    const { id } = useParams();
     return (
         <Flex vertical style={{ height: '100vh' }}>
             <h1 className={styles.file_title}>
-                <FolderOutlined></FolderOutlined>Заголовок 1
+                <FolderOutlined></FolderOutlined>Заголовок {id}
             </h1>
             <table className={styles.table_container}>
                 <tr>
@@ -24,4 +26,4 @@ const TabeOrderFiles = () => {
         </Flex>
     );
 };
-export default TabeOrderFiles;
+export default TableOrderFiles;
