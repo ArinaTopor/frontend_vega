@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -51,7 +51,7 @@ code {
 }
 
 .ant-checkbox-checked .ant-checkbox-inner:after {
-    display: none !important;
+    /* display: none !important; */
 }
 .ant-select-focused.ant-select-single:not(.ant-select-customize-input)
     .ant-select-selector {
