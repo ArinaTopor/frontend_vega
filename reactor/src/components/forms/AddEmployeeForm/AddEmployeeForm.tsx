@@ -7,18 +7,20 @@ import {
     useGetAreasQuery,
 } from '../../../app/services/employees';
 import style from './AddEmployeeForm.module.css';
-import EditAdminInfoForm from '../EditAdminInfoForm.css/EditAdminForm';
+import EditAdminInfoForm from '../EditAdminInfoForm/EditAdminForm';
 import { Button, Cascader, Form, Typography } from 'antd';
 
 type Props = {
     isAdmin: boolean;
 };
+const { SHOW_CHILD } = Cascader;
 
 const AddEmployeeForm = ({ isAdmin }: Props) => {
     const [form] = Form.useForm();
     const { data: dataAreas, error: errorAreas } = useGetAreasQuery();
     const [addUser, { isLoading }] = useAddUserMutation();
     const displayRender = (labels: string[]) => labels[labels.length - 1];
+
     const arrayAreas: Array<{ value: number; label: string }> = dataAreas
         ? Object.keys(dataAreas).map((key) => {
               const item = {
@@ -31,7 +33,11 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
 
     const handleAdd = async (data: NewUser) => {
         try {
-            console.log(data);
+            console.log(JSON.stringify(data));
+            const newRoleIds = Array.from(
+                new Set(data.roleIds.flat().filter((num) => num !== '5'))
+            );
+            data.roleIds = newRoleIds;
             addUser(data);
             form.resetFields();
         } catch (e) {
@@ -68,17 +74,18 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                     >
                         Роль
                     </Typography.Text>
-                    <Form.Item name={'role'}>
+                    <Form.Item name={'roleIds'}>
                         <Cascader
                             options={roles}
-                            expandTrigger='hover'
+                            expandTrigger='click'
                             displayRender={displayRender}
+                            showCheckedStrategy={SHOW_CHILD}
+                            multiple
+                            maxTagCount='responsive'
+                            className={style.cascader}
                             style={{
-                                background: '#EBECEF',
-                                borderRadius: '0',
                                 height: '5.3vh',
                                 width: '90%',
-                                fontSize: '24px',
                             }}
                         />
                     </Form.Item>

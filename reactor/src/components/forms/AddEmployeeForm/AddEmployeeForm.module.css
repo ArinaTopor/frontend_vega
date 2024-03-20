@@ -15,3 +15,8 @@
 .btnSave:hover {
     background: #24323e !important;
 }
+.cascader {
+    background: '#EBECEF';
+    border-radius: 2;
+    font-size: 24px;
+}
