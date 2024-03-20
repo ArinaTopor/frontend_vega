@@ -6,12 +6,14 @@ import uploadSrc from '../../../assets/icons/upload.svg';
 type Props = {
 	name: string;
 	required: boolean;
+	inputFileStyle: string;
+	maxCount?: number;
 };
 
-export function FileInput({ name, required}: Props) {
+export function FileInput({ name, required, inputFileStyle, maxCount}: Props) {
 	return (
 		<>
-			<Form.Item name={name} className={style.inputFile} rules={[
+			<Form.Item name={name} className={inputFileStyle} rules={[
 				{
 					required: required,
 					message: 'Обязательное поле',
@@ -23,6 +25,7 @@ export function FileInput({ name, required}: Props) {
 						return false
 					}}
 					listType="picture"
+					maxCount={maxCount ? maxCount : 100}
 				>
 					<Button className={style.btn}>
 						<Image src={uploadSrc} preview={false} className={style.image}/>
