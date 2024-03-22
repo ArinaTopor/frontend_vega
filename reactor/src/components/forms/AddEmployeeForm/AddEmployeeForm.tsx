@@ -1,6 +1,6 @@
 import FormInput from '../../custom-input/FormInput/FormInput';
 import { CustomSelect } from '../../custom-input/CustomSelect/CustomSelect';
-import { roles } from '../../../features/employeesSlice';
+import { Option, roles } from '../../../features/employeesSlice';
 import {
     NewUser,
     useAddUserMutation,
@@ -9,6 +9,8 @@ import {
 import style from './AddEmployeeForm.module.css';
 import EditAdminInfoForm from '../EditAdminInfoForm/EditAdminForm';
 import { Button, Cascader, Form, Typography } from 'antd';
+import Handle from 'rc-slider/lib/Handles/Handle';
+import { useState } from 'react';
 
 type Props = {
     isAdmin: boolean;
@@ -20,6 +22,7 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
     const { data: dataAreas, error: errorAreas } = useGetAreasQuery();
     const [addUser, { isLoading }] = useAddUserMutation();
     const displayRender = (labels: string[]) => labels[labels.length - 1];
+    const [updateRoles, setUpdateRoles] = useState<Option[]>(roles);
 
     const arrayAreas: Array<{ value: number; label: string }> = dataAreas
         ? Object.keys(dataAreas).map((key) => {
@@ -45,6 +48,20 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
         }
     };
 
+    const handleChange = (value: any) => {
+        // setSelectedRoles(value);
+        console.log(value);
+        const updatedRoles = roles.map((role) => {
+            if (value.includes(role.value)) {
+                return { ...role, disableCheckbox: false };
+            } else if (value.length === 0) {
+                return { ...role, disableCheckbox: false };
+            } else {
+                return { ...role, disableCheckbox: true };
+            }
+        });
+        setUpdateRoles(updatedRoles);
+    };
     return (
         <>
             {isAdmin ? (
@@ -76,8 +93,8 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                     </Typography.Text>
                     <Form.Item name={'roleIds'}>
                         <Cascader
-                            options={roles}
-                            expandTrigger='click'
+                            options={updateRoles}
+                            expandTrigger='hover'
                             displayRender={displayRender}
                             showCheckedStrategy={SHOW_CHILD}
                             multiple
@@ -87,6 +104,7 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                                 height: '5.3vh',
                                 width: '90%',
                             }}
+                            onChange={handleChange}
                         />
                     </Form.Item>
 

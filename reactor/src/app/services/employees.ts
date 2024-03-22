@@ -12,7 +12,7 @@ export type NewUser = {
     name: string;
     roleIds: string[];
     areaId: number;
-    [key: string]: string | number | string[];
+    [key: string]: string | number | string[] | any;
 };
 
 export type EditAdminInfo = {

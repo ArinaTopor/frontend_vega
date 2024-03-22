@@ -13,6 +13,7 @@ export interface Option {
     value: string;
     label: string;
     children?: Option[];
+    disableCheckbox?: boolean;
 }
 
 export const roles: Option[] = [
