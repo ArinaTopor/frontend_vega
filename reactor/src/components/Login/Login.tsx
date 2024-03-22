@@ -12,6 +12,7 @@ import { selectUser } from '../../features/auth/authSlice';
 import { MainPageRoles } from '../../paths';
 import { Button, Flex, Form } from 'antd';
 import styles from './Login.module.css';
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
     const [loginUser, { isLoading }] = useLoginMutation();
@@ -19,6 +20,7 @@ const Login = () => {
     const { data, refetch } = useCurrentQuery();
     const user = useSelector(selectUser);
     const [isError, setIsErrors] = useState<boolean>(false);
+    const { t } = useTranslation();
 
     console.log(user);
     useEffect(() => {
@@ -42,7 +44,7 @@ const Login = () => {
 
     return (
         <Flex className={styles.login_wrapper} vertical>
-            <h1>Вход</h1>
+            <h1>{t('login')}</h1>
             <p>
                 Для входа в систему введите
                 <br /> логин и пароль
