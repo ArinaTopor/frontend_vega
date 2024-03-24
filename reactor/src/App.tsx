@@ -34,6 +34,8 @@ const theme: ThemeConfig = {
             colorPrimaryHover: '#314659',
         },
     },
+    token: {},
+    cssVar: true,
 };
 
 function App() {

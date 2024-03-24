@@ -1,6 +1,7 @@
 import FormInput from '../../custom-input/FormInput/FormInput';
 import { CustomSelect } from '../../custom-input/CustomSelect/CustomSelect';
-import { Option, roles } from '../../../features/employeesSlice';
+import { Option } from '../../../utils/Option';
+import { roles } from '../../../constans/roleData';
 import {
     NewUser,
     useAddUserMutation,
@@ -9,7 +10,6 @@ import {
 import style from './AddEmployeeForm.module.css';
 import EditAdminInfoForm from '../EditAdminInfoForm/EditAdminForm';
 import { Button, Cascader, Form, Typography } from 'antd';
-import Handle from 'rc-slider/lib/Handles/Handle';
 import { useState } from 'react';
 
 type Props = {
@@ -19,7 +19,7 @@ const { SHOW_CHILD } = Cascader;
 
 const AddEmployeeForm = ({ isAdmin }: Props) => {
     const [form] = Form.useForm();
-    const { data: dataAreas, error: errorAreas } = useGetAreasQuery();
+    const { data: dataAreas } = useGetAreasQuery();
     const [addUser, { isLoading }] = useAddUserMutation();
     const displayRender = (labels: string[]) => labels[labels.length - 1];
     const [updateRoles, setUpdateRoles] = useState<Option[]>(roles);
@@ -33,6 +33,45 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
               return item;
           })
         : [];
+
+    const handleChange = (value: any) => {
+        const updatedRoles = updateRoles;
+        const roleValues = value as string[][];
+        const traverseTree = (
+            tree: Option[],
+            callback: (node: Option) => void
+        ) => {
+            tree.forEach((node) => {
+                if (
+                    !roleValues.some((sub: string[]) =>
+                        sub.includes(node.value)
+                    )
+                ) {
+                    node.disableCheckbox = true;
+                    callback(node);
+                }
+                if (
+                    roleValues.some((sub: string[]) => sub.includes('5')) &&
+                    ['6', '7', '8', '9', '10', '11', '12', '13'].includes(
+                        node.value
+                    )
+                ) {
+                    node.disableCheckbox = false;
+                    callback(node);
+                }
+
+                if (roleValues.length === 0) {
+                    node.disableCheckbox = false;
+                }
+                if (node.children) {
+                    traverseTree(node.children, callback);
+                }
+                callback(node);
+            });
+        };
+        traverseTree(updateRoles, () => {});
+        setUpdateRoles(updatedRoles);
+    };
 
     const handleAdd = async (data: NewUser) => {
         try {
@@ -48,20 +87,6 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
         }
     };
 
-    const handleChange = (value: any) => {
-        // setSelectedRoles(value);
-        console.log(value);
-        const updatedRoles = roles.map((role) => {
-            if (value.includes(role.value)) {
-                return { ...role, disableCheckbox: false };
-            } else if (value.length === 0) {
-                return { ...role, disableCheckbox: false };
-            } else {
-                return { ...role, disableCheckbox: true };
-            }
-        });
-        setUpdateRoles(updatedRoles);
-    };
     return (
         <>
             {isAdmin ? (
@@ -91,7 +116,15 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                     >
                         Роль
                     </Typography.Text>
-                    <Form.Item name={'roleIds'}>
+                    <Form.Item
+                        name={'roleIds'}
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Обязательное поле',
+                            },
+                        ]}
+                    >
                         <Cascader
                             options={updateRoles}
                             expandTrigger='hover'
@@ -99,7 +132,6 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                             showCheckedStrategy={SHOW_CHILD}
                             multiple
                             maxTagCount='responsive'
-                            className={style.cascader}
                             style={{
                                 height: '5.3vh',
                                 width: '90%',
