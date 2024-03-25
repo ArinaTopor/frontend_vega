@@ -43,7 +43,7 @@ function App() {
         <ConfigProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<AddEmployeePage />} />
+                    <Route path='/' element={<Authorization />} />
                     <Route element={<CustomLayout />}>
                         <Route
                             path={Paths.workerMain}

@@ -23,6 +23,7 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
     const [addUser, { isLoading }] = useAddUserMutation();
     const displayRender = (labels: string[]) => labels[labels.length - 1];
     const [updateRoles, setUpdateRoles] = useState<Option[]>(roles);
+    const [currentRole, setCurrentRole] = useState<string[]>([])
 
     const arrayAreas: Array<{ value: number; label: string }> = dataAreas
         ? Object.keys(dataAreas).map((key) => {
@@ -35,6 +36,7 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
         : [];
 
     const handleChange = (value: any) => {
+        setCurrentRole(value[0] ? value[0] : [])
         const updatedRoles = updateRoles;
         const roleValues = value as string[][];
         const traverseTree = (
@@ -143,9 +145,10 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                     <CustomSelect
                         name='areaId'
                         placeholder=' '
-                        required={false}
+                        required={true}
                         options={arrayAreas ?? []}
                         label='Участок'
+                        disabled={!(currentRole[0] ===  '2')}
                     />
                     <FormInput
                         name='password'

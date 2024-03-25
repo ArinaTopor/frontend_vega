@@ -7,6 +7,7 @@ type Props = {
     required?: boolean;
     options: Array<{ value: number; label: string }>;
     label?: string;
+    disabled?: boolean;
 };
 
 export function CustomSelect({
@@ -15,6 +16,7 @@ export function CustomSelect({
     required,
     options,
     label,
+    disabled,
 }: Props) {
     return (
         <>
@@ -24,12 +26,12 @@ export function CustomSelect({
                 className={style.selectForm}
                 rules={[
                     {
-                        required: true,
+                        required: required && !disabled,
                         message: 'Обязательное поле',
                     },
                 ]}
             >
-                <Select options={options} className={style.select} />
+                <Select options={options} className={style.select} disabled={disabled}/>
             </Form.Item>
         </>
     );
