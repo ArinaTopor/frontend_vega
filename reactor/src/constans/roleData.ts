@@ -56,3 +56,6 @@ export const roles: Option[] = [
         label: 'Склад',
     },
 ];
+
+export const stages: string[] = ['6', '7', '8', '9', '10', '11', '12', '13'];
+export const mainStageRole = '5';

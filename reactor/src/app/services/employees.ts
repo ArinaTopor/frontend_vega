@@ -11,8 +11,8 @@ export type NewUser = {
     password: string;
     name: string;
     roleIds: string[];
-    areaId: number;
-    [key: string]: string | number | string[];
+    areaId?: number;
+    [key: string]: string | number | string[] | undefined;
 };
 
 export type EditAdminInfo = {

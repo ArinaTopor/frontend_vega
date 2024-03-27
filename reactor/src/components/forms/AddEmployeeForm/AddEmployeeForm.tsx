@@ -1,7 +1,7 @@
 import FormInput from '../../custom-input/FormInput/FormInput';
 import { CustomSelect } from '../../custom-input/CustomSelect/CustomSelect';
 import { Option } from '../../../utils/Option';
-import { roles } from '../../../constans/roleData';
+import { mainStageRole, roles, stages } from '../../../constans/roleData';
 import {
     NewUser,
     useAddUserMutation,
@@ -23,7 +23,7 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
     const [addUser, { isLoading }] = useAddUserMutation();
     const displayRender = (labels: string[]) => labels[labels.length - 1];
     const [updateRoles, setUpdateRoles] = useState<Option[]>(roles);
-    const [currentRole, setCurrentRole] = useState<string[]>([])
+    const [currentRole, setCurrentRole] = useState<string[]>([]);
 
     const arrayAreas: Array<{ value: number; label: string }> = dataAreas
         ? Object.keys(dataAreas).map((key) => {
@@ -36,7 +36,7 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
         : [];
 
     const handleChange = (value: any) => {
-        setCurrentRole(value[0] ? value[0] : [])
+        setCurrentRole(value[0] ? value[0] : []);
         const updatedRoles = updateRoles;
         const roleValues = value as string[][];
         const traverseTree = (
@@ -53,10 +53,10 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                     callback(node);
                 }
                 if (
-                    roleValues.some((sub: string[]) => sub.includes('5')) &&
-                    ['6', '7', '8', '9', '10', '11', '12', '13'].includes(
-                        node.value
-                    )
+                    roleValues.some((sub: string[]) =>
+                        sub.includes(mainStageRole)
+                    ) &&
+                    stages.includes(node.value)
                 ) {
                     node.disableCheckbox = false;
                     callback(node);
@@ -77,7 +77,6 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
 
     const handleAdd = async (data: NewUser) => {
         try {
-            console.log(JSON.stringify(data));
             const newRoleIds = Array.from(
                 new Set(data.roleIds.flat().filter((num) => num !== '5'))
             );
@@ -148,7 +147,7 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                         required={true}
                         options={arrayAreas ?? []}
                         label='Участок'
-                        disabled={!(currentRole[0] ===  '2')}
+                        disabled={!(currentRole[0] === '2')}
                     />
                     <FormInput
                         name='password'

@@ -7,16 +7,18 @@ import { Sidebar } from './Sidebar/Sidebar';
 const { Content } = Layout;
 
 export function CustomLayout() {
-	const user = useSelector(selectUser);
+    const user = useSelector(selectUser);
 
-	return (
-		<Layout>
-			{user?.role === 'admin' && <Sidebar user={user} />}
-			<Layout>
-				<Content>
-					<Outlet />
-				</Content>
-			</Layout>
-		</Layout>
-	);
+    return (
+        <Layout>
+            {user?.role?.indexOf('Администратор') !== -1 && (
+                <Sidebar user={user} />
+            )}
+            <Layout>
+                <Content>
+                    <Outlet />
+                </Content>
+            </Layout>
+        </Layout>
+    );
 }
