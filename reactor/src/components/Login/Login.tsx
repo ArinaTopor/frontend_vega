@@ -18,12 +18,12 @@ const Login = () => {
     const navigate = useNavigate();
     const { data, refetch } = useCurrentQuery();
     const user = useSelector(selectUser);
+    console.log(user);
     const [isError, setIsErrors] = useState<boolean>(false);
 
-    console.log(user);
     useEffect(() => {
         if (user) {
-            navigate(MainPageRoles[user.role] || '/');
+            navigate(MainPageRoles.admin);
         }
     }, [user, navigate]);
 

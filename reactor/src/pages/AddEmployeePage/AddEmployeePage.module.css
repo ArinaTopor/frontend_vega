@@ -1,0 +1,47 @@
+.wrapper{
+	height:100vh;
+	flex-grow:1;
+	background:var(--auth-background);
+}
+
+.window{
+	background-color:#fff;
+    height:93.4vh;
+    position: relative;
+    padding:9.2vh 3.8vw 3vh 4.1vw;
+    width: 46.6vw;
+}
+
+.choice{
+	margin-bottom: 3.1vh;
+}
+
+.activeChoiceStyle{
+    color:#000;
+    font-weight:500;
+    font-size: 1.1vw;
+    padding: 0;
+    margin-right: 1.8vw;
+    background: #fff;
+    border-radius: 0.2vw;
+    justify-content: start;
+    height: 4.4vh;
+    cursor: auto;
+	border:none;
+}
+
+.choiceStyle{
+    font-size: 1.1vw;
+    color: #758593;
+    font-weight: 500;
+    margin-right: 1.8vw;
+    background: #EBECEF;
+    width: 12vw;
+    height: 4.4vh;
+    justify-content: start;
+	border:none;
+}
+
+.activeChoiceStyle:hover{
+	background-color: #fff !important;
+}

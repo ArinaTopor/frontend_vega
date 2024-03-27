@@ -40,3 +40,19 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
 }
+
+:root {
+    --auth-background: linear-gradient(
+        296deg,
+        #314659 8.26%,
+        rgba(49, 70, 89, 0) 81.63%
+    );
+}
+
+.ant-select-single .ant-select-selector {
+    font-size: 1.1vw !important;
+}
+.ant-select-selector {
+    box-shadow: none !important;
+    --ant-color-primary: #24323e;
+}
