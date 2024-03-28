@@ -9,6 +9,7 @@ import { ConfigProvider, ThemeConfig } from 'antd';
 import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
 import TableFiles from './tables/TableFiles';
 import TableOrderFiles from './tables/TableOrderFiles/TableOrderFiles';
+import './App.css';
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -26,6 +27,7 @@ const theme: ThemeConfig = {
             borderRadius: 2,
             activeShadow: 'none',
             fontSize: 16,
+            colorPrimaryBorderHover: '#314659',
             hoverBorderColor: '#314659',
         },
         Select: {
@@ -41,8 +43,16 @@ const theme: ThemeConfig = {
             headerColor: '#2D3748',
             boxShadow: '#E2E8F0',
             rowHoverBg: '#E2E8F0',
+            colorPrimaryHover: '#314659',
+        },
+        Checkbox: {
+            colorPrimary: '#314659',
+            colorPrimaryHover: '#24323E',
+            colorBorder: '#314659',
         },
     },
+    token: {},
+    cssVar: true,
 };
 
 function App() {
@@ -82,7 +92,14 @@ function App() {
                         />
                         <Route path={Paths.products} element={<BossPage />} />
                         <Route path={Paths.tasksBoard} element={<BossPage />} />
-                        <Route path={Paths.options} element={<BossPage />} />
+                        <Route
+                            path={Paths.options}
+                            element={
+                                <RequareAuth>
+                                    <AddEmployeePage />
+                                </RequareAuth>
+                            }
+                        />
                     </Route>
                 </Routes>
             </BrowserRouter>

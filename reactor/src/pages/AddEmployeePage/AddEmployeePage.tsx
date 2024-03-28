@@ -1,14 +1,11 @@
 import { useState } from 'react';
-//import { Box, Button, Flex } from '@chakra-ui/react';
-import { boxStyle, activeChoiceStyle, choiceStyle } from './style';
-import AddEmployeeForm from '../../components/AddEmployeeForm/AddEmployeeForm';
-import { Button, Flex, Typography } from 'antd';
+import AddEmployeeForm from '../../components/forms/AddEmployeeForm/AddEmployeeForm';
+import { Button, Flex} from 'antd';
 import style from './AddEmployeePage.module.css'
 
 const AddEmployeePage = () => {
     const [isAdmin, setIsAdmin] = useState(true);
 
-    console.log(isAdmin)
     return (
         <Flex align='center' justify='center' className={style.wrapper}>
             <Flex vertical className={style.window}>

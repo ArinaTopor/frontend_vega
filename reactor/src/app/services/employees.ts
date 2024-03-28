@@ -10,9 +10,9 @@ export type NewUser = {
     login: string;
     password: string;
     name: string;
-    roleId: number;
-    areaId: number;
-    [key: string]: string | number;
+    roleIds: string[];
+    areaId?: number;
+    [key: string]: string | number | string[] | undefined;
 };
 
 export type EditAdminInfo = {

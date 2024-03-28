@@ -10,13 +10,6 @@ const initialState: InitialState = {
     areas: null,
 };
 
-export const roles =[
-   { value:1, label:'Администратор'},
-   { value:2, label:'Рабочий'},
-   { value:3, label:'СТК'},
-   { value:4, label:'Склад'}
-];
-
 const slice = createSlice({
     name: 'employees',
     initialState,

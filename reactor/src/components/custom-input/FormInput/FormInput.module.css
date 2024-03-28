@@ -1,45 +1,45 @@
-.label{ 
-	display: inline-block;
-	font-size:2.03vh;
-	font-weight:500;
-	margin-bottom:1.8vh;
-	color:#000;
-	margin-bottom: 1.8vh;
+.label {
+    display: inline-block;
+    font-size: 2.03vh;
+    font-weight: 500;
+    margin-bottom: 1.8vh;
+    color: #000;
+    margin-bottom: 1.8vh;
 }
 
-.visible{
-	position:absolute;
-	z-index:2;
-	width:2.3vw;
-	right:1.35vw;
-	top:0.6vh;
-	cursor:pointer;
-	width:4vh;
-	height: 4vh;
-	display: inline-block;
+.visible {
+    position: absolute;
+    z-index: 2;
+    width: 2.3vw;
+    right: 1.35vw;
+    top: 0.6vh;
+    cursor: pointer;
+    width: 4vh;
+    height: 4vh;
+    display: inline-block;
 }
 
-.wrapperInputPassword{
-	position:relative;
+.wrapperInputPassword {
+    position: relative;
 }
 
-.input{
-	background: #EBECEF;
+.input {
+    background: #ebecef;
     border-radius: 0;
     height: 5.3vh;
-    padding-left:1vw;
+    padding-left: 1vw;
     font-size: 1.1vw;
 }
 
-.input:hover{
-	border: 1px solid #4f5454;
+.input:hover {
+    border-color: 1px solid #24323e;
 }
 
-.input:focus{
-	border: 1px solid #4f5454;
+.input:focus {
+    border-color: 1px solid #24323e;
 }
 
-.inputForm{
-	width:90%;
-	margin-bottom:1.8vh;
+.inputForm {
+    width: 90%;
+    margin-bottom: 1.8vh;
 }
