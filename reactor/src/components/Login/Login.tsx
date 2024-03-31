@@ -18,14 +18,15 @@ const Login = () => {
     const navigate = useNavigate();
     const { data, refetch } = useCurrentQuery();
     const user = useSelector(selectUser);
+    console.log(user);
     const [isError, setIsErrors] = useState<boolean>(false);
 
     useEffect(() => {
         if (user) {
-            navigate(MainPageRoles[user.role] || '/');
+            navigate(MainPageRoles.admin);
         }
     }, [user, navigate]);
-    
+
     const handleAuth = async (data: LoginData) => {
         try {
             await loginUser(data).unwrap();

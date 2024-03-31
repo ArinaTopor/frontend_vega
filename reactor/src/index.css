@@ -129,3 +129,7 @@ code {
     color: #314659;
     padding-left: 1vw !important;
 }
+.ant-select-selector {
+    box-shadow: none !important;
+    --ant-color-primary: #24323e;
+}
