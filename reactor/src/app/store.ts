@@ -3,11 +3,13 @@ import { api } from './services/api';
 import auth from '../features/auth/authSlice';
 import employees from '../features/employeesSlice';
 import { listenerMiddleware } from './middleware/auth';
+import orders from '../features/ordersSlice';
 export const store = configureStore({
     reducer: {
         [api.reducerPath]: api.reducer,
         auth,
         employees,
+        orders,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()

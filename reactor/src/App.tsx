@@ -10,6 +10,7 @@ import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
 import TableFiles from './tables/TableFiles';
 import TableOrderFiles from './tables/TableOrderFiles/TableOrderFiles';
 import './App.css';
+import FilesReader from './components/FilesReader.tsx/FilesReader';
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -61,14 +62,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Authorization />} />
-                    <Route
-                        path={Paths.tableFiles}
-                        element={<TableFiles />}
-                    ></Route>
-                    <Route
-                        path={Paths.files}
-                        element={<TableOrderFiles />}
-                    ></Route>
+
                     <Route element={<CustomLayout />}>
                         <Route
                             path={Paths.workerMain}
@@ -90,7 +84,34 @@ function App() {
                             path={Paths.nomenclature}
                             element={<BossPage />}
                         />
-                        <Route path={Paths.products} element={<BossPage />} />
+                        <Route
+                            path={Paths.tableFiles}
+                            element={
+                                <RequareAuth>
+                                    <TableFiles />
+                                </RequareAuth>
+                            }
+                        ></Route>
+                        <Route
+                            path={Paths.files}
+                            element={<TableOrderFiles />}
+                        ></Route>
+                        <Route
+                            path={Paths.tableFiles}
+                            element={
+                                <RequareAuth>
+                                    <TableFiles />
+                                </RequareAuth>
+                            }
+                        ></Route>
+                        {/* <Route
+                            path='/file/:path'
+                            element={
+                                <RequareAuth>
+                                    <FilesReader />
+                                </RequareAuth>
+                            }
+                        ></Route> */}
                         <Route path={Paths.tasksBoard} element={<BossPage />} />
                         <Route
                             path={Paths.options}

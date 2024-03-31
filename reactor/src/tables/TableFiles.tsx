@@ -4,6 +4,8 @@ import { FolderOutlined } from '@ant-design/icons';
 import styles from './TableFiles.module.css';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useGetAllKKSQuery } from '../app/services/orders';
 interface DataType {
     key: number | string;
     orderName: string;
@@ -35,6 +37,8 @@ const data2: DataType[] = [
 ];
 
 const TableFiles = () => {
+    const { data, error } = useGetAllKKSQuery();
+    useEffect(() => {});
     return (
         <div>
             <table className={styles.orderfiles_table}>
@@ -44,25 +48,26 @@ const TableFiles = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data2.map((child) => (
-                        <tr key={child.key} className={styles.order_file}>
-                            <td>
-                                <FolderOutlined
-                                    style={{
-                                        marginRight: '1.77vw',
-                                        color: '#2D3748',
-                                        fontSize: '1.6vw',
-                                    }}
-                                />
-                                <Link
-                                    to={`/files/${child.key}`}
-                                    style={{ color: '#2D3748' }}
-                                >
-                                    <span>{child.orderName}</span>
-                                </Link>
-                            </td>
-                        </tr>
-                    ))}
+                    {data &&
+                        Object.keys(data).map((child) => (
+                            <tr key={child} className={styles.order_file}>
+                                <td>
+                                    <FolderOutlined
+                                        style={{
+                                            marginRight: '1.77vw',
+                                            color: '#2D3748',
+                                            fontSize: '1.6vw',
+                                        }}
+                                    />
+                                    <Link
+                                        to={`/files/${data[child]}`}
+                                        style={{ color: '#2D3748' }}
+                                    >
+                                        <span>{data[child]}</span>
+                                    </Link>
+                                </td>
+                            </tr>
+                        ))}
                 </tbody>
             </table>
             {/* <Table
