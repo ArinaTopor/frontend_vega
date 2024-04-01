@@ -13,12 +13,8 @@ type Props = {
 export function FileInput({ name, required, inputFileStyle, maxCount}: Props) {
 	return (
 		<>
-			<Form.Item name={name} className={inputFileStyle} rules={[
-				{
-					required: required,
-					message: 'Обязательное поле',
-				},
-			]}>
+			<Form.Item name={name} className={inputFileStyle} 
+			>
 				<Upload
 					multiple={true}
 					beforeUpload={() => {
