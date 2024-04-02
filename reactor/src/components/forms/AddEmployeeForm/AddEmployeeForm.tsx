@@ -135,7 +135,7 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                             maxTagCount='responsive'
                             style={{
                                 height: '5.3vh',
-                                width: '90%',
+                                width: '100%',
                             }}
                             onChange={handleChange}
                         />

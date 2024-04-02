@@ -56,7 +56,7 @@ export const ModalAddOrder=({open, setOpen}:Props)=>{
             <Typography.Text className={style.titleModal}>Новый заказ</Typography.Text>
                 <Form form={form} onFinish={handleSubmit} className={style.form}>
                 <FormInput name='KKS' type='text' required={true} label='ККС'/>
-                <FileInput name='files' required={false} inputFileStyle={style.inputFile}/>
+                <FileInput name='files' required={true} inputFileStyle={style.inputFile}/>
                 <CustomTextarea name='Description' label='Комментарий/описание'/>
                 <Button className={style.buttonSave} htmlType='submit'>
                     Создать
