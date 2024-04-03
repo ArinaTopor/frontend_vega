@@ -39,11 +39,6 @@ const theme: ThemeConfig = {
             borderRadius: 0,
             colorPrimaryHover: '#314659',
         },
-        Checkbox: {
-            colorPrimary: '#314659',
-            colorPrimaryHover: '#24323E',
-            colorBorder: '#314659',
-        },
     },
     token: {},
     cssVar: true,
@@ -77,7 +72,10 @@ function App() {
                             element={<BossPage />}
                         />
                         <Route path={Paths.products} element={<BossPage />} />
-                        <Route path={Paths.tasksBoard} element={<BossPage />} />
+                        <Route
+                            path={Paths.tasksBoard}
+                            element={<TableOrders />}
+                        />
                         <Route
                             path={Paths.options}
                             element={
