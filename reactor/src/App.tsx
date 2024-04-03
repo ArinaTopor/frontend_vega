@@ -34,7 +34,19 @@ const theme: ThemeConfig = {
             colorPrimaryBorderHover: '#314659',
             hoverBorderColor: '#314659',
         },
+        Select: {
+            selectorBg: '#EBECEF',
+            borderRadius: 0,
+            colorPrimaryHover: '#314659',
+        },
+        Checkbox: {
+            colorPrimary: '#314659',
+            colorPrimaryHover: '#24323E',
+            colorBorder: '#314659',
+        },
     },
+    token: {},
+    cssVar: true,
 };
 
 function App() {
@@ -42,7 +54,7 @@ function App() {
         <ConfigProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<TableOrders />} />
+                    <Route path='/' element={<Authorization />} />
                     <Route element={<CustomLayout />}>
                         <Route
                             path={Paths.workerMain}

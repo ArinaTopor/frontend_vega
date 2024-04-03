@@ -74,3 +74,10 @@ code {
     background: #717171;
     border-radius: 20px;
 }
+.ant-select-single .ant-select-selector {
+    font-size: 1.1vw !important;
+}
+.ant-select-selector {
+    box-shadow: none !important;
+    --ant-color-primary: #24323e;
+}
