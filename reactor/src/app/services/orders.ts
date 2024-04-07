@@ -17,6 +17,10 @@ export interface FilesInfo {
 export type kks = {
     [key: string]: string;
 };
+export interface ResponseFile {
+    fileStream: string;
+    contentType: 'image/png';
+}
 export const ordersApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getAllKKS: builder.query<kks, void>({
@@ -31,9 +35,9 @@ export const ordersApi = api.injectEndpoints({
                 method: 'GET',
             }),
         }),
-        getFileByName: builder.query<string, string>({
+        getFileByName: builder.query<ResponseFile, string>({
             query: (path) => ({
-                url: `/Order/files/${path}`,
+                url: `/Order/files/?path=${path}`,
                 method: 'GET',
             }),
         }),

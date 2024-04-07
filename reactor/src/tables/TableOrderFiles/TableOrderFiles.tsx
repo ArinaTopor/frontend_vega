@@ -10,7 +10,7 @@ import {
 } from '../../app/services/orders';
 import { useDispatch } from 'react-redux';
 import { useGetFile } from '../../hooks';
-import FilesReader from '../../components/FilesReader.tsx/FilesReader';
+import FilesReader from '../../components/FilesReader/FilesReader';
 import { statuses } from '../../constans/statusData';
 const TableOrderFiles = () => {
     const { id } = useParams();
@@ -83,6 +83,10 @@ const TableOrderFiles = () => {
                         )}
                 </tbody>
             </table>
+            <FilesReader
+                path={'31SAM46AH552/Внесение входной документации/file.docx'}
+                open={true}
+            />
         </Flex>
     );
 };

@@ -10,7 +10,7 @@ import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
 import TableFiles from './tables/TableFiles';
 import TableOrderFiles from './tables/TableOrderFiles/TableOrderFiles';
 import './App.css';
-import FilesReader from './components/FilesReader.tsx/FilesReader';
+import FilesReader from './components/FilesReader/FilesReader';
 const theme: ThemeConfig = {
     components: {
         Button: {
