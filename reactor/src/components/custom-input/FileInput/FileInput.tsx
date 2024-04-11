@@ -6,7 +6,7 @@ import uploadSrc from '../../../assets/icons/upload.svg';
 type Props = {
 	name: string;
 	required: boolean;
-	inputFileStyle: string;
+	inputFileStyle?: string;
 	maxCount?: number;
 };
 
