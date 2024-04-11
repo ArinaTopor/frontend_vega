@@ -47,7 +47,6 @@ export const ModalAddOrder = ({ open, setOpen }: Props) => {
 		setOpen(false);
 		form.resetFields();
 	};
-
 	return (
 		<Modal
 			width="46.6vw"

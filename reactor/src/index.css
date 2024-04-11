@@ -126,3 +126,6 @@ code {
     box-shadow: none !important;
     --ant-color-primary: #24323e;
 }
+.ant-select-single .ant-select-selector {
+    font-size: 1.1vw !important;
+}
