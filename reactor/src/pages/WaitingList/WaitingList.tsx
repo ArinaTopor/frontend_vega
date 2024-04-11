@@ -46,7 +46,7 @@ export function WaitingList() {
 					<Image src={plus} preview={false} />
 				</Button>
 			</Popover>
-			<ModalAddDocuments open={open} setOpen={setOpen}/>
+			<ModalAddOrder open={open} setOpen={setOpen}/>
 		</Flex>
 	);
 }
