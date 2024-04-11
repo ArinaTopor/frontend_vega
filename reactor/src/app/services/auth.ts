@@ -11,7 +11,7 @@ export type LoginData = {
 export type InfoUser = {
     login: string;
     name: string | null;
-    role: 'admin' | 'worker' | 'stk' | 'storage';
+    role: string[];
 };
 
 export const authApi = api.injectEndpoints({
@@ -25,7 +25,7 @@ export const authApi = api.injectEndpoints({
         }),
         current: builder.query<InfoUser, void>({
             query: () => ({
-                url: '/User',
+                url: '/Users',
                 method: 'GET',
             }),
         }),

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button, Flex, Popover, Typography, Image } from 'antd';
 import style from './WaitingList.module.css';
 import { ModalAddOrder } from '../../components/modal/ModalAddOrder/ModalAddOrder';
+import { ModalAddDocuments } from '../../components/modal/ModalAddDocuments/ModalAddDocuments';
 
 export function WaitingList() {
 	const [open, setOpen] = useState(false);
@@ -45,7 +46,7 @@ export function WaitingList() {
 					<Image src={plus} preview={false} />
 				</Button>
 			</Popover>
-			<ModalAddOrder open={open} setOpen={setOpen}/>
+			<ModalAddDocuments open={open} setOpen={setOpen}/>
 		</Flex>
 	);
 }

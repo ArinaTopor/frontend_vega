@@ -40,38 +40,6 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
 }
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    color: #000;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 16px;
-}
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-h1 {
-    font-size: 25px;
-    font-weight: 700;
-}
-a {
-    text-decoration: none;
-}
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
-}
-
-:root {
-    --auth-background: linear-gradient(
-        296deg,
-        #314659 8.26%,
-        rgba(49, 70, 89, 0) 81.63%
-    );
-}
 
 .ant-select-focused.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
     border-color: #000 !important;
@@ -127,4 +95,7 @@ code {
     font-size: 1.85vh;
     color: #314659;
     padding-left: 1vw !important;
+}
+.ant-select-single .ant-select-selector {
+    font-size: 1.1vw !important;
 }

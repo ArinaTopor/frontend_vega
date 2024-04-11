@@ -28,7 +28,19 @@ const theme: ThemeConfig = {
             fontSize: 16,
             hoverBorderColor: '#314659',
         },
+        Select: {
+            selectorBg: '#EBECEF',
+            borderRadius: 0,
+            colorPrimaryHover: '#314659',
+        },
+        Checkbox: {
+            colorPrimary: '#314659',
+            colorPrimaryHover: '#24323E',
+            colorBorder: '#314659',
+        },
     },
+    token: {},
+    cssVar: true,
 };
 
 function App() {
@@ -36,7 +48,7 @@ function App() {
         <ConfigProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
-					<Route path='/' element={<Authorization />} />
+                    <Route path='/' element={<Authorization />} />
                     <Route element={<CustomLayout />}>
                         <Route
                             path={Paths.workerMain}
