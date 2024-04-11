@@ -1,5 +1,6 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Authorization from './pages/Auth/Authorization';
+import TableOrders from './components/tables/TableOrders';
 import Home from './pages/MainPage';
 import { RequareAuth } from './hoc/RequaireAuth';
 import BossPage from './pages/BossPage';
@@ -20,6 +21,11 @@ const theme: ThemeConfig = {
             colorTextDisabled: '#ffffff',
             borderRadius: 2,
             fontWeight: 500,
+        },
+        Checkbox: {
+            colorPrimary: '#314659',
+            colorPrimaryHover: '#24323E',
+            colorBorder: '#314659',
         },
         Input: {
             activeBorderColor: '#314659',
@@ -68,10 +74,13 @@ function App() {
                         />
                         <Route
                             path={Paths.nomenclature}
-                            element={< WaitingList/>}
+                            element={<BossPage />}
                         />
                         <Route path={Paths.products} element={<BossPage />} />
-                        <Route path={Paths.tasksBoard} element={<BossPage />} />
+                        <Route
+                            path={Paths.tasksBoard}
+                            element={<TableOrders />}
+                        />
                         <Route
                             path={Paths.options}
                             element={
