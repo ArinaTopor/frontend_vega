@@ -84,7 +84,9 @@ const TableOrderFiles = () => {
                 </tbody>
             </table>
             <FilesReader
-                path={'31SAM46AH552/Внесение входной документации/file.docx'}
+                path={
+                    '44R7897ver23/Внесение входной документации/demo (1).docx'
+                }
                 open={true}
             />
         </Flex>
