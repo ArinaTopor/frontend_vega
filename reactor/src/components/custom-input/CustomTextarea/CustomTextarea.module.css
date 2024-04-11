@@ -1,0 +1,44 @@
+.label{
+	display: inline-block;
+	font-size:2.03vh;
+	font-weight:500;
+	margin-bottom:1.8vh;
+	color:#24323E;
+	margin-bottom: 1.8vh;
+	margin-top: 1vh;
+	font-family:Roboto;
+}
+
+.textareaWrapper{
+	padding:1.1vh 1.25vw 1.1vh 0.94vw;
+	background:#EBECEF;
+	width: 100%;
+	height: 16.8vh;
+}
+
+.textarea{
+	width: 100%;
+	height:14.7vh;
+	background: #EBECEF !important;
+	font-size: 1.85vh;
+	color: #314659;
+	padding-right: 2.3vw;
+	border:0 solid #fff !important;
+	outline: none !important;
+	resize:none !important;
+	border-radius: 0 !important;
+}
+
+.textarea::-webkit-scrollbar{
+	width:0.57vw;
+}
+
+.textarea::-webkit-scrollbar-track{
+	background:#fff;
+	border-radius: 20px;
+}
+.textarea::-webkit-scrollbar-thumb{
+	background: #717171;
+	border-radius: 20px;
+}
+

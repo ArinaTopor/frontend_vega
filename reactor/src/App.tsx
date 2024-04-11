@@ -9,6 +9,7 @@ import { CustomLayout } from './components/CustomLayout';
 import { ConfigProvider, ThemeConfig } from 'antd';
 import './App.css';
 import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
+import { WaitingList } from './pages/WaitingList/WaitingList';
 const theme: ThemeConfig = {
     components: {
         Button: {
