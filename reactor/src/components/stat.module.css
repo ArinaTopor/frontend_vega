@@ -1,3 +1,6 @@
+.wrapper{
+    margin-top: 8vh;
+}
 .stat_container {
     background: #d9d9d9;
     display: flex;
@@ -13,12 +16,21 @@
 .stat_card {
     width: 16.46vw;
     box-shadow: 0 0 5px 2px #26252540;
+    height: 12.96vh;
 }
-.stat_card h1 {
+.number {
     font-size: 2.4vw;
     color: #314659;
+    line-height: 5vh;
 }
-.stat_card p {
+.text {
     font-size: 1vw;
     font-weight: 500;
+}
+.title{
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 1.9vh;
+    margin-left:0.5vw;
+    margin-bottom: 2.1vh;
 }

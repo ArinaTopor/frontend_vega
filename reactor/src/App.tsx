@@ -74,7 +74,7 @@ function App() {
                         <Route path={Paths.products} element={<BossPage />} />
                         <Route
                             path={Paths.tasksBoard}
-                            element={<TableOrders />}
+                            element={<WaitingList/>}
                         />
                         <Route
                             path={Paths.options}

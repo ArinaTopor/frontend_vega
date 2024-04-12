@@ -8,6 +8,11 @@ export type NewOrder = {
 	[key: string]: string | File[] | null;
 };
 
+export type CommonResponse = {
+    [key: string]: number;
+};
+
+
 export const ordersApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		addOrders: builder.mutation<ReturnedData, FormData>({
@@ -17,8 +22,14 @@ export const ordersApi = api.injectEndpoints({
 				body: data,
 			}),
 		}),
+		getStat: builder.query<CommonResponse, void>({
+			query:()=>({
+				url:'/Order/statistics',
+				method: 'GET'
+			})
+		})
 	}),
 });
 
-export const { useAddOrdersMutation } = ordersApi;
-export const {endpoints: {addOrders}} = ordersApi;
+export const { useAddOrdersMutation, useGetStatQuery } = ordersApi;
+export const {endpoints: {addOrders, getStat}} = ordersApi;

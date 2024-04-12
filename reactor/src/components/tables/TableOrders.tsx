@@ -56,6 +56,7 @@ const data: DataType[] = [
             },
         ],
     },
+    
     {
         key: 90,
         name: '984hhebejejb',
@@ -86,187 +87,169 @@ const data: DataType[] = [
                 responsible: 'admin4',
             },
         ],
-    },
+    }
 ];
 
 const TableOrders = () => {
     const [visible, setVisible] = useState(data.map(() => false));
-
     const toggleVisibility = (index: number) => {
         setVisible((prevState) =>
             prevState.map((state, idx) => (idx === index ? !state : state))
         );
     };
+    
 
     return (
-        <>
-            <div
-                style={{
-                    color: '#314659',
-                    fontSize: '4.62vh',
-                    fontWeight: '800',
-                    marginBottom: '4.4vh',
-                    fontFamily: 'Roboto',
-                    marginTop: '5.741vh',
-                    marginLeft: '4.17vw',
-                }}
-            >
-                31.03.2024
-            </div>
-            <Flex>
-                <div className={styles.table} style={{ padding: '2vw' }}>
+        <div className={styles.table} style={{ padding: '2vw' }}>
+            <Row>
+                <Col span={12} className={styles.row_title}>
+                    Название
+                </Col>
+                <Col span={12} className={styles.row_title}>
+                    Ответственный
+                </Col>
+            </Row>
+            {data.map((item, index) => (
+                <>
                     <Row>
-                        <Col span={12} className={styles.row_title}>
-                            Название
+                        <Col span={12} className={styles.child_table}>
+                            <MinusSquareFilled
+                                style={{
+                                    color: '#4A505C',
+                                    fontSize: '20px',
+                                }}
+                            />
+                            <button
+                                className={
+                                    visible[index]
+                                        ? `${styles.open_btn} ${styles.active}`
+                                        : styles.open_btn
+                                }
+                                onClick={() => toggleVisibility(index)}
+                            ></button>
+                            <p>{item.name}</p>
                         </Col>
-                        <Col span={12} className={styles.row_title}>
-                            Ответственный
-                        </Col>
+                        <Col span={12}></Col>
                     </Row>
-                    {data.map((item, index) => (
+                    {item.children?.map((child) => (
                         <>
-                            <Row>
-                                <Col span={12} className={styles.child_table}>
-                                    <MinusSquareFilled
+                            {child.key === 3 ? (
+                                <Row
+                                    className={
+                                        visible[index]
+                                            ? `${styles.fadeInDown} ${styles.active2}`
+                                            : styles.hidden
+                                    }
+                                    key={child.key}
+                                >
+                                    <Col
+                                        span={12}
+                                        className={styles.stage}
+                                        style={{
+                                            display: 'flex',
+                                            paddingLeft: '6vw',
+                                        }}
+                                    >
+                                        <MinusSquareOutlined
+                                            style={{
+                                                color: '#4A505C',
+                                                fontSize: '20px',
+                                                paddingRight: '1vw',
+                                            }}
+                                        />
+                                        {/* <MinusSquareFilled
                                         style={{
                                             color: '#4A505C',
                                             fontSize: '20px',
                                         }}
-                                    />
-                                    <button
+                                    /> */}
+                                        {/* <button
                                         className={
                                             visible[index]
                                                 ? `${styles.open_btn} ${styles.active}`
                                                 : styles.open_btn
                                         }
-                                        onClick={() => toggleVisibility(index)}
-                                    ></button>
-                                    <p>{item.name}</p>
-                                </Col>
-                                <Col span={12}></Col>
-                            </Row>
-                            {item.children?.map((child) => (
-                                <>
-                                    {child.key === 3 ? (
-                                        <Row
-                                            className={
-                                                visible[index]
-                                                    ? `${styles.fadeInDown} ${styles.active2}`
-                                                    : styles.hidden
-                                            }
-                                            key={child.key}
+                                        onClick={() =>
+                                            toggleVisibility(index)
+                                        }
+                                    ></button> */}
+                                        <p>{child.name}</p>
+                                    </Col>
+                                    <Col
+                                        span={12}
+                                        className={styles.responsible}
+                                    ></Col>
+                                </Row>
+                            ) : (
+                                <Row
+                                    className={
+                                        visible[index]
+                                            ? `${styles.fadeInDown} ${styles.active2}`
+                                            : styles.hidden
+                                    }
+                                    key={child.key}
+                                >
+                                    <Col
+                                        span={12}
+                                        className={styles.stages}
+                                        style={{ paddingLeft: '6vw' }}
+                                    >
+                                        <Checkbox
+                                            checked={child.checked}
+                                            className={styles.check}
                                         >
-                                            <Col
-                                                span={12}
-                                                className={styles.stage}
-                                                style={{
-                                                    display: 'flex',
-                                                    paddingLeft: '6vw',
-                                                }}
-                                            >
-                                                <MinusSquareOutlined
-                                                    style={{
-                                                        color: '#4A505C',
-                                                        fontSize: '20px',
-                                                        paddingRight: '1vw',
-                                                    }}
-                                                />
-                                                {/* <MinusSquareFilled
-                                                style={{
-                                                    color: '#4A505C',
-                                                    fontSize: '20px',
-                                                }}
-                                            /> */}
-                                                {/* <button
-                                                className={
-                                                    visible[index]
-                                                        ? `${styles.open_btn} ${styles.active}`
-                                                        : styles.open_btn
-                                                }
-                                                onClick={() =>
-                                                    toggleVisibility(index)
-                                                }
-                                            ></button> */}
-                                                <p>{child.name}</p>
-                                            </Col>
-                                            <Col
-                                                span={12}
-                                                className={styles.responsible}
-                                            ></Col>
-                                        </Row>
-                                    ) : (
-                                        <Row
-                                            className={
-                                                visible[index]
-                                                    ? `${styles.fadeInDown} ${styles.active2}`
-                                                    : styles.hidden
-                                            }
-                                            key={child.key}
+                                            {child.name}
+                                        </Checkbox>
+                                    </Col>
+                                    <Col
+                                        span={12}
+                                        className={styles.responsible}
+                                    >
+                                        {child.responsible}
+                                    </Col>
+                                </Row>
+                            )}
+                            <div style={{ marginTop: '1.2vh' }}>
+                                {child.children?.map((prechild) => (
+                                    <Row
+                                        className={
+                                            visible[index]
+                                                ? `${styles.fadeInDown} ${styles.active2}`
+                                                : styles.hidden
+                                        }
+                                    >
+                                        <Col
+                                            span={12}
+                                            style={{
+                                                paddingLeft: '8vw',
+                                                paddingBottom: '1vh',
+                                            }}
                                         >
-                                            <Col
-                                                span={12}
-                                                className={styles.stages}
-                                                style={{ paddingLeft: '6vw' }}
-                                            >
-                                                <Checkbox
-                                                    checked={child.checked}
-                                                    className={styles.check}
-                                                >
-                                                    {child.name}
-                                                </Checkbox>
-                                            </Col>
-                                            <Col
-                                                span={12}
-                                                className={styles.responsible}
-                                            >
-                                                {child.responsible}
-                                            </Col>
-                                        </Row>
-                                    )}
-                                    <div style={{ marginTop: '1.2vh' }}>
-                                        {child.children?.map((prechild) => (
-                                            <Row
-                                                className={
-                                                    visible[index]
-                                                        ? `${styles.fadeInDown} ${styles.active2}`
-                                                        : styles.hidden
+                                            <Checkbox
+                                                checked={
+                                                    prechild.checked
                                                 }
+                                                className={styles.check}
                                             >
-                                                <Col
-                                                    span={12}
-                                                    style={{
-                                                        paddingLeft: '8vw',
-                                                        paddingBottom: '1vh',
-                                                    }}
-                                                >
-                                                    <Checkbox
-                                                        checked={
-                                                            prechild.checked
-                                                        }
-                                                        className={styles.check}
-                                                    >
-                                                        {prechild.name}
-                                                    </Checkbox>
-                                                </Col>
-                                                <Col
-                                                    span={12}
-                                                    className={
-                                                        styles.responsible
-                                                    }
-                                                >
-                                                    {prechild.responsible}
-                                                </Col>
-                                            </Row>
-                                        ))}
-                                    </div>
-                                </>
-                            ))}
+                                                {prechild.name}
+                                            </Checkbox>
+                                        </Col>
+                                        <Col
+                                            span={12}
+                                            className={
+                                                styles.responsible
+                                            }
+                                        >
+                                            {prechild.responsible}
+                                        </Col>
+                                    </Row>
+                                ))}
+                            </div>
                         </>
                     ))}
-                </div>
-                <OrderStatistics></OrderStatistics>
-            </Flex>
-        </>
+                </>
+            ))}
+        </div>
     );
 };
 export default TableOrders;
