@@ -19,6 +19,7 @@
     color: #314659;
     text-transform: uppercase;
     padding-bottom: 1vh;
+    text-align: center;
 }
 .row_title {
     font-weight: bold;
@@ -27,7 +28,7 @@
     color: #314659;
     text-transform: uppercase;
     padding-bottom: 1vh;
-    /* text-align: center; */
+    text-align: center;
     font-size: 1vw;
 }
 .table td {
@@ -53,6 +54,9 @@
 .check {
     font-family: 'Inter', sans-serif;
     font-size: 1.1vw;
+}
+.step_name {
+    cursor: pointer;
 }
 .responsible {
     padding-bottom: 1vh;

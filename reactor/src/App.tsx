@@ -26,6 +26,8 @@ const theme: ThemeConfig = {
             colorPrimary: '#314659',
             colorPrimaryHover: '#24323E',
             colorBorder: '#314659',
+            borderRadiusSM: 2,
+            controlInteractiveSize: 18,
         },
         Input: {
             activeBorderColor: '#314659',
@@ -39,11 +41,6 @@ const theme: ThemeConfig = {
             borderRadius: 0,
             colorPrimaryHover: '#314659',
         },
-        Checkbox: {
-            colorPrimary: '#314659',
-            colorPrimaryHover: '#24323E',
-            colorBorder: '#314659',
-        },
     },
     token: {},
     cssVar: true,
@@ -54,7 +51,7 @@ function App() {
         <ConfigProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<Authorization />} />
+                    <Route path='/' element={<TableOrders />} />
                     <Route element={<CustomLayout />}>
                         <Route
                             path={Paths.workerMain}
