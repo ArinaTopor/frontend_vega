@@ -27,7 +27,7 @@ const theme: ThemeConfig = {
             colorPrimaryHover: '#24323E',
             colorBorder: '#314659',
             borderRadiusSM: 2,
-            controlInteractiveSize: 18,
+            controlInteractiveSize: 16,
         },
         Input: {
             activeBorderColor: '#314659',
