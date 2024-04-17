@@ -2,10 +2,6 @@ import { api } from './api';
 import { ReturnedData } from '../../utils/ReturnedData';
 import { CommonResponse } from '../../utils/CommonResponse';
 
-export type CommonResponse = {
-    [key: string]: number;
-};
-
 export type NewOrder = {
 	'KKS': string;
 	'files': File[];
