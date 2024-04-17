@@ -1,29 +1,14 @@
 import { Card, Flex, Typography } from 'antd';
-import styles from './stat.module.css';
-import { CommonResponse } from '../app/services/orders';
+import styles from './OrderStatistics.module.css';
+import { CommonResponse } from '../../utils/CommonResponse';
+import { NameStage } from '../../constans/stageData';
+
 
 type Props = {
 	stat: CommonResponse;
 };
 
-type TypeNameStage = {
-	[key: string]: string;
-};
-
-const NameStage: TypeNameStage = {
-	total: 'Всего',
-	onEntry: 'Входные данные и тд.',
-	onTIDev: 'Технические данные и тд.',
-	onDDDev: 'Разработка КД',
-	onIDPPSDev: 'Разработка ИДП и ПС',
-	onApproval: 'Согласование КД в АЭП',
-	onSupply: 'Отдел снабжения',
-	onStorage: 'Склад',
-	completed: 'Готов',
-};
-
 const OrderStatistics = ({ stat }: Props) => {
-	console.log(stat);
 	return (
 		<Flex vertical className={styles.wrapper}>
 			<Typography.Text className={styles.title}>
@@ -40,7 +25,7 @@ const OrderStatistics = ({ stat }: Props) => {
 			>
 				<Flex className={styles.stat_container}>
 					{Object.keys(stat).map((key) => (
-						<Card className={styles.stat_card}>
+						<Card key={key} className={styles.stat_card}>
 							<Flex vertical gap="6px">
 								<Typography.Text className={styles.number}>
 									{stat[key]}

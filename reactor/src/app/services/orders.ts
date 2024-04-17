@@ -1,5 +1,6 @@
 import { api } from './api';
 import { ReturnedData } from '../../utils/ReturnedData';
+import { CommonResponse } from '../../utils/CommonResponse';
 
 export type NewOrder = {
 	'KKS': string;
@@ -7,11 +8,6 @@ export type NewOrder = {
 	'Description': string;
 	[key: string]: string | File[] | null;
 };
-
-export type CommonResponse = {
-    [key: string]: number;
-};
-
 
 export const ordersApi = api.injectEndpoints({
 	endpoints: (builder) => ({

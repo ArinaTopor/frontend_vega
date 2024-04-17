@@ -1,14 +1,14 @@
-import { EmptyTableOrders } from '../../components/EmptyTableOrders/EmptyTableOrders';
 import plus from '../../assets/icons/plus.svg';
 import { useState } from 'react';
 import { Button, Flex, Popover, Typography, Image } from 'antd';
-import style from './WaitingList.module.css';
+import style from './OrdersPage.module.css';
 import { ModalAddOrder } from '../../components/modal/ModalAddOrder/ModalAddOrder';
 import TableOrders from '../../components/tables/TableOrders';
-import OrderStatistics from '../../components/stat';
+import OrderStatistics from '../../components/OrderStatistics/OrderStatistics';
 import { useGetStatQuery } from '../../app/services/orders';
+import { WaitingList } from '../../components/WaitingList/WaitingList';
 
-export function WaitingList() {
+export function OrdersPage() {
 	const [open, setOpen] = useState(false);
 	const {data: dataStat} = useGetStatQuery();
 	const getDate = () => {
@@ -29,7 +29,7 @@ export function WaitingList() {
 				{getDate()}
 			</Typography.Text>
 			{
-				dataStat ? <TableOrders/> : <EmptyTableOrders/>
+				dataStat ? <TableOrders/> : <WaitingList/>
 			}
 			<Popover
 				placement="leftTop"

@@ -2,7 +2,7 @@ import { Checkbox, Col, Flex, Row } from 'antd';
 import { useState } from 'react';
 import styles from './tableOrders.module.css';
 import { MinusSquareFilled, MinusSquareOutlined } from '@ant-design/icons';
-import OrderStatistics from '../stat';
+import OrderStatistics from '../OrderStatistics/OrderStatistics';
 interface DataType {
     key: number | string;
     name: string;
