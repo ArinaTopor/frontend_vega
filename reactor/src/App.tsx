@@ -41,7 +41,13 @@ const theme: ThemeConfig = {
             borderRadius: 0,
             colorPrimaryHover: '#314659',
         },
+        Pagination: {
+            colorPrimary: '#314659',
+            colorPrimaryBorder: '#314659',
+            colorPrimaryHover: 'rgba(140, 140, 140, 1)',
+        },
     },
+
     token: {},
     cssVar: true,
 };
@@ -51,7 +57,7 @@ function App() {
         <ConfigProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<TableOrders />} />
+                    <Route path='/' element={<Authorization />} />
                     <Route element={<CustomLayout />}>
                         <Route
                             path={Paths.workerMain}

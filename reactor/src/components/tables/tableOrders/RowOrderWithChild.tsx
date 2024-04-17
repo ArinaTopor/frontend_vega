@@ -26,13 +26,7 @@ const RowOrdersWithChildren = ({
     };
     return (
         <>
-            <Row
-                className={
-                    visible[stepIndex]
-                        ? `${styles.fadeInDown} ${styles.active2}`
-                        : styles.hidden
-                }
-            >
+            <Row style={{ marginBottom: '1vh' }}>
                 <Col
                     span={16}
                     className={styles.stage}
@@ -53,7 +47,7 @@ const RowOrdersWithChildren = ({
                 </Col>
                 <Col span={8} className={styles.responsible}></Col>
             </Row>
-            {visible[stepIndex] && ( // Проверяем visible[stepIndex]
+            {visible[stepIndex] && (
                 <div
                     className={`${styles.fadeInDown} ${styles.active2}`}
                     style={{

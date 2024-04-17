@@ -1,5 +1,12 @@
 .step_name {
+    display: inline;
     cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1vw;
+}
+.stage {
+    text-align: left;
+    align-items: start;
     font-family: 'Inter', sans-serif;
     font-size: 1.1vw;
 }

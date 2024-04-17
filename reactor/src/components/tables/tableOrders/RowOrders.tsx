@@ -18,7 +18,7 @@ const RowOrder = ({
     onSelectRow,
 }: StepProps) => {
     return (
-        <Row>
+        <Row style={{ marginBottom: '1vh' }}>
             <Col
                 span={16}
                 className={styles.stages}
@@ -34,10 +34,7 @@ const RowOrder = ({
                 <p
                     className={styles.step_name}
                     style={{
-                        display: 'inline',
                         paddingLeft: '1vw',
-                        fontFamily: "'Inter', sans-serif",
-                        fontSize: '1.1vw',
                     }}
                     onClick={() => onSelectRow(kks, stepIndex)}
                 >

@@ -36,11 +36,10 @@
 }
 .child_table {
     display: flex;
-    gap: 2vw;
+    gap: 1.8vw;
     justify-content: start;
     align-items: center;
     margin-bottom: 1.5vh;
-    font-size: 1.1vw;
     font-family: 'Inter', sans-serif;
     font-size: 1.1vw;
 }
@@ -107,6 +106,10 @@
 .open_btn.active::after {
     transform: rotate(180deg);
     transition: bottom 0.3s, transform 0.3s 0.15s;
+}
+.pagination {
+    text-align: end;
+    margin-top: 1.8vh;
 }
 
 @keyframes fadeInDown {

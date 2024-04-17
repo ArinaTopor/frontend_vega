@@ -1,0 +1,34 @@
+.titleModal {
+    display: inline-block;
+    font-size: 2.6vh;
+    font-family: Roboto;
+    color: #000;
+    font-weight: 500;
+}
+.stepInfo {
+    font-weight: 500;
+    font-size: 2vh;
+    color: rgba(49, 70, 89, 1);
+}
+.filesWrapper {
+    margin-top: 6.4vh;
+    margin-bottom: 3vh;
+}
+.commentWrapper {
+    background-color: rgba(235, 236, 239, 1);
+    overflow: auto;
+    padding: 1.6vh 1vw;
+    margin-bottom: 8.5vh;
+    margin-top: 1.8vh;
+}
+.button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: 2.3vw;
+    margin-bottom: 4.9vh;
+    background-color: #314659;
+    color: white;
+    width: 11.4vw;
+    height: 4.8vh;
+}
