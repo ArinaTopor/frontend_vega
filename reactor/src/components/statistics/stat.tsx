@@ -1,5 +1,5 @@
 import { Card, Flex, Typography } from 'antd';
-import styles from './OrderStatistics.module.css';
+import styles from './stat.module.css';
 import { CommonResponse } from '../../utils/CommonResponse';
 import { NameStage } from '../../constans/stageData';
 

@@ -1,0 +1,11 @@
+.step_name {
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1vw;
+}
+.responsible {
+    padding-bottom: 1vh;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1vw;
+}

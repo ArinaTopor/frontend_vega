@@ -4,9 +4,9 @@ import { Button, Flex, Popover, Typography, Image } from 'antd';
 import style from './OrdersPage.module.css';
 import { ModalAddOrder } from '../../components/modal/ModalAddOrder/ModalAddOrder';
 import TableOrders from '../../components/tables/TableOrders';
-import OrderStatistics from '../../components/OrderStatistics/OrderStatistics';
 import { useGetStatQuery } from '../../app/services/orders';
 import { WaitingList } from '../../components/WaitingList/WaitingList';
+import OrderStatistics from '../../components/statistics/stat';
 
 export function OrdersPage() {
 	const [open, setOpen] = useState(false);
