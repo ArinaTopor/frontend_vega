@@ -63,7 +63,6 @@ export const ModalAddDocuments = ({ open, setOpen }: Props) => {
 				<FileInput name="files" required={true} />
 				<CustomTextarea
 					name="description"
-					required={true}
 					label="Комментарий/описание"
 				/>
 				<Button className={style.buttonSave} htmlType="submit">
