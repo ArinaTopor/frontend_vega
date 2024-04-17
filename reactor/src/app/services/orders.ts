@@ -1,6 +1,10 @@
 import { api } from './api';
 import { ReturnedData } from '../../utils/ReturnedData';
 
+export type CommonResponse = {
+    [key: string]: number;
+};
+
 export type NewOrder = {
 	'KKS': string;
 	'files': File[];
@@ -23,8 +27,8 @@ export const ordersApi = api.injectEndpoints({
 			}),
 		}),
 		getStat: builder.query<CommonResponse, void>({
-			query:()=>({
-				url:'/Order/statistics',
+			query: () => ({
+				url: 'Order/statistics',
 				method: 'GET'
 			})
 		})
