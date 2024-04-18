@@ -1,6 +1,6 @@
 import { Col, Flex, Row } from 'antd';
 import { useState } from 'react';
-import styles from './TableOrders.module.css';
+import styles from './tableOrders.module.css';
 import { XFilled } from '@ant-design/icons';
 import CheckStepInfo from '../modal/ModalCheckStepInfo/CheckStepInfo';
 import RowOrder from './tableOrders/RowOrders';
@@ -190,19 +190,6 @@ const TableOrders = () => {
     };
     return (
         <>
-            <div
-                style={{
-                    color: '#314659',
-                    fontSize: '4.62vh',
-                    fontWeight: '800',
-                    marginBottom: '4.4vh',
-                    fontFamily: 'Roboto',
-                    marginTop: '5.741vh',
-                    marginLeft: '4.17vw',
-                }}
-            >
-                31.03.2024
-            </div>
             <Flex>
                 <div className={styles.table} style={{ padding: '2vw' }}>
                     <Row>

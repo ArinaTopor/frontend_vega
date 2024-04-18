@@ -8,7 +8,7 @@ import { Paths } from './paths';
 import { CustomLayout } from './components/CustomLayout';
 import { ConfigProvider, ThemeConfig } from 'antd';
 import './App.css';
-import { WaitingList } from './pages/WaitingList/WaitingList';
+import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
 const theme: ThemeConfig = {
     components: {
@@ -76,7 +76,7 @@ function App() {
                         <Route path={Paths.products} element={<BossPage />} />
                         <Route
                             path={Paths.tasksBoard}
-                            element={<TableOrders />}
+                            element={<OrdersPage/>}
                         />
                         <Route
                             path={Paths.options}
