@@ -10,6 +10,7 @@ import { ConfigProvider, ThemeConfig } from 'antd';
 import './App.css';
 import { WaitingList } from './pages/WaitingList/WaitingList';
 import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
+import FilePage from './pages/FilePage/FilePage';
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -83,6 +84,14 @@ function App() {
                         <Route
                             path={Paths.tasksBoard}
                             element={<TableOrders />}
+                        />
+                        <Route
+                            path={Paths.file}
+                            element={
+                                <RequareAuth>
+                                    <FilePage />
+                                </RequareAuth>
+                            }
                         />
                         <Route
                             path={Paths.options}
