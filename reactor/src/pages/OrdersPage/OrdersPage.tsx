@@ -2,7 +2,7 @@ import plus from '../../assets/icons/plus.svg';
 import { useState } from 'react';
 import { Button, Flex, Popover, Typography, Image } from 'antd';
 import style from './OrdersPage.module.css';
-import { ModalAddOrder } from '../../components/modal/ModalAddOrder/ModalAddOrder';
+import { ModalAddOrder } from '../../components/modals/ModalAddOrder/ModalAddOrder';
 import TableOrders from '../../components/tables/TableOrders';
 import { useGetStatQuery } from '../../app/services/orders';
 import { WaitingList } from '../../components/WaitingList/WaitingList';
