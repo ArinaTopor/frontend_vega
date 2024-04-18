@@ -2,7 +2,7 @@ import { Col, Flex, Row } from 'antd';
 import { useState } from 'react';
 import styles from './tableOrders.module.css';
 import { XFilled } from '@ant-design/icons';
-import CheckStepInfo from '../modal/ModalCheckStepInfo/CheckStepInfo';
+import CheckStepInfo from '../modals/ModalCheckStepInfo/CheckStepInfo';
 import RowOrder from './tableOrders/RowOrders';
 import RowOrdersWithChildren from './tableOrders/RowOrderWithChild';
 

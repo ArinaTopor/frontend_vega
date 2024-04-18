@@ -51,7 +51,7 @@ function App() {
         <ConfigProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<TableOrders />} />
+                    <Route path='/' element={<Authorization />} />
                     <Route element={<CustomLayout />}>
                         <Route
                             path={Paths.workerMain}
