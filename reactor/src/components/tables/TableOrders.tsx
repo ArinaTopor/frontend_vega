@@ -2,7 +2,7 @@ import { Col, Flex, Pagination, PaginationProps, Row, Skeleton } from 'antd';
 import { useEffect, useState } from 'react';
 import styles from './TableOrders.module.css';
 import { XFilled } from '@ant-design/icons';
-import CheckStepInfo from '../modal/ModalCheckStepInfo/CheckStepInfo';
+import CheckStepInfo from '../modals/ModalCheckStepInfo/CheckStepInfo';
 import RowOrder from './tableOrders/RowOrders';
 import RowOrdersWithChildren from './tableOrders/RowOrderWithChild';
 import {

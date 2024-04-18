@@ -1,13 +1,16 @@
-import { Orders } from '../../components/Orders/Orders';
 import plus from '../../assets/icons/plus.svg';
 import { useState } from 'react';
 import { Button, Flex, Popover, Typography, Image } from 'antd';
-import style from './WaitingList.module.css';
+import style from './OrdersPage.module.css';
 import { ModalAddOrder } from '../../components/modal/ModalAddOrder/ModalAddOrder';
-import { ModalAddDocuments } from '../../components/modal/ModalAddDocuments/ModalAddDocuments';
+import TableOrders from '../../components/tables/TableOrders';
+import { useGetStatQuery } from '../../app/services/orders';
+import { WaitingList } from '../../components/WaitingList/WaitingList';
+import OrderStatistics from '../../components/statistics/stat';
 
-export function WaitingList() {
+export function OrdersPage() {
 	const [open, setOpen] = useState(false);
+	const {data: dataStat} = useGetStatQuery();
 	const getDate = () => {
 		const currentDate = new Date();
 		const stringDate: string = `${String(currentDate.getDate()).padStart(
@@ -25,7 +28,9 @@ export function WaitingList() {
 			<Typography.Text className={style.date}>
 				{getDate()}
 			</Typography.Text>
-			<Orders />
+			{
+				dataStat ? <TableOrders/> : <WaitingList/>
+			}
 			<Popover
 				placement="leftTop"
 				trigger="hover"
@@ -47,6 +52,9 @@ export function WaitingList() {
 				</Button>
 			</Popover>
 			<ModalAddOrder open={open} setOpen={setOpen}/>
+			{
+				dataStat && <OrderStatistics stat={dataStat}/>
+			}
 		</Flex>
 	);
 }
