@@ -9,35 +9,12 @@ import {
     useGetInfoOrdersQuery,
     useGetPagesQuery,
 } from '../../app/services/orders';
-
-export type file = {
-    filename: string;
-    path: string;
-    upload_date: string;
-    is_needed_to_change: boolean;
-};
-export type step = {
-    step_id: number;
-    step_name: string;
-    responsible: {
-        login: string;
-        name: string;
-    };
-    is_completed: boolean;
-    files: file[];
-};
-export type step_info = step & { children: step[] };
-
-type steps = {
-    [key: string]: {
-        kks: string;
-        steps_info: step_info[];
-    };
-};
+import { Step } from '../../utils/Step';
+import { Steps } from '../../utils/Steps';
 
 export type ModalInfo = {
     kks: string;
-    step_info: step;
+    step_info: Step;
 };
 const TableOrders = () => {
     const [selectedStepData, setSelectedStepData] = useState<ModalInfo | null>(
@@ -52,18 +29,14 @@ const TableOrders = () => {
         isLoading,
         isFetching,
     } = useGetInfoOrdersQuery(currentPage);
-    const [stepData, setStepData] = useState<steps | undefined>();
+    const [stepData, setStepData] = useState<Steps | undefined>();
     const [visible, setVisible] = useState<boolean[]>([]);
     useEffect(() => {
         setStepData(orderData);
         setPages(data);
     }, [orderData, data]);
-
-    if (isLoading) {
-        return <p>Loading</p>;
-    }
     if (!stepData) {
-        return <p>Нет данных</p>;
+        return null;
     }
     if (visible.length === 0) {
         setVisible(Object.keys(orderData!).map(() => false));
@@ -101,7 +74,7 @@ const TableOrders = () => {
                         }),
                     };
                     return acc;
-                }, {} as steps);
+                }, {} as Steps);
                 return updatedData;
             }
         });
@@ -121,83 +94,98 @@ const TableOrders = () => {
                             Ответственный
                         </Col>
                     </Row>
-                    <Skeleton loading={isFetching && isLoading}>
-                        {Object.keys(orderData!).map((kks, index) => (
-                            <>
-                                <Row key={kks}>
-                                    <Col
-                                        span={16}
-                                        className={styles.child_table}
+                    {isLoading ? (
+                        <Skeleton>
+                            <div></div>
+                            <div></div>
+                        </Skeleton>
+                    ) : (
+                        <>
+                            {Object.keys(orderData!).map((kks, index) => (
+                                <>
+                                    <Row key={kks} className={styles.row}>
+                                        <Col
+                                            span={16}
+                                            className={styles.child_table}
+                                        >
+                                            <XFilled
+                                                style={{
+                                                    color: '#4A505C',
+                                                    fontSize: '20px',
+                                                }}
+                                            />
+                                            <button
+                                                className={
+                                                    visible[index]
+                                                        ? `${styles.open_btn} ${styles.active}`
+                                                        : styles.open_btn
+                                                }
+                                                onClick={() =>
+                                                    toggleVisibility(index)
+                                                }
+                                            ></button>
+                                            <p>{orderData![kks].kks}</p>
+                                        </Col>
+                                        <Col span={8}></Col>
+                                    </Row>
+                                    <div
+                                        className={
+                                            visible[index]
+                                                ? `${styles.fadeInDown} ${styles.active2}`
+                                                : styles.hidden
+                                        }
+                                        key={index}
                                     >
-                                        <XFilled
-                                            style={{
-                                                color: '#4A505C',
-                                                fontSize: '20px',
-                                            }}
-                                        />
-                                        <button
-                                            className={
-                                                visible[index]
-                                                    ? `${styles.open_btn} ${styles.active}`
-                                                    : styles.open_btn
-                                            }
-                                            onClick={() =>
-                                                toggleVisibility(index)
-                                            }
-                                        ></button>
-                                        <p>{orderData![kks].kks}</p>
-                                    </Col>
-                                    <Col span={8}></Col>
-                                </Row>
-                                <div
-                                    className={
-                                        visible[index]
-                                            ? `${styles.fadeInDown} ${styles.active2}`
-                                            : styles.hidden
-                                    }
-                                    key={index}
-                                >
-                                    {Array.isArray(
-                                        orderData![kks].steps_info
-                                    ) &&
-                                        orderData![kks].steps_info.map(
-                                            (step, stepIndex) => (
-                                                <>
-                                                    {step.children.length !==
-                                                    0 ? (
-                                                        <RowOrdersWithChildren
-                                                            key={step.step_id}
-                                                            step={step}
-                                                            stepIndex={
-                                                                stepIndex
-                                                            }
-                                                            kks={kks}
-                                                            onChange={onChange}
-                                                            onSelectRow={
-                                                                onSelectRow
-                                                            }
-                                                        />
-                                                    ) : (
-                                                        <RowOrder
-                                                            key={step.step_id}
-                                                            step={step}
-                                                            stepIndex={
-                                                                stepIndex
-                                                            }
-                                                            kks={kks}
-                                                            onChange={onChange}
-                                                            onSelectRow={
-                                                                onSelectRow
-                                                            }
-                                                        />
-                                                    )}
-                                                </>
-                                            )
-                                        )}
-                                </div>
-                            </>
-                        ))}
-                    </Skeleton>
+                                        {Array.isArray(
+                                            orderData![kks].steps_info
+                                        ) &&
+                                            orderData![kks].steps_info.map(
+                                                (step, stepIndex) => (
+                                                    <>
+                                                        {step.children
+                                                            .length !== 0 ? (
+                                                            <RowOrdersWithChildren
+                                                                key={
+                                                                    step.step_id
+                                                                }
+                                                                step={step}
+                                                                stepIndex={
+                                                                    stepIndex
+                                                                }
+                                                                kks={kks}
+                                                                onChange={
+                                                                    onChange
+                                                                }
+                                                                onSelectRow={
+                                                                    onSelectRow
+                                                                }
+                                                            />
+                                                        ) : (
+                                                            <RowOrder
+                                                                key={
+                                                                    step.step_id
+                                                                }
+                                                                step={step}
+                                                                stepIndex={
+                                                                    stepIndex
+                                                                }
+                                                                kks={kks}
+                                                                onChange={
+                                                                    onChange
+                                                                }
+                                                                onSelectRow={
+                                                                    onSelectRow
+                                                                }
+                                                            />
+                                                        )}
+                                                    </>
+                                                )
+                                            )}
+                                    </div>
+                                </>
+                            ))}
+                        </>
+                    )}
                 </div>
                 <Pagination
                     current={currentPage}

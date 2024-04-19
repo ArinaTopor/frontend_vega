@@ -1,9 +1,10 @@
 import { Checkbox, Col, Row } from 'antd';
 import styles from './CommonOrder.module.css';
-import { step, step_info } from '../TableOrders';
+import { Step } from '../../../utils/Step';
+import { Step_info } from '../../../utils/Steps';
 
 type StepProps = {
-    step: step_info | step;
+    step: Step_info | Step;
     stepIndex: number;
     onChange: (id: number) => void;
     kks: string;

@@ -1,11 +1,11 @@
 import { Col, Row } from 'antd';
 import { MinusSquareOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-import { step_info } from '../TableOrders';
 import styles from './CommonOrder.module.css';
 import RowOrder from './RowOrders';
+import { Step_info } from '../../../utils/Steps';
 type StepProps = {
-    step: step_info;
+    step: Step_info;
     stepIndex: number;
     onChange: (id: number) => void;
     kks: string;
@@ -26,7 +26,7 @@ const RowOrdersWithChildren = ({
     };
     return (
         <>
-            <Row style={{ marginBottom: '1vh' }}>
+            <Row style={{ marginBottom: '2.5vh' }} className={styles.stage}>
                 <Col
                     span={16}
                     className={styles.stage}

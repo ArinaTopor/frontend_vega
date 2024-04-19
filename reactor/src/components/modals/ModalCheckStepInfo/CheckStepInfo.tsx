@@ -1,21 +1,13 @@
 import { Button, Modal } from 'antd';
 import styles from './CheckStepInfo.module.css';
-import { file } from '../../tables/TableOrders';
 import { useNavigate } from 'react-router';
+import { Step } from '../../../utils/Step';
 
 type Props = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     kks: string;
-    step: {
-        step_name: string;
-        responsible: {
-            login: string;
-            name: string;
-        };
-        is_completed: boolean;
-        files: file[];
-    };
+    step: Step;
 };
 
 export const CheckStepInfo = ({ open, setOpen, kks, step }: Props) => {
@@ -45,6 +37,7 @@ export const CheckStepInfo = ({ open, setOpen, kks, step }: Props) => {
                     <div
                         key={file.filename}
                         onClick={() => readFile(file.path)}
+                        className={styles.fileContainer}
                     >
                         {file.filename}
                     </div>
@@ -52,7 +45,7 @@ export const CheckStepInfo = ({ open, setOpen, kks, step }: Props) => {
             </div>
             <p className={styles.stepInfo}>Комментарий/описание</p>
             <div className={styles.commentWrapper}>
-                <p>-</p>
+                <p>{step.comment ? step.comment : '-'}</p>
             </div>
             <Button className={styles.button} onClick={handleCLose}>
                 Закрыть

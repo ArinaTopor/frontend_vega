@@ -14,8 +14,19 @@
     margin-top: 6.4vh;
     margin-bottom: 3vh;
 }
+.fileContainer {
+    display: inline-block;
+    border: 2px solid #c5c5c5;
+    border-radius: 8px;
+    padding: 1.2vh 1.4vw;
+    font-size: 1.8vh;
+    cursor: pointer;
+}
+.fileContainer:hover {
+    opacity: 0.8;
+}
 .commentWrapper {
-    background-color: rgba(235, 236, 239, 1);
+    background-color: #ebecef;
     overflow: auto;
     padding: 1.6vh 1vw;
     margin-bottom: 8.5vh;
