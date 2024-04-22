@@ -15,8 +15,9 @@ export function CustomLayout() {
                 <Sidebar user={user} />
             )}
             <Layout>
-                <Content>
-                    <Outlet />
+                <Content style={{
+                marginLeft: '6.3vw'}}>
+                    <Outlet/>
                 </Content>
             </Layout>
         </Layout>
