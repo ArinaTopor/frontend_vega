@@ -17,7 +17,7 @@ export const MainPageRoles: {
     storage: string;
 } = {
     worker: '/home',
-    admin: '/adminHome',
+    admin: '/taskBoard',
     stk: '/stkHome',
     storage: 'storageHome',
 };
