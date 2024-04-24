@@ -1,4 +1,12 @@
-import { Col, Flex, Pagination, PaginationProps, Row, Skeleton } from 'antd';
+import {
+    Checkbox,
+    Col,
+    Flex,
+    Pagination,
+    PaginationProps,
+    Row,
+    Skeleton,
+} from 'antd';
 import { useEffect, useState } from 'react';
 import styles from './TableOrders.module.css';
 import { XFilled } from '@ant-design/icons';
@@ -24,11 +32,7 @@ const TableOrders = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const { data } = useGetPagesQuery();
     const [pages, setPages] = useState<undefined | number>(data);
-    const {
-        data: orderData,
-        isLoading,
-        isFetching,
-    } = useGetInfoOrdersQuery(currentPage);
+    const { data: orderData, isLoading } = useGetInfoOrdersQuery(currentPage);
     const [stepData, setStepData] = useState<Steps | undefined>();
     const [visible, setVisible] = useState<boolean[]>([]);
     useEffect(() => {
@@ -58,6 +62,7 @@ const TableOrders = () => {
         }
     };
     const onChange = (id: number) => {
+        console.log(id);
         setStepData((prevData) => {
             if (prevData) {
                 const updatedData = Object.keys(prevData).reduce((acc, kks) => {
@@ -75,6 +80,7 @@ const TableOrders = () => {
                     };
                     return acc;
                 }, {} as Steps);
+                console.log(updatedData);
                 return updatedData;
             }
         });
@@ -108,22 +114,21 @@ const TableOrders = () => {
                                             span={16}
                                             className={styles.child_table}
                                         >
-                                            <XFilled
-                                                style={{
-                                                    color: '#4A505C',
-                                                    fontSize: '20px',
-                                                }}
-                                            />
-                                            <button
-                                                className={
-                                                    visible[index]
-                                                        ? `${styles.open_btn} ${styles.active}`
-                                                        : styles.open_btn
-                                                }
+                                            <Checkbox />
+                                            <span
+                                                className={styles.btn_container}
                                                 onClick={() =>
                                                     toggleVisibility(index)
                                                 }
-                                            ></button>
+                                            >
+                                                <button
+                                                    className={
+                                                        visible[index]
+                                                            ? `${styles.open_btn} ${styles.active}`
+                                                            : styles.open_btn
+                                                    }
+                                                ></button>
+                                            </span>
                                             <p>{orderData![kks].kks}</p>
                                         </Col>
                                         <Col span={8}></Col>

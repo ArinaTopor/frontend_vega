@@ -33,16 +33,22 @@ const RowOrdersWithChildren = ({
                     style={{
                         display: 'flex',
                         paddingLeft: '6vw',
+                        gap: '1vw',
+                        alignItems: 'center',
                     }}
                 >
-                    <MinusSquareOutlined
-                        style={{
-                            color: '#4A505C',
-                            fontSize: '20px',
-                            paddingRight: '1vw',
-                        }}
+                    <span
+                        className={styles.btn_container}
                         onClick={() => toggleVisibility(stepIndex)}
-                    />
+                    >
+                        <button
+                            className={
+                                visible[stepIndex]
+                                    ? `${styles.open_btn} ${styles.active}`
+                                    : styles.open_btn
+                            }
+                        ></button>
+                    </span>
                     <p className={styles.step_name}>{step.step_name}</p>
                 </Col>
                 <Col span={8} className={styles.responsible}></Col>
