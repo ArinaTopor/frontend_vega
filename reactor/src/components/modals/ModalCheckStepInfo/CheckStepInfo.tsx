@@ -1,43 +1,53 @@
-import { Button, Form, Modal, Typography } from 'antd';
-import { CustomTextarea } from '../../custom-input/CustomTextarea/CustomTextarea';
+import { Button, Modal } from 'antd';
 import styles from './CheckStepInfo.module.css';
-import { file } from '../../tables/TableOrders';
+import { useNavigate } from 'react-router';
+import { Step } from '../../../utils/Step';
 
 type Props = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     kks: string;
-    step: {
-        step_name: string;
-        responsible: {
-            login: string;
-            name: string;
-        };
-        is_completed: boolean;
-        files: file[];
-    };
+    step: Step;
 };
 
 export const CheckStepInfo = ({ open, setOpen, kks, step }: Props) => {
+    const navigate = useNavigate();
+
     const handleCLose = () => {
         setOpen(false);
     };
+
+    const readFile = (path: string) => {
+        const securePath = encodeURIComponent(path);
+        navigate(`/file/${securePath}`);
+    };
+
     return (
         <Modal
             width='46.6vw'
             open={open}
             footer={false}
             onCancel={handleCLose}
-            centered
             maskClosable={false}
         >
             <h2 className={styles.titleModal}>{kks}</h2>
-            <p>{step.step_name}</p>
-            <p>Комментарий/описание</p>
-            <div>
-                <p>-</p>
+            <p className={styles.stepInfo}>{step.step_name}</p>
+            <div className={styles.filesWrapper}>
+                {step.files.map((file) => (
+                    <div
+                        key={file.filename}
+                        onClick={() => readFile(file.path)}
+                        className={styles.fileContainer}
+                    >
+                        {file.filename}
+                    </div>
+                ))}
             </div>
-            <Button className={styles.buttonSave} onClick={handleCLose}>
+            <p className={styles.stepInfo}>Комментарий/описание</p>
+            <div className={styles.commentWrapper}>
+                <p>{step.comment ? step.comment : '-'}</p>
+            </div>
+            <Button className={styles.button} onClick={handleCLose}>
                 Закрыть
             </Button>
         </Modal>

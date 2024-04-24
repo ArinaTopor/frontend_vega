@@ -6,12 +6,12 @@
     table-layout: fixed;
     font-size: 16;
     box-shadow: 0 0 5px 2px #00000040;
-    width: 65.31vw;
-    margin-right: 3.75vw;
+    width: 65.3vw;
     margin-top: 12vh;
-    margin-bottom: 7vh;
+    margin-bottom: 2vh;
     color: #314659;
     font-family: 'Inter', sans-serif;
+    overflow: auto;
 }
 .table th {
     font-weight: bold;
@@ -21,6 +21,9 @@
     text-transform: uppercase;
     padding-bottom: 1vh;
     text-align: center;
+}
+.row {
+    margin-bottom: 3.2vh;
 }
 .row_title {
     font-weight: bold;
@@ -37,11 +40,10 @@
 }
 .child_table {
     display: flex;
-    gap: 2vw;
+    gap: 1.8vw;
     justify-content: start;
     align-items: center;
     margin-bottom: 1.5vh;
-    font-size: 1.1vw;
     font-family: 'Inter', sans-serif;
     font-size: 1.1vw;
 }
@@ -71,16 +73,25 @@
 .donShow {
     display: table-row;
 }
-
+.btn_container {
+    border: 1px solid #d9d9d9;
+    padding: 7px 3px 8.5px 3px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn_container:hover {
+    border-color: #314659;
+}
 .open_btn {
     cursor: pointer;
     display: block;
     position: relative;
     border: none;
     background: transparent;
-    width: 18px;
+    width: 10px;
     height: 1px;
 }
+
 .open_btn::before,
 .open_btn::after {
     content: '';
@@ -88,53 +99,54 @@
     position: absolute;
     display: block;
     width: 100%;
-    height: 2px;
+    height: 1px;
     border-radius: 4px;
     background: #000;
 }
 .open_btn::before {
-    transition: box-shadow 0.3s 0.15s, top 0.3s 0.15s, transform 0.3s;
+    transition: box-shadow 0.3s 0.15s, top 0.3s 0.15s, transform 0.3s ease-out;
     rotate: 90;
 }
 .open_btn::after {
-    transition: bottom 0.3s 0.15s, transform 0.3s;
+    transition: bottom 0.3s 0.15s, transform 0.3s ease-out;
     transform: rotate(90deg);
 }
 .open_btn.active::before {
     transform: rotate(180deg);
     box-shadow: 0 6px 0 rgba(0, 0, 0, 0);
-    transition: box-shadow 0.15s, top 0.3s, transform 0.3s 0.15s;
+    transition: box-shadow 0.15s, top 0.3s, transform 0.3s 0.15s ease-out;
 }
 .open_btn.active::after {
     transform: rotate(180deg);
-    transition: bottom 0.3s, transform 0.3s 0.15s;
+    transition: bottom 0.3s, transform 0.3s 0.15s ease-out;
+}
+.pagination {
+    text-align: end;
 }
 
 @keyframes fadeInDown {
     from {
         opacity: 0;
-        transform: translateY(
-            -50px
-        ); /* Начальное смещение по вертикали вверх */
+        transform: translateY(-50px);
     }
     to {
         opacity: 1;
-        transform: translateY(0); /* Конечное смещение по вертикали вверх */
+        transform: translateY(0);
     }
 }
 
 .fadeInDown {
-    animation: fadeInDown 0.5s ease forwards; /* Применяем анимацию с плавным появлением сверху вниз в течение 0.5 секунд */
+    animation: fadeInDown 0.5s ease forwards;
 }
 .fadeInDown {
     opacity: 0;
-    transform: translateY(-50px); /* Начальное смещение по вертикали вверх */
-    transition: opacity 0.5s ease, transform 1s ease; /* Применяем переходы для свойств opacity и transform */
+    transform: translateY(-50px);
+    transition: opacity 0.5s ease, transform 1s ease;
 }
 
 .fadeInDown.active2 {
     opacity: 1;
-    transform: translateY(0); /* Конечное смещение по вертикали вверх */
+    transform: translateY(0);
 }
 .hidden {
     display: none;

@@ -7,6 +7,7 @@ export const Paths = {
     adminMain: '/adminHome',
     stkMain: '/stkHome',
     options: '/options',
+    file: '/file/:path',
 };
 
 export const MainPageRoles: {

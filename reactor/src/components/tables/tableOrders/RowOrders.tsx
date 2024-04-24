@@ -1,9 +1,10 @@
 import { Checkbox, Col, Row } from 'antd';
 import styles from './CommonOrder.module.css';
-import { step, step_info } from '../TableOrders';
+import { Step } from '../../../utils/Step';
+import { Step_info } from '../../../utils/Steps';
 
 type StepProps = {
-    step: step_info | step;
+    step: Step_info | Step;
     stepIndex: number;
     onChange: (id: number) => void;
     kks: string;
@@ -18,7 +19,7 @@ const RowOrder = ({
     onSelectRow,
 }: StepProps) => {
     return (
-        <Row>
+        <Row style={{ marginBottom: '1vh' }}>
             <Col
                 span={16}
                 className={styles.stages}
@@ -34,10 +35,7 @@ const RowOrder = ({
                 <p
                     className={styles.step_name}
                     style={{
-                        display: 'inline',
                         paddingLeft: '1vw',
-                        fontFamily: "'Inter', sans-serif",
-                        fontSize: '1.1vw',
                     }}
                     onClick={() => onSelectRow(kks, stepIndex)}
                 >

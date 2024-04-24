@@ -10,6 +10,7 @@ import { ConfigProvider, ThemeConfig } from 'antd';
 import './App.css';
 import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
+import FilePage from './pages/FilePage/FilePage';
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -41,7 +42,13 @@ const theme: ThemeConfig = {
             borderRadius: 0,
             colorPrimaryHover: '#314659',
         },
+        Pagination: {
+            colorPrimary: '#314659',
+            colorPrimaryBorder: '#314659',
+            colorPrimaryHover: 'rgba(140, 140, 140, 1)',
+        },
     },
+
     token: {},
     cssVar: true,
 };
@@ -77,6 +84,14 @@ function App() {
                         <Route
                             path={Paths.tasksBoard}
                             element={<OrdersPage/>}
+                        />
+                        <Route
+                            path={Paths.file}
+                            element={
+                                <RequareAuth>
+                                    <FilePage />
+                                </RequareAuth>
+                            }
                         />
                         <Route
                             path={Paths.options}

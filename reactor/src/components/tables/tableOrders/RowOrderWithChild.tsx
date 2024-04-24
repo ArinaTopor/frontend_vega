@@ -1,11 +1,11 @@
 import { Col, Row } from 'antd';
 import { MinusSquareOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-import { step_info } from '../TableOrders';
 import styles from './CommonOrder.module.css';
 import RowOrder from './RowOrders';
+import { Step_info } from '../../../utils/Steps';
 type StepProps = {
-    step: step_info;
+    step: Step_info;
     stepIndex: number;
     onChange: (id: number) => void;
     kks: string;
@@ -26,34 +26,34 @@ const RowOrdersWithChildren = ({
     };
     return (
         <>
-            <Row
-                className={
-                    visible[stepIndex]
-                        ? `${styles.fadeInDown} ${styles.active2}`
-                        : styles.hidden
-                }
-            >
+            <Row style={{ marginBottom: '2.5vh' }} className={styles.stage}>
                 <Col
                     span={16}
                     className={styles.stage}
                     style={{
                         display: 'flex',
                         paddingLeft: '6vw',
+                        gap: '1vw',
+                        alignItems: 'center',
                     }}
                 >
-                    <MinusSquareOutlined
-                        style={{
-                            color: '#4A505C',
-                            fontSize: '20px',
-                            paddingRight: '1vw',
-                        }}
+                    <span
+                        className={styles.btn_container}
                         onClick={() => toggleVisibility(stepIndex)}
-                    />
+                    >
+                        <button
+                            className={
+                                visible[stepIndex]
+                                    ? `${styles.open_btn} ${styles.active}`
+                                    : styles.open_btn
+                            }
+                        ></button>
+                    </span>
                     <p className={styles.step_name}>{step.step_name}</p>
                 </Col>
                 <Col span={8} className={styles.responsible}></Col>
             </Row>
-            {visible[stepIndex] && ( // Проверяем visible[stepIndex]
+            {visible[stepIndex] && (
                 <div
                     className={`${styles.fadeInDown} ${styles.active2}`}
                     style={{
