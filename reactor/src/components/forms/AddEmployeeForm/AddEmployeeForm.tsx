@@ -25,11 +25,11 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
     const [updateRoles, setUpdateRoles] = useState<Option[]>(roles);
     const [currentRole, setCurrentRole] = useState<string[]>([]);
 
-    const arrayAreas: Array<{ value: number; label: string }> = dataAreas
+    const arrayAreas: Array<{ value: number; label: string}> = dataAreas
         ? Object.keys(dataAreas).map((key) => {
               const item = {
                   value: Number(key),
-                  label: dataAreas[key],
+                  label: String(dataAreas[key]),
               };
               return item;
           })
@@ -135,7 +135,7 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                             maxTagCount='responsive'
                             style={{
                                 height: '5.3vh',
-                                width: '90%',
+                                width: '100%',
                             }}
                             onChange={handleChange}
                         />

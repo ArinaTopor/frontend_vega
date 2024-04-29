@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
-import { kks, ordersApi } from '../app/services/orders';
+import { ordersApi } from '../app/services/orders';
+
 interface InitialState {
-    allKKS: kks;
+    pages: number | null;
 }
 
 const initialState: InitialState = {
-    allKKS: {},
+    pages: null,
 };
 
 const slice = createSlice({
@@ -15,12 +16,12 @@ const slice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addMatcher(
-            ordersApi.endpoints.getAllKKS.matchFulfilled,
+            ordersApi.endpoints.getPages.matchFulfilled,
             (state, action) => {
-                state.allKKS = action.payload;
+                state.pages = action.payload;
             }
         );
     },
 });
 export default slice.reducer;
-export const selectAllKKS = (state: RootState) => state.orders.allKKS;
+export const selectOrdersPages = (state: RootState) => state.orders.pages;

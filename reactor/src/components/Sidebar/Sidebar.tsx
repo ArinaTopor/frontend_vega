@@ -52,6 +52,8 @@ export function Sidebar({ user }: Props) {
                 height: '100vh',
                 background: '#314659',
                 transition: 'all 0.5s',
+                position: 'absolute',
+                zIndex: "999999"
             }}
             width='12.8vw'
             collapsedWidth='6.3vw'

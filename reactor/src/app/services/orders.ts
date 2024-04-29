@@ -1,4 +1,7 @@
 import { api } from './api';
+import { ReturnedData } from '../../utils/ReturnedData';
+import { CommonResponse } from '../../utils/CommonResponse';
+import { Orders } from '../../utils/Orders';
 
 export type FileT = {
     filename: string;
@@ -21,8 +24,35 @@ export interface ResponseFile {
     fileStream: string;
     contentType: 'image/png';
 }
+
+export type NewOrder = {
+    KKS: string;
+    files: File[];
+    Description: string;
+    [key: string]: string | File[] | null;
+};
+
 export const ordersApi = api.injectEndpoints({
     endpoints: (builder) => ({
+        getStat: builder.query<CommonResponse, void>({
+            query: () => ({
+                url: 'Order/statistics',
+                method: 'GET',
+            }),
+        }),
+        addOrders: builder.mutation<ReturnedData, FormData>({
+            query: (data) => ({
+                url: '/Order',
+                method: 'POST',
+                body: data,
+            }),
+        }),
+        getPages: builder.query<number, void>({
+            query: () => ({
+                url: '/Order/pages',
+                method: 'GET',
+            }),
+        }),
         getAllKKS: builder.query<kks, void>({
             query: () => ({
                 url: '/Order/kks',
@@ -39,16 +69,28 @@ export const ordersApi = api.injectEndpoints({
             query: (path) => ({
                 url: `/Order/files/?path=${path}`,
                 method: 'GET',
+        })
+    }),
+
+        getInfoOrders: builder.query<Orders, number>({
+            query: (page) => ({
+                url: `Order/info?page=${page}`,
+                method: 'GET',
             }),
         }),
     }),
-});
+})
+
 
 export const {
+    useAddOrdersMutation,
+    useGetStatQuery,
+    useGetPagesQuery,
+    useGetInfoOrdersQuery,
     useGetAllFilesByKKSQuery,
     useGetAllKKSQuery,
     useGetFileByNameQuery,
 } = ordersApi;
 export const {
-    endpoints: { getAllFilesByKKS, getAllKKS, getFileByName },
+    endpoints: { addOrders, getStat, getInfoOrders, getPages, getAllFilesByKKS, getAllKKS, getFileByName  },
 } = ordersApi;
