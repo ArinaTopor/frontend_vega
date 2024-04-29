@@ -1,6 +1,7 @@
 import { api } from './api';
 import { ReturnedData } from '../../utils/ReturnedData';
 import { CommonResponse } from '../../utils/CommonResponse';
+import { Orders } from '../../utils/Orders';
 
 export type NewOrder = {
     KKS: string;
@@ -8,31 +9,7 @@ export type NewOrder = {
     Description: string;
     [key: string]: string | File[] | null;
 };
-export type file = {
-    filename: string;
-    path: string;
-    upload_date: string;
-    is_needed_to_change: boolean;
-};
 
-export type step = {
-    step_id: number;
-    step_name: string;
-    responsible: {
-        login: string;
-        name: string;
-    };
-    is_completed: boolean;
-    files: file[];
-};
-export type step_info = step & { children: step[] };
-
-type steps = {
-    [key: string]: {
-        kks: string;
-        steps_info: step_info[];
-    };
-};
 export const ordersApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getStat: builder.query<CommonResponse, void>({
@@ -55,7 +32,7 @@ export const ordersApi = api.injectEndpoints({
             }),
         }),
 
-        getInfoOrders: builder.query<steps, number>({
+        getInfoOrders: builder.query<Orders, number>({
             query: (page) => ({
                 url: `Order/info?page=${page}`,
                 method: 'GET',

@@ -3,7 +3,7 @@ import { MinusSquareOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import styles from './CommonOrder.module.css';
 import RowOrder from './RowOrders';
-import { Step_info } from '../../../utils/Steps';
+import { Step_info } from '../../../utils/Orders';
 type StepProps = {
     step: Step_info;
     stepIndex: number;

@@ -9,7 +9,6 @@ import {
 } from 'antd';
 import { useEffect, useState } from 'react';
 import styles from './TableOrders.module.css';
-import { XFilled } from '@ant-design/icons';
 import CheckStepInfo from '../modals/ModalCheckStepInfo/CheckStepInfo';
 import RowOrder from './tableOrders/RowOrders';
 import RowOrdersWithChildren from './tableOrders/RowOrderWithChild';
@@ -18,8 +17,8 @@ import {
     useGetPagesQuery,
 } from '../../app/services/orders';
 import { Step } from '../../utils/Step';
-import { Steps } from '../../utils/Steps';
-
+import { Orders } from '../../utils/Orders';
+import { UUID, randomUUID } from 'crypto';
 export type ModalInfo = {
     kks: string;
     step_info: Step;
@@ -33,7 +32,7 @@ const TableOrders = () => {
     const { data } = useGetPagesQuery();
     const [pages, setPages] = useState<undefined | number>(data);
     const { data: orderData, isLoading } = useGetInfoOrdersQuery(currentPage);
-    const [stepData, setStepData] = useState<Steps | undefined>();
+    const [stepData, setStepData] = useState<Orders | undefined>();
     const [visible, setVisible] = useState<boolean[]>([]);
     useEffect(() => {
         setStepData(orderData);
@@ -62,7 +61,6 @@ const TableOrders = () => {
         }
     };
     const onChange = (id: number) => {
-        console.log(id);
         setStepData((prevData) => {
             if (prevData) {
                 const updatedData = Object.keys(prevData).reduce((acc, kks) => {
@@ -79,8 +77,7 @@ const TableOrders = () => {
                         }),
                     };
                     return acc;
-                }, {} as Steps);
-                console.log(updatedData);
+                }, {} as Orders);
                 return updatedData;
             }
         });
@@ -107,14 +104,23 @@ const TableOrders = () => {
                         </Skeleton>
                     ) : (
                         <>
-                            {Object.keys(orderData!).map((kks, index) => (
+                            {Object.keys(orderData!).map((id, index) => (
                                 <>
-                                    <Row key={kks} className={styles.row}>
+                                    <Row key={id} className={styles.row}>
                                         <Col
                                             span={16}
                                             className={styles.child_table}
                                         >
-                                            <Checkbox />
+                                            <Checkbox
+                                                checked={
+                                                    orderData![id].is_completed
+                                                }
+                                                className={
+                                                    orderData![id].is_completed
+                                                        ? styles.unactiveOrder
+                                                        : styles.activeOrder
+                                                }
+                                            />
                                             <span
                                                 className={styles.btn_container}
                                                 onClick={() =>
@@ -129,7 +135,7 @@ const TableOrders = () => {
                                                     }
                                                 ></button>
                                             </span>
-                                            <p>{orderData![kks].kks}</p>
+                                            <p>{orderData![id].kks}</p>
                                         </Col>
                                         <Col span={8}></Col>
                                     </Row>
@@ -142,9 +148,9 @@ const TableOrders = () => {
                                         key={index}
                                     >
                                         {Array.isArray(
-                                            orderData![kks].steps_info
+                                            orderData![id].steps_info
                                         ) &&
-                                            orderData![kks].steps_info.map(
+                                            orderData![id].steps_info.map(
                                                 (step, stepIndex) => (
                                                     <>
                                                         {step.children
@@ -157,7 +163,7 @@ const TableOrders = () => {
                                                                 stepIndex={
                                                                     stepIndex
                                                                 }
-                                                                kks={kks}
+                                                                kks={id}
                                                                 onChange={
                                                                     onChange
                                                                 }
@@ -174,7 +180,7 @@ const TableOrders = () => {
                                                                 stepIndex={
                                                                     stepIndex
                                                                 }
-                                                                kks={kks}
+                                                                kks={id}
                                                                 onChange={
                                                                     onChange
                                                                 }

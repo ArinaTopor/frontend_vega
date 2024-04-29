@@ -120,6 +120,16 @@
     transform: rotate(180deg);
     transition: bottom 0.3s, transform 0.3s 0.15s ease-out;
 }
+.activeOrder {
+    --ant-color-primary: red !important;
+    --ant-color-border: red !important;
+    --ant-color-primary-hover: red !important;
+}
+.unactiveOrder {
+    --ant-color-primary: #314659;
+    --ant-color-border: #24323e;
+    --ant-color-primary-hover: #314659;
+}
 .pagination {
     text-align: end;
 }

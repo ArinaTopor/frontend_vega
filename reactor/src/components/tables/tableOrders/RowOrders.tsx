@@ -1,7 +1,7 @@
 import { Checkbox, Col, Row } from 'antd';
 import styles from './CommonOrder.module.css';
 import { Step } from '../../../utils/Step';
-import { Step_info } from '../../../utils/Steps';
+import { Step_info } from '../../../utils/Orders';
 
 type StepProps = {
     step: Step_info | Step;
