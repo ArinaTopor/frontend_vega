@@ -1,0 +1,64 @@
+.wrapper{
+	margin: 66px 104px 0 125px;
+}
+
+.title{
+	margin-left: 40px;
+}
+
+.title_text{
+	color:rgba(49, 70, 89, 1);
+	font-family: 'Roboto';
+	font-size: 46px;
+	font-weight: 600;
+	line-height: 53.91px;
+}	
+
+.btnExit{
+	background-color: rgba(129, 41, 14, 1);
+	height: 71px;
+	padding-left: 24px;
+	padding-right: 27px;
+	border-radius: 8px;
+	position: fixed;
+	right: 42px;
+	top:38px;
+	cursor: pointer;
+}
+
+.btnExit:hover{
+	opacity: 0.7;
+}
+
+.btnText{
+	font-size: 30px;
+	font-weight: 500;
+	line-height: 39px;
+	color:#fff;
+}
+
+.footer{
+	position: fixed;
+	bottom: 0;
+	height: 80px;
+	width: 100%;
+	background-color: rgba(49, 70, 89, 1);
+	box-shadow: 0px 4px 14.2px 12px rgba(49, 70, 89, 0.25);
+	padding-left: 54px;
+	padding-right: 29px;
+}
+
+.name{
+	font-size: 40px;
+	font-weight: 500;
+	line-height: 46.88px;
+	color:#fff;
+}
+
+.time{
+	font-size: 50px;
+	font-weight: 500;
+	line-height: 58.59px;
+	color:#fff;
+	text-decoration: underline;
+}

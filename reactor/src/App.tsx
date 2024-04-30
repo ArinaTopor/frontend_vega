@@ -1,6 +1,6 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Authorization from './pages/Auth/Authorization';
-import Home from './pages/MainPage';
+import { WorkerPage } from './pages/WorkerPage/WorkerPage';
 import { RequareAuth } from './hoc/RequaireAuth';
 import BossPage from './pages/BossPage';
 import { Paths } from './paths';
@@ -48,13 +48,13 @@ function App() {
         <ConfigProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<Authorization />} />
+                    <Route path='/' element={<WorkerPage />} />
                     <Route element={<CustomLayout />}>
                         <Route
                             path={Paths.workerMain}
                             element={
                                 <RequareAuth>
-                                    <Home />
+                                    <WorkerPage />
                                 </RequareAuth>
                             }
                         />
