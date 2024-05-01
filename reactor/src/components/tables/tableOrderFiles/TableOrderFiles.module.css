@@ -5,6 +5,13 @@
     color: #2d3748;
     font-size: 2.6vw;
 }
+.page {
+    padding: 5.7vh 3.95vw 0 4.1vw;
+    position: relative;
+    flex-grow: 1;
+    height: 100vh;
+    background-color: #fff;
+}
 .back_btn {
     margin-bottom: 2.4vh;
     font-size: 1.4vw;

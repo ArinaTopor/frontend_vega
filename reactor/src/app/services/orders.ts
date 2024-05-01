@@ -17,9 +17,6 @@ export interface FilesInfo {
         files_info: FileT[];
     };
 }
-export type kks = {
-    [key: string]: string;
-};
 export interface ResponseFile {
     fileStream: string;
     contentType: 'image/png';
@@ -53,7 +50,7 @@ export const ordersApi = api.injectEndpoints({
                 method: 'GET',
             }),
         }),
-        getAllKKS: builder.query<kks, void>({
+        getAllKKS: builder.query<CommonResponse, void>({
             query: () => ({
                 url: '/Order/kks',
                 method: 'GET',
@@ -69,8 +66,8 @@ export const ordersApi = api.injectEndpoints({
             query: (path) => ({
                 url: `/Order/files/?path=${path}`,
                 method: 'GET',
-        })
-    }),
+            }),
+        }),
 
         getInfoOrders: builder.query<Orders, number>({
             query: (page) => ({
@@ -79,8 +76,7 @@ export const ordersApi = api.injectEndpoints({
             }),
         }),
     }),
-})
-
+});
 
 export const {
     useAddOrdersMutation,
@@ -92,5 +88,13 @@ export const {
     useGetFileByNameQuery,
 } = ordersApi;
 export const {
-    endpoints: { addOrders, getStat, getInfoOrders, getPages, getAllFilesByKKS, getAllKKS, getFileByName  },
+    endpoints: {
+        addOrders,
+        getStat,
+        getInfoOrders,
+        getPages,
+        getAllFilesByKKS,
+        getAllKKS,
+        getFileByName,
+    },
 } = ordersApi;

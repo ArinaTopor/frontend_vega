@@ -5,8 +5,12 @@
     font-size: 1.25vw;
     color: #2d3748;
     padding: 1vw 0;
-    margin-left: 2.92vw;
     margin-top: 10.185vh;
+}
+.orderfiles_table_body {
+    display: block;
+    height: 70vh;
+    overflow-y: scroll;
 }
 .orderfiles_table th {
     text-align: left;
@@ -21,7 +25,8 @@
 }
 .order_file td {
     padding-top: 0.5vh;
-    padding-bottom: 0.5vh;
+    padding-bottom: 1vh;
+    width: 65vw;
 }
 .order_file:hover {
     background-color: #e2e8f0;

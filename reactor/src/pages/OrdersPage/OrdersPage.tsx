@@ -1,13 +1,14 @@
 import plus from '../../assets/icons/plus.svg';
 import { useEffect, useState } from 'react';
 import { Button, Flex, Popover, Typography, Image, Spin } from 'antd';
-import style from './OrdersPage.module.css';
+import styles from './OrdersPage.module.css';
 import { ModalAddOrder } from '../../components/modals/ModalAddOrder/ModalAddOrder';
-import TableOrders from '../../components/tables/TableOrders';
+import TableOrders from '../../components/tables/tableOrder/TableOrders';
 import { useGetStatQuery } from '../../app/services/orders';
 import { WaitingList } from '../../components/WaitingList/WaitingList';
 import OrderStatistics from '../../components/statistics/stat';
 import { LoadingOutlined } from '@ant-design/icons';
+import { getDate } from '../../functions/Date';
 
 export const OrdersPage = () => {
     const [open, setOpen] = useState(false);
@@ -18,25 +19,15 @@ export const OrdersPage = () => {
             setDataLoaded(true);
         }
     }, [dataStat]);
-    const getDate = () => {
-        const currentDate = new Date();
-        const stringDate: string = `${String(currentDate.getDate()).padStart(
-            2,
-            '0'
-        )}.${String(currentDate.getMonth() + 1).padStart(
-            2,
-            '0'
-        )}.${currentDate.getFullYear()}`;
-        return stringDate;
-    };
 
     return (
-        <Flex className={style.page}>
-            <Typography.Text className={style.date}>
+        <Flex className={styles.page}>
+            <Typography.Text className={styles.date}>
                 {getDate()}
             </Typography.Text>
             {isLoading && !dataLoaded ? (
                 <Spin
+                    style={{ margin: 'auto' }}
                     indicator={
                         <LoadingOutlined style={{ fontSize: 24 }} spin />
                     }
@@ -55,14 +46,14 @@ export const OrdersPage = () => {
                     <Flex
                         align='center'
                         justify='center'
-                        className={style.popover}
+                        className={styles.popover}
                     >
                         Создать новый заказ
                     </Flex>
                 }
             >
                 <Button
-                    className={style.buttonPlus}
+                    className={styles.buttonPlus}
                     onClick={() => setOpen(true)}
                 >
                     <Image src={plus} preview={false} />

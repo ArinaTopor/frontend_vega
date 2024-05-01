@@ -8,6 +8,8 @@ export const Paths = {
     stkMain: '/stkHome',
     options: '/options',
     file: '/file/:path',
+    tableFiles: '/files',
+    orderFiles: '/files/:kks',
 };
 
 export const MainPageRoles: {

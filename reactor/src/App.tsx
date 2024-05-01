@@ -1,6 +1,6 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Authorization from './pages/Auth/Authorization';
-import TableOrders from './components/tables/TableOrders';
+import TableOrders from './components/tables/tableOrder/TableOrders';
 import Home from './pages/MainPage';
 import { RequareAuth } from './hoc/RequaireAuth';
 import BossPage from './pages/BossPage';
@@ -11,6 +11,9 @@ import './App.css';
 import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
 import FilePage from './pages/FilePage/FilePage';
+import TableFiles from './components/tables/tableFiles/TableFiles';
+import TableOrderFiles from './components/tables/tableOrderFiles/TableOrderFiles';
+import FilesPage from './pages/FilesPage/FilesPage';
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -94,7 +97,19 @@ function App() {
                         <Route path={Paths.products} element={<BossPage />} />
                         <Route
                             path={Paths.tasksBoard}
-                            element={<OrdersPage/>}
+                            element={<OrdersPage />}
+                        />
+                        <Route
+                            path={Paths.tableFiles}
+                            element={
+                                <RequareAuth>
+                                    <FilesPage />
+                                </RequareAuth>
+                            }
+                        />
+                        <Route
+                            path={Paths.orderFiles}
+                            element={<TableOrderFiles />}
                         />
                         <Route
                             path={Paths.file}
@@ -104,6 +119,7 @@ function App() {
                                 </RequareAuth>
                             }
                         />
+                        <Route></Route>
                         <Route
                             path={Paths.options}
                             element={
