@@ -14,6 +14,7 @@ import FilePage from './pages/FilePage/FilePage';
 import TableFiles from './components/tables/tableFiles/TableFiles';
 import TableOrderFiles from './components/tables/tableOrderFiles/TableOrderFiles';
 import FilesPage from './pages/FilesPage/FilesPage';
+import TableMaterial from './components/tables/tableMaterial/TableMaterial';
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -129,6 +130,7 @@ function App() {
                             }
                         />
                     </Route>
+                    <Route path='/material' element={<TableMaterial />}></Route>
                 </Routes>
             </BrowserRouter>
         </ConfigProvider>
