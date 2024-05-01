@@ -9,16 +9,16 @@ import {
 } from 'antd';
 import { useEffect, useState } from 'react';
 import styles from './TableOrders.module.css';
-import CheckStepInfo from '../modals/ModalCheckStepInfo/CheckStepInfo';
-import RowOrder from './tableOrders/RowOrders';
-import RowOrdersWithChildren from './tableOrders/RowOrderWithChild';
+import CheckStepInfo from '../../modals/ModalCheckStepInfo/CheckStepInfo';
+import RowOrder from '../tableOrdersComponents/RowOrders';
+import RowOrdersWithChildren from '../tableOrdersComponents/RowOrderWithChild';
 import {
     useGetInfoOrdersQuery,
     useGetPagesQuery,
-} from '../../app/services/orders';
-import { Step } from '../../utils/Step';
-import { Orders } from '../../utils/Orders';
-import { UUID, randomUUID } from 'crypto';
+} from '../../../app/services/orders';
+import { Step } from '../../../utils/Step';
+import { Orders } from '../../../utils/Orders';
+
 export type ModalInfo = {
     kks: string;
     step_info: Step;

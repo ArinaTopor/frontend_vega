@@ -1,0 +1,53 @@
+.file_title {
+    display: flex;
+    gap: 0 1.25vw;
+    margin-bottom: 5vh;
+    color: #2d3748;
+    font-size: 2.6vw;
+}
+.page {
+    padding: 5.7vh 3.95vw 0 4.1vw;
+    position: relative;
+    flex-grow: 1;
+    height: 100vh;
+    background-color: #fff;
+}
+.back_btn {
+    margin-bottom: 2.4vh;
+    font-size: 1.4vw;
+    font-weight: 500;
+}
+.back_btn:hover {
+    opacity: 0.8;
+}
+.table_container {
+    width: 67.71vw;
+    box-shadow: 0 0 5px 2px #e2e8f0;
+    border-radius: 11px;
+    font-size: 1.25vw;
+    color: #2d3748;
+    padding: 1vw 0;
+}
+.table_container th {
+    text-align: left;
+    padding-left: 5.73vw;
+    padding-bottom: 1vw;
+}
+.table_container td {
+    padding-left: 5.73vw;
+}
+.table_container td span {
+    font-weight: 500;
+}
+.file span:hover {
+    color: #4a6089;
+}
+.file_status_negative {
+    color: rgba(209, 61, 61, 1);
+}
+.file_status_positive {
+    color: #2d3748;
+}
+.file_status_wait {
+    color: rgb(164, 164, 11);
+}

@@ -106,7 +106,7 @@ export function Sidebar({ user }: Props) {
                     text='Заказы'
                 />
                 <SidebarNavLink
-                    path={Paths.products}
+                    path={Paths.tableFiles}
                     linkStyle={style.link}
                     srcImage={list}
                     isCollapsed={isCollapsed}

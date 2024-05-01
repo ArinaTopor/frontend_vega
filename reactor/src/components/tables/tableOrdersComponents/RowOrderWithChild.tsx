@@ -1,5 +1,4 @@
 import { Col, Row } from 'antd';
-import { MinusSquareOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import styles from './CommonOrder.module.css';
 import RowOrder from './RowOrders';
