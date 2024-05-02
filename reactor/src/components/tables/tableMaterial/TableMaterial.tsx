@@ -1,5 +1,5 @@
-import { Input } from 'antd';
-
+import { Input, Tooltip } from 'antd';
+import styles from './TableMaterial.module.css';
 type Mat = {
     [key: string]: {
         Designation: string;
@@ -39,22 +39,45 @@ const TableMaterial = () => {
     };
     return (
         <div>
-            <table>
-                <tr>
-                    <th>Обозначение</th>
-                    <th>Материал</th>
-                    <th>Наименование</th>
-                    <th>К-во</th>
-                    <th>ЕИ</th>
-                    <th>Тип объекта</th>
-                </tr>
-                <tbody>
+            <table className={styles.material_table_container}>
+                <thead className={styles.title_container}>
+                    <tr>
+                        <th className={styles.material_table__title}>
+                            Обозначение
+                        </th>
+                        <th className={styles.material_table__title}>
+                            Материал
+                        </th>
+                        <th className={styles.material_table__title}>
+                            Наименование
+                        </th>
+                        <th className={styles.material_table__title}>К-во</th>
+                        <th className={styles.material_table__title}>К-во</th>
+                        <th className={styles.material_table__title}>ЕИ</th>
+                        <th className={styles.material_table__title}>
+                            Тип объекта
+                        </th>
+                    </tr>
+                </thead>
+                <tbody className={styles.material_table__body}>
                     {Object.keys(data).map((key) => (
                         <tr key={key}>
                             <td>{data[key].Designation}</td>
-                            <td>{data[key].Material}</td>
+                            <Tooltip
+                                title={data[key].Material}
+                                placement='right'
+                                color='#758593'
+                            >
+                                <td
+                                    className={
+                                        styles.material_table_body__material
+                                    }
+                                >
+                                    {data[key].Material}
+                                </td>
+                            </Tooltip>
                             <td>{data[key].Name}</td>
-                            <td>
+                            <td className={styles.material_table__input}>
                                 <Input type='number' />
                             </td>
                             <td>{data[key].Count}</td>
