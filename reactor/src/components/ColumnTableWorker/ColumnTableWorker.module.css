@@ -1,5 +1,5 @@
 .column{
-	width: 406px;
+	min-width: 406px;
 	padding: 15px;
 	border-radius: 15px;
 }
@@ -9,6 +9,10 @@
 	font-size: 24.77px;
 	line-height: 32.2px;
 	font-weight: 500;
+}
+
+.cards{
+	min-height: 80%;
 }
 
 .made{

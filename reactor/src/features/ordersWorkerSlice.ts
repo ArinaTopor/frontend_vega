@@ -27,6 +27,7 @@ const slice = createSlice({
 	reducers: {
 		update: (state, action) => {
 			state = {...action.payload}
+			console.log(state)
 		},
 		/*updateColumn: (state: InitialState,  action: PayloadAction<PayloadColumn> ) => {
 			state[action.payload.name.] = {...action.payload.info}
