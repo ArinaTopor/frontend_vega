@@ -18,6 +18,7 @@ import {
 } from '../../../app/services/orders';
 import { Step } from '../../../utils/Step';
 import { Orders } from '../../../utils/Orders';
+import ModalTableStage from '../../modals/ModalTableStage/ModalTableStage';
 
 export type ModalInfo = {
     kks: string;
@@ -205,14 +206,22 @@ const TableOrders = () => {
                     onChange={onChangePage}
                     className={styles.pagination}
                 />
-                {selectedStepData && (
-                    <CheckStepInfo
-                        open={open}
-                        setOpen={setOpen}
-                        kks={selectedStepData.kks}
-                        step={selectedStepData.step_info}
-                    ></CheckStepInfo>
-                )}
+                {selectedStepData ? (
+                    selectedStepData?.step_info.step_name === 'Склад' ? (
+                        <ModalTableStage
+                            open={open}
+                            setOpen={setOpen}
+                            kks={selectedStepData.kks}
+                        />
+                    ) : (
+                        <CheckStepInfo
+                            open={open}
+                            setOpen={setOpen}
+                            kks={selectedStepData.kks}
+                            step={selectedStepData.step_info}
+                        ></CheckStepInfo>
+                    )
+                ) : null}
             </Flex>
         </>
     );

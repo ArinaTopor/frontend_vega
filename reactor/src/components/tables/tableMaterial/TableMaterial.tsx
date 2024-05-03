@@ -77,8 +77,11 @@ const TableMaterial = () => {
                                 </td>
                             </Tooltip>
                             <td>{data[key].Name}</td>
-                            <td className={styles.material_table__input}>
-                                <Input type='number' />
+                            <td>
+                                <input
+                                    type='number'
+                                    className={styles.material_table__input}
+                                />
                             </td>
                             <td>{data[key].Count}</td>
                             <td>{data[key].Measure}</td>
