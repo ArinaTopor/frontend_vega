@@ -11,7 +11,6 @@ const BossPage = () => {
         dispatch(logout());
         navigate('/');
     };
-    console.log(useAppSelector(selectOrdersWorker))
     return (
         <div>
             <p>It's Boss </p>

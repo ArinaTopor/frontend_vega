@@ -5,9 +5,9 @@ import srcClock from '../../assets/icons/clock.svg';
 import srcReady from '../../assets/icons/ready.svg';
 import { CardTableWorker } from '../CardTableWorker/CardTableWorker';
 import { useAppSelector } from '../../app/hooks';
-import { selectOrdersWorker } from '../../features/ordersWorkerSlice';
+import { InitialState, selectOrdersWorker } from '../../features/ordersWorkerSlice';
 import { Droppable } from 'react-beautiful-dnd';
-import { InitialState } from '../TableWorker/TableWorker';
+
 
 type InfoColumns = {
 	[key: string]: {

@@ -3,11 +3,8 @@ import styles from './CardTableWorker.module.css';
 import srcUser from '../../assets/image/user.png';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectOrdersWorker, update } from '../../features/ordersWorkerSlice';
-import { IColumnTableWorker } from '../../utils/IColumnTableWorker';
-import { ICardTableWorker } from '../../utils/ICardTableWorker';
+import { InitialState, selectOrdersWorker, update } from '../../features/ordersWorkerSlice';
 import { Draggable } from 'react-beautiful-dnd';
-import { InitialState } from '../TableWorker/TableWorker';
 
 type Props = {
 	id: number;
