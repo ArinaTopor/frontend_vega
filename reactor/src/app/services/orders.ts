@@ -67,6 +67,7 @@ export const ordersApi = api.injectEndpoints({
                 url: `/Order/files/?path=${path}`,
                 method: 'GET',
             }),
+            //переписать
         }),
 
         getInfoOrders: builder.query<Orders, number>({

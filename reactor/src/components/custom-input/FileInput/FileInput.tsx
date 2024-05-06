@@ -1,7 +1,8 @@
-import { Button, Form, Image, Upload } from 'antd';
+import { Button, Form, Image, Upload, UploadProps } from 'antd';
 import style from './FileInput.module.css';
 
 import uploadSrc from '../../../assets/icons/upload.svg';
+import { useState } from 'react';
 
 type Props = {
     name: string;
@@ -11,6 +12,10 @@ type Props = {
 };
 
 export function FileInput({ name, required, inputFileStyle, maxCount }: Props) {
+    // const [filesUpload, setFilesUpload] = useState<FileList>();
+    // const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
+    //     setUploadFiles(newFileList.);
+    // };
     return (
         <>
             <Form.Item
@@ -24,8 +29,9 @@ export function FileInput({ name, required, inputFileStyle, maxCount }: Props) {
                 ]}
             >
                 <Upload
-                    multiple={true}
-                    beforeUpload={() => {
+                    multiple
+                    beforeUpload={(file) => {
+                        console.log(file);
                         return false;
                     }}
                     listType='picture'

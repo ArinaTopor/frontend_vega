@@ -92,12 +92,13 @@ export const ModalOrderApproval = ({ open, setOpen }: Props) => {
                 <Typography.Text className={style.titleSection}>
                     Замечания
                 </Typography.Text>
-                <FileInput
+                {/* <FileInput
                     name='files'
                     required={true}
                     inputFileStyle={style.inputFile}
                     maxCount={2}
-                />
+                    f
+                /> */}
                 <CustomTextarea
                     name='description'
                     label='Комментарий/описание'

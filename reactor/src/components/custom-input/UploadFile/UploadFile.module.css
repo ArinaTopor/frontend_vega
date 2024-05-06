@@ -1,0 +1,44 @@
+.upload_container {
+    display: flex;
+    border: 2px solid #c5c5c5;
+    border-radius: 1vh;
+    color: #314659;
+    width: 15vw;
+    text-align: center;
+    justify-content: center;
+    gap: 1vw;
+    padding: 1.5vh;
+    margin-top: 5.7vh;
+}
+.upload_label {
+    font-size: 2vh;
+    font-weight: 500;
+    cursor: pointer;
+}
+.upload_input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    cursor: pointer;
+}
+.file_container {
+    margin-top: 2.7vh;
+    margin-bottom: 5.7vh;
+    display: flex;
+    gap: 2.5vh 3vh;
+    width: 32vw;
+    flex-wrap: wrap;
+    max-height: 11vh;
+    overflow-y: scroll;
+}
+.file {
+    display: flex;
+    gap: 1vh;
+    border: 2px solid #c5c5c5;
+    border-radius: 1vh;
+    color: #314659;
+    padding: 1vh 2vh;
+}
+.remove_file:hover {
+    opacity: 0.6;
+}
