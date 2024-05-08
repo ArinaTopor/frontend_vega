@@ -4,7 +4,7 @@ import { logout } from '../../features/auth/authSlice';
 import {Flex, Image, Typography } from 'antd';
 import styles from './WorkerPage.module.css'
 import { TableWorker } from '../../components/TableWorker/TableWorker';
-import { Calendar } from '../../components/Calendar/Calendar';
+import { CalendarCustom } from '../../components/CalendarCustom/CalendarCustom';
 import srcExit from '../../assets/icons/exit.svg'
 
 
@@ -28,7 +28,7 @@ export const WorkerPage = () => {
                 </Flex>
                 <Flex className={styles.main} gap='54px'>
                     <TableWorker/>
-                    <Calendar/>
+                    <CalendarCustom/>
                 </Flex>
             </Flex>
             <Flex gap='26px' onClick={handleLogout} align='center' className={styles.btnExit}>

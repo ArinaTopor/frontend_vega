@@ -56,3 +56,75 @@ code {
     box-shadow: none !important;
     --ant-color-primary: #24323e;
 }
+
+.ant-picker-calendar-header{
+    justify-content: start !important;
+    margin-bottom: 15px !important;
+}
+
+.ant-picker-panel{
+    border: 0px solid #fff !important;
+}
+
+.ant-picker-calendar-date-today{
+    color:rgba(49, 70, 89, 1) !important;
+    background-color: #fff !important;
+    border: 1px solid rgba(49, 70, 89, 1) !important;
+}
+
+.ant-picker-cell-today .ant-picker-cell-inner::before{
+    border: 1px solid rgba(49, 70, 89, 1) !important;
+}
+
+.ant-picker-calendar-date{
+    width:45px !important;
+    height: 45px !important;
+}
+
+.ant-picker-calendar-date-value{
+    width:45px !important;
+    height: 45px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 21px;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-selected:not(.ant-picker-cell-disabled) .ant-picker-cell-inner {
+   
+    background-color: rgba(49, 70, 89, 1) !important;
+    color: #fff !important;
+}
+
+.ant-picker-cell-in-view{
+    color:rgba(49, 70, 89, 1) !important;
+}
+
+.ant-picker-content{
+    color: rgba(97, 97, 97, 1) !important;
+    font-size: 21px !important;
+}
+
+.ant-picker-calendar-year-select, .ant-picker-calendar-mode-switch {
+    display: none !important;
+}
+
+.ant-select-arrow{
+    display: none !important;
+}
+
+.ant-select-selector{
+    background-color: rgba(49, 70, 89, 1) !important;
+    width: 115px !important;
+    height: 45px !important;
+    border-radius: 7.5px !important;
+
+}
+
+.ant-select-selection-item{
+    font-size: 21px !important;
+    color: #fff !important;
+    padding-inline-end: 0 !important;
+    text-align: center !important;
+}
+

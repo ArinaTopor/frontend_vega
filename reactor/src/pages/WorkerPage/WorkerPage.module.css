@@ -2,6 +2,10 @@
 	margin: 66px 104px 120px 125px;
 }
 
+.main{
+	width: 100%;
+}
+
 .title{
 	margin-left: 40px;
 }
