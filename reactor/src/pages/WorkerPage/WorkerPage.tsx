@@ -4,7 +4,7 @@ import { logout } from '../../features/auth/authSlice';
 import {Flex, Image, Typography } from 'antd';
 import styles from './WorkerPage.module.css'
 import { TableWorker } from '../../components/TableWorker/TableWorker';
-import { Calendar } from '../../components/Calendar/Calendar';
+import { CalendarCustom } from '../../components/CalendarCustom/CalendarCustom';
 import srcExit from '../../assets/icons/exit.svg'
 
 
@@ -16,9 +16,9 @@ export const WorkerPage = () => {
         navigate('/');
     };
     return (
-        <Flex vertical>
-            <Flex className={styles.wrapper} vertical gap='56px'>
-                <Flex className={styles.title} gap='18px'>
+        <Flex vertical className={styles.wrapper}>
+            <Flex className={styles.wrapper_body} vertical gap='2.9vw'>
+                <Flex className={styles.title} gap='0.9vw'>
                     <Typography.Text className={styles.title_text}>
                         801
                     </Typography.Text>
@@ -26,13 +26,13 @@ export const WorkerPage = () => {
                         Участок лазерной резки
                     </Typography.Text>
                 </Flex>
-                <Flex className={styles.main} gap='54px'>
+                <Flex className={styles.main} gap='2.8vw'>
                     <TableWorker/>
-                    <Calendar/>
+                    <CalendarCustom/>
                 </Flex>
             </Flex>
-            <Flex gap='26px' onClick={handleLogout} align='center' className={styles.btnExit}>
-                <Image src={srcExit} preview={false}/>
+            <Flex gap='1.4vw' onClick={handleLogout} align='center' className={styles.btnExit}>
+                <Image src={srcExit} preview={false} className={styles.image}/>
                 <Typography.Text className={styles.btnText}>выход</Typography.Text>
             </Flex>
             <Flex className={styles.footer} align='center' justify='space-between'>

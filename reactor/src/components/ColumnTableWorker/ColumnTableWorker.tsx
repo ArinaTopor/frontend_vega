@@ -42,9 +42,9 @@ export const ColumnTableWorker = ({ name, table }: Props) => {
 		<Flex
 			className={`${styles.column} ${styles[name]}`}
 			vertical
-			gap="17px"
+			gap="0.88vw"
 		>
-			<Flex align="center" gap="15px">
+			<Flex align="center" gap="0.78vw">
 				<Image src={typesColumn[name].srcImage} preview={false} />
 				<Typography.Text className={styles.title_column}>
 					{typesColumn[name].title}
@@ -52,7 +52,7 @@ export const ColumnTableWorker = ({ name, table }: Props) => {
 			</Flex >
 			<Droppable droppableId={name}>
 				{(provided) => (
-					<Flex {...provided.droppableProps} ref={provided.innerRef} className={styles.cards} gap="17px" vertical>
+					<Flex {...provided.droppableProps} ref={provided.innerRef} className={styles.cards} gap="0.88vw" vertical>
 						{tableInfo[name].cards.map((card, index) => (
 							<CardTableWorker
 								key={card.id}

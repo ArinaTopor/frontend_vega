@@ -8,6 +8,10 @@ import { CustomLayout } from './components/CustomLayout';
 import { ConfigProvider, ThemeConfig } from 'antd';
 import './App.css';
 import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
+import locale from 'antd/locale/ru_RU';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ru';
+dayjs.locale('ru');
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -45,7 +49,7 @@ const theme: ThemeConfig = {
 
 function App() {
     return (
-        <ConfigProvider theme={theme}>
+        <ConfigProvider theme={theme} locale={locale}>
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<WorkerPage />} />

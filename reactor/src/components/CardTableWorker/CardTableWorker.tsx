@@ -22,7 +22,7 @@ export const CardTableWorker = ({ id, name, index, table }: Props) => {
 	return (
 		<Draggable draggableId={String(id)} index={index}>
 			{(provided) => (
-				<Flex className={styles.card} vertical gap="15px" {...provided.dragHandleProps} {...provided.draggableProps} ref={provided.innerRef}>
+				<Flex className={styles.card} vertical gap="0.78vw" {...provided.dragHandleProps} {...provided.draggableProps} ref={provided.innerRef}>
 					<Flex justify="center">
 						{name === 'process' || name === 'ready' ? (
 							<Image
