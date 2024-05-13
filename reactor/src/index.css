@@ -59,7 +59,7 @@ code {
 
 .ant-picker-calendar-header{
     justify-content: start !important;
-    margin-bottom: 15px !important;
+    margin-bottom: 1.38vh !important;
 }
 
 .ant-picker-panel{
@@ -77,32 +77,33 @@ code {
 }
 
 .ant-picker-calendar-date{
-    width:45px !important;
-    height: 45px !important;
+    width:2.34vw !important;
+    height:2.34vw !important;
 }
 
 .ant-picker-calendar-date-value{
-    width:45px !important;
-    height: 45px !important;
+
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    font-size: 21px;
+    font-size: 1.09vw;
 }
 
 .ant-picker-cell-in-view.ant-picker-cell-selected:not(.ant-picker-cell-disabled) .ant-picker-cell-inner {
    
     background-color: rgba(49, 70, 89, 1) !important;
     color: #fff !important;
+
 }
 
 .ant-picker-cell-in-view{
     color:rgba(49, 70, 89, 1) !important;
+
 }
 
 .ant-picker-content{
     color: rgba(97, 97, 97, 1) !important;
-    font-size: 21px !important;
+    font-size: 1.09vw !important;
 }
 
 .ant-picker-calendar-year-select, .ant-picker-calendar-mode-switch {
@@ -115,16 +116,25 @@ code {
 
 .ant-select-selector{
     background-color: rgba(49, 70, 89, 1) !important;
-    width: 115px !important;
-    height: 45px !important;
+    width: 6vw !important;
+    height: 2.34vw !important;
     border-radius: 7.5px !important;
 
 }
 
 .ant-select-selection-item{
-    font-size: 21px !important;
+    font-size: 1.09vw !important;
     color: #fff !important;
     padding-inline-end: 0 !important;
     text-align: center !important;
 }
 
+
+.ant-picker-calendar-header{
+    padding: 0.63vw 0.42vw !important;
+    margin-bottom: 0.68vw !important;
+}
+
+.ant-picker-body{
+    padding: 0.42vw 0 !important;
+}

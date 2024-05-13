@@ -1,4 +1,6 @@
 .wrapper{
-	min-width:358px;
-	max-width: 358px;
+	min-width:18.6vw;
+	max-width: 18.6vw;
+	min-height: 18.6vw;
+	max-height: 18.6vw;
 }
