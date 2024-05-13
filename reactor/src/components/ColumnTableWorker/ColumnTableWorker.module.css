@@ -1,13 +1,13 @@
 .column{
-	min-width: 406px;
-	padding: 15px;
+	min-width: 21.1vw;
+	padding: 0.78vw;
 	border-radius: 15px;
 }
 
 .title_column{
 	font-family: 'Roboto';
-	font-size: 24.77px;
-	line-height: 32.2px;
+	font-size: 1.29vw;
+	line-height: 1.7vw;
 	font-weight: 500;
 }
 

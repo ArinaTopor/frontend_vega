@@ -53,12 +53,10 @@ export const TableWorker = () => {
 
 	return (
 		<DragDropContext onDragEnd={handleOnDragEnd}>
-			<Flex className={styles.table} gap="30px">
-				<Flex className={styles.column} gap="17px">
+			<Flex className={styles.table} gap="1.6vw">
 					{Object.keys(tableInfo).map((column) => (
 						<ColumnTableWorker name={column} table={tableInfo} key={column}/>
 					))}
-				</Flex>
 			</Flex>
 		</DragDropContext>
 	);
