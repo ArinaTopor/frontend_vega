@@ -49,9 +49,6 @@ const slice = createSlice({
 			state.ready = action.payload.ready ;
 			console.log(state);
 		},
-		/*updateColumn: (state: InitialState,  action: PayloadAction<PayloadColumn> ) => {
-			state[action.payload.name.] = {...action.payload.info}
-		}*/
 	},
 });
 

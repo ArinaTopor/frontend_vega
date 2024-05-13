@@ -6,6 +6,7 @@ import styles from './WorkerPage.module.css'
 import { TableWorker } from '../../components/TableWorker/TableWorker';
 import { CalendarCustom } from '../../components/CalendarCustom/CalendarCustom';
 import srcExit from '../../assets/icons/exit.svg'
+import { Clock } from '../../components/Clock/Clock';
 
 
 export const WorkerPage = () => {
@@ -37,7 +38,7 @@ export const WorkerPage = () => {
             </Flex>
             <Flex className={styles.footer} align='center' justify='space-between'>
                 <Typography.Text className={styles.name}>Ольга В.</Typography.Text>
-                <Typography.Text className={styles.time}>14:30</Typography.Text>
+                <Clock/>
             </Flex>
         </Flex>
     );
