@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import {createSlice } from '@reduxjs/toolkit';
 import { IColumnTableWorker } from '../utils/IColumnTableWorker';
 import { RootState } from '../app/store';
 import { ICardTableWorker } from '../utils/ICardTableWorker';
@@ -47,7 +47,6 @@ const slice = createSlice({
 			state.made = action.payload.made ;
 			state.process = action.payload.process;
 			state.ready = action.payload.ready ;
-			console.log(state);
 		},
 	},
 });

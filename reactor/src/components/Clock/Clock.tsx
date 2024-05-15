@@ -10,8 +10,8 @@ export const Clock = () => {
 		}, 1000)
 	},[])
 
-	const hours = time.getHours();
-  	const minutes = time.getMinutes();
+	const hours = String(time.getHours()).padStart(2,'0');
+  	const minutes = String(time.getMinutes()).padStart(2,'0');
 
 	const timeString = `${hours}:${minutes}`
 

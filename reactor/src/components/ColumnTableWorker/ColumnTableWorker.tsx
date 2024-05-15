@@ -1,11 +1,10 @@
-import { Card, Flex, Image, Typography } from 'antd';
+import {Flex, Image, Typography } from 'antd';
 import styles from './ColumnTableWorker.module.css';
 import srcSquare from '../../assets/icons/square.svg';
 import srcClock from '../../assets/icons/clock.svg';
 import srcReady from '../../assets/icons/ready.svg';
 import { CardTableWorker } from '../CardTableWorker/CardTableWorker';
-import { useAppSelector } from '../../app/hooks';
-import { InitialState, selectOrdersWorker } from '../../features/ordersWorkerSlice';
+import { InitialState} from '../../features/ordersWorkerSlice';
 import { Droppable } from 'react-beautiful-dnd';
 
 
@@ -34,10 +33,10 @@ const typesColumn: InfoColumns = {
 type Props = {
 	name: string;
 	table: InitialState;
+	setTable: React.Dispatch<React.SetStateAction<InitialState>>
 };
 
-export const ColumnTableWorker = ({ name, table }: Props) => {
-	const tableInfo = table;
+export const ColumnTableWorker = ({ name, table, setTable }: Props) => {
 	return (
 		<Flex
 			className={`${styles.column} ${styles[name]}`}
@@ -53,13 +52,14 @@ export const ColumnTableWorker = ({ name, table }: Props) => {
 			<Droppable droppableId={name}>
 				{(provided) => (
 					<Flex {...provided.droppableProps} ref={provided.innerRef} className={styles.cards} gap="0.88vw" vertical>
-						{tableInfo[name].cards.map((card, index) => (
+						{table[name].cards.map((card, index) => (
 							<CardTableWorker
 								key={card.id}
 								id={card.id}
 								name={name}
 								index={index}
-								table={tableInfo}
+								table={table}
+								setTable={setTable}
 							/>
 						))}
 						{provided.placeholder}

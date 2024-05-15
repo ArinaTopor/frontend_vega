@@ -70,6 +70,7 @@ code {
     color:rgba(49, 70, 89, 1) !important;
     background-color: #fff !important;
     border: 1px solid rgba(49, 70, 89, 1) !important;
+
 }
 
 .ant-picker-cell-today .ant-picker-cell-inner::before{
@@ -79,6 +80,9 @@ code {
 .ant-picker-calendar-date{
     width:2.34vw !important;
     height:2.34vw !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .ant-picker-calendar-date-value{

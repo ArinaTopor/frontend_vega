@@ -11,7 +11,6 @@ export const TableWorker = () => {
 	const [tableInfo, setTableInfo] = useState<InitialState>(useAppSelector(selectOrdersWorker));
 
 	const handleOnDragEnd = ({ source, destination }: DropResult) => {
-
 		if (
 			!destination ||
 			destination.droppableId === 'made' ||
@@ -37,6 +36,7 @@ export const TableWorker = () => {
 				: newSourceItems;
 		const [deletedItem] = newSourceItems.splice(itemSourceIndex, 1);
 		newDestinationItems?.splice(itemDestinationIndex, 0, deletedItem);
+
 		const newStores = { ...tableInfo };
 
 		newStores[source.droppableId] = {
@@ -48,14 +48,14 @@ export const TableWorker = () => {
 			cards: newDestinationItems,
 		};
 		setTableInfo(newStores);
-		dispatch(update(newStores));
+		dispatch(update(tableInfo))
 	};
 
 	return (
 		<DragDropContext onDragEnd={handleOnDragEnd}>
 			<Flex className={styles.table} gap="1.6vw">
 					{Object.keys(tableInfo).map((column) => (
-						<ColumnTableWorker name={column} table={tableInfo} key={column}/>
+						<ColumnTableWorker name={column} table={tableInfo} key={column} setTable={setTableInfo}/>
 					))}
 			</Flex>
 		</DragDropContext>
