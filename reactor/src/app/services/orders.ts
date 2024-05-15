@@ -29,6 +29,12 @@ export type NewOrder = {
     [key: string]: string | File[] | null;
 };
 
+export type CompleteStep = {
+    files: File[];
+    KKS: string;
+    StepId: number;
+    description: string;
+};
 export const ordersApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getStat: builder.query<CommonResponse, void>({
@@ -40,6 +46,13 @@ export const ordersApi = api.injectEndpoints({
         addOrders: builder.mutation<ReturnedData, FormData>({
             query: (data) => ({
                 url: '/Order',
+                method: 'POST',
+                body: data,
+            }),
+        }),
+        completeStep: builder.mutation<ReturnedData, FormData>({
+            query: (data) => ({
+                url: '/Order/steps',
                 method: 'POST',
                 body: data,
             }),
@@ -67,7 +80,6 @@ export const ordersApi = api.injectEndpoints({
                 url: `/Order/files/?path=${path}`,
                 method: 'GET',
             }),
-            //переписать
         }),
 
         getInfoOrders: builder.query<Orders, number>({
@@ -81,6 +93,7 @@ export const ordersApi = api.injectEndpoints({
 
 export const {
     useAddOrdersMutation,
+    useCompleteStepMutation,
     useGetStatQuery,
     useGetPagesQuery,
     useGetInfoOrdersQuery,
@@ -91,6 +104,7 @@ export const {
 export const {
     endpoints: {
         addOrders,
+        completeStep,
         getStat,
         getInfoOrders,
         getPages,

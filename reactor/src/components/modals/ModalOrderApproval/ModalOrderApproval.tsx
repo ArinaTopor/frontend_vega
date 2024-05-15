@@ -9,24 +9,10 @@ type Props = {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-type newOrder = {
-    files: {
-        file: File;
-        fileList: File[];
-    };
-    description: string;
-    [key: string]: string | { file: File; fileList: File[] } | null;
-};
-
 export const ModalOrderApproval = ({ open, setOpen }: Props) => {
     const [form] = Form.useForm();
 
-    const handleSubmit = (currentData: newOrder) => {
-        const finallyData = {
-            ...currentData,
-            files: currentData.files.fileList,
-        };
-        console.log(finallyData);
+    const handleSubmit = () => {
         form.resetFields();
     };
 

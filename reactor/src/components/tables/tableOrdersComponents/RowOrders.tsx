@@ -37,7 +37,7 @@ const RowOrder = ({
                     style={{
                         paddingLeft: '1vw',
                     }}
-                    onClick={() => onSelectRow(kks, stepIndex)}
+                    onClick={() => onSelectRow(kks, step.step_id)}
                 >
                     {step.step_name}
                 </p>

@@ -3,38 +3,37 @@ import FormInput from '../../custom-input/FormInput/FormInput';
 import { FileInput } from '../../custom-input/FileInput/FileInput';
 import { CustomTextarea } from '../../custom-input/CustomTextarea/CustomTextarea';
 import style from './ModalAddDocuments.module.css';
+import { Step } from '../../../utils/Step';
+import UploadFile from '../../custom-input/UploadFile/UploadFile';
+import { useState } from 'react';
+import {
+    CompleteStep,
+    useCompleteStepMutation,
+} from '../../../app/services/orders';
 
 type Props = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    kks: string;
+    step: Step;
 };
 
-type newOrder = {
-    files: {
-        file: File;
-        fileList: File[];
-    };
-    description: string;
-    [key: string]: string | { file: File; fileList: File[] } | null;
-};
-
-type Order = {
-    name: string;
-};
-
-export const ModalAddDocuments = ({ open, setOpen }: Props) => {
+export const ModalAddDocuments = ({ open, setOpen, kks, step }: Props) => {
     const [form] = Form.useForm();
+    const [fileList, setFiles] = useState<File[] | undefined>();
+    const [completeStep, { isLoading }] = useCompleteStepMutation();
 
-    const order = {
-        name: '30SAM46AH501',
-    };
-
-    const handleSubmit = (currentData: newOrder) => {
-        const finallyData = {
-            ...currentData,
-            files: currentData.files.fileList,
-        };
-        console.log(finallyData);
+    const handleSubmit = (infoStep: CompleteStep) => {
+        const formData = new FormData();
+        if (fileList)
+            for (let i = 0; i < fileList.length; i++) {
+                const file = fileList[i];
+                formData.append('files', file);
+            }
+        formData.append('KKS', kks);
+        formData.append('StepId', step.step_id.toString());
+        formData.append('Description', infoStep.description ?? '');
+        completeStep(formData);
         form.resetFields();
     };
 
@@ -53,19 +52,27 @@ export const ModalAddDocuments = ({ open, setOpen }: Props) => {
             maskClosable={false}
         >
             <Typography.Text className={style.titleModal}>
-                {order.name}
+                {kks}
             </Typography.Text>
             <br />
             <Typography.Text className={style.titleForm}>
-                Технические данные
+                {step.step_name}
             </Typography.Text>
             <Form form={form} onFinish={handleSubmit} className={style.form}>
-                {/* <FileInput name="files" required={true} /> */}
+                <UploadFile
+                    updateUploadFiles={setFiles}
+                    uploadedFiles={fileList}
+                />
                 <CustomTextarea
                     name='description'
                     label='Комментарий/описание'
                 />
-                <Button className={style.buttonSave} htmlType='submit'>
+                <Button
+                    className={style.buttonSave}
+                    htmlType='submit'
+                    loading={isLoading}
+                    disabled={isLoading}
+                >
                     Отправить
                 </Button>
             </Form>
