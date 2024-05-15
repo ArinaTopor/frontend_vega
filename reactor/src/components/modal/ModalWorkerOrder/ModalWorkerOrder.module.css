@@ -1,34 +1,34 @@
 .modal{
-	padding: 11px 72px 28px 51px;
+	padding: 0.57vw 3.75vw 1.46vw 2.66vw;
 }
 
 .title{
-	font-size: 27.45px;
-	line-height: 32.17px;
+	font-size: 1.43vw;
+	line-height: 1.67vw;
 	font-weight: 600;
 	font-family: 'Roboto';
-	margin-bottom: 45px;
+	margin-bottom: 2.34vw;
 }
 
 .body{
-	margin-bottom: 279px;
+	margin-bottom: 14.53vw;
 }
 
 .label{
-	font-size: 22.06px;
+	font-size: 1.15vw;
 	font-weight: 500;
 	font-family: 'Roboto';
-	line-height:25.85px;
+	line-height: 1.35vw;
 }
 
 .field{
 	width: 100%;
-	height: 60px;
+	height: 3.125vw;
 	align-items: center;
 	border-radius: 5px;
-	padding-left: 23px;
+	padding-left: 1.2vw;
 	font-family: 'Roboto';
-	font-size: 20px;
+	font-size: 1.04vw;
 	background-color: rgba(235, 236, 239, 1);
 	color:rgba(49, 70, 89, 1);
 }
@@ -50,9 +50,9 @@
 }
 
 .button{
-	height: 52px;
-	width: 202px;
-	font-size: 22px;
+	height: 2.71vw;
+	width: 10.52vw;
+	font-size: 1.15vw;
 	font-weight: 500;
 	align-self: flex-end;
 }

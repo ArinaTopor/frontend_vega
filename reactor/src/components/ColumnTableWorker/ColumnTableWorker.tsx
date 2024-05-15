@@ -44,7 +44,7 @@ export const ColumnTableWorker = ({ name, table, setTable }: Props) => {
 			gap="0.88vw"
 		>
 			<Flex align="center" gap="0.78vw">
-				<Image src={typesColumn[name].srcImage} preview={false} />
+				<Image src={typesColumn[name].srcImage} preview={false} className={styles.image}/>
 				<Typography.Text className={styles.title_column}>
 					{typesColumn[name].title}
 				</Typography.Text>

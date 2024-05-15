@@ -44,3 +44,8 @@
 .ready span{
 	color:rgba(129, 41, 14, 1);
 }
+
+.image{
+	width: 1.56vw !important;
+	height: 1.56vw !important;
+}

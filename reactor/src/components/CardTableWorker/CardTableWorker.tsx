@@ -22,7 +22,6 @@ export const CardTableWorker = ({ id, name, index, table, setTable }: Props) => 
 
 	const handleClick=()=>{
 		setOpen(true)
-		console.log(id)
 	}
 
 	return (
