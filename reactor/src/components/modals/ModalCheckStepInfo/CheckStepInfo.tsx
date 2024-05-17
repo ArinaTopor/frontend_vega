@@ -2,6 +2,7 @@ import { Button, Modal } from 'antd';
 import styles from './CheckStepInfo.module.css';
 import { useNavigate } from 'react-router';
 import { Step } from '../../../utils/Step';
+import { openFile } from '../../../functions/openFile';
 
 type Props = {
     open: boolean;
@@ -11,15 +12,12 @@ type Props = {
 };
 
 export const CheckStepInfo = ({ open, setOpen, kks, step }: Props) => {
-    const navigate = useNavigate();
-
     const handleCLose = () => {
         setOpen(false);
     };
 
     const readFile = (path: string) => {
-        const securePath = encodeURIComponent(path);
-        navigate(`/file/${securePath}`);
+        openFile(path);
     };
 
     return (

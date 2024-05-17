@@ -1,7 +1,6 @@
 import { Button, Flex, Form, Image, Modal, Typography } from 'antd';
 import { CustomTextarea } from '../../custom-input/CustomTextarea/CustomTextarea';
 import style from './ModalOrderApproval.module.css';
-import { FileInput } from '../../custom-input/FileInput/FileInput';
 import srcFile from '../../../assets/icons/file.svg';
 
 type Props = {
@@ -9,24 +8,10 @@ type Props = {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-type newOrder = {
-    files: {
-        file: File;
-        fileList: File[];
-    };
-    description: string;
-    [key: string]: string | { file: File; fileList: File[] } | null;
-};
-
 export const ModalOrderApproval = ({ open, setOpen }: Props) => {
     const [form] = Form.useForm();
 
-    const handleSubmit = (currentData: newOrder) => {
-        const finallyData = {
-            ...currentData,
-            files: currentData.files.fileList,
-        };
-        console.log(finallyData);
+    const handleSubmit = () => {
         form.resetFields();
     };
 
@@ -92,12 +77,6 @@ export const ModalOrderApproval = ({ open, setOpen }: Props) => {
                 <Typography.Text className={style.titleSection}>
                     Замечания
                 </Typography.Text>
-                <FileInput
-                    name='files'
-                    required={true}
-                    inputFileStyle={style.inputFile}
-                    maxCount={2}
-                />
                 <CustomTextarea
                     name='description'
                     label='Комментарий/описание'

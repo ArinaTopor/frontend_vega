@@ -11,8 +11,13 @@
     color: rgba(49, 70, 89, 1);
 }
 .filesWrapper {
+    display: flex;
     margin-top: 6.4vh;
     margin-bottom: 3vh;
+    gap: 1vw;
+    width: 32vw;
+    max-height: 11vh;
+    overflow-y: scroll;
 }
 .fileContainer {
     display: inline-block;

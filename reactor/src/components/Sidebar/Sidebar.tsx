@@ -27,8 +27,8 @@ export function Sidebar({ user }: Props) {
     const dispatch = useDispatch();
     const createName = function (nameBack: string) {
         const nameArray: string[] = nameBack.split(' ');
-        const initials: string = `${nameArray[0][0]}${nameArray[1][0]}`;
-        const name: string = nameArray && `${nameArray[0]} ${nameArray[1][0]}.`;
+        const initials: string = 'Admin'; //`${nameArray[0][0]}${nameArray[1][0]}`;
+        const name: string = 'A'; //nameArray && `${nameArray[0]} ${nameArray[1][0]}.`;
         return {
             initials,
             name,
@@ -53,7 +53,7 @@ export function Sidebar({ user }: Props) {
                 background: '#314659',
                 transition: 'all 0.5s',
                 position: 'absolute',
-                zIndex: "999999"
+                zIndex: '999999',
             }}
             width='12.8vw'
             collapsedWidth='6.3vw'
@@ -79,10 +79,11 @@ export function Sidebar({ user }: Props) {
                         isCollapsed ? style.avatar_collapsed : style.avatar
                     }
                 >
-                    {names.initials}
+                    hh
+                    {/* {names.initials} */}
                 </Flex>
                 {!isCollapsed && (
-                    <Text className={style.name}>{names.name}</Text>
+                    <Text className={style.name}></Text> //{names.name}
                 )}
             </Flex>
             <Flex
@@ -122,13 +123,15 @@ export function Sidebar({ user }: Props) {
                     vertical
                     align={isCollapsed ? 'center' : 'start'}
                 >
-                    <SidebarNavLink
-                        path={Paths.options}
-                        linkStyle={style.link}
-                        srcImage={setting}
-                        isCollapsed={isCollapsed}
-                        text='Настройки'
-                    />
+                    {user && user.role === 'Администратор' && (
+                        <SidebarNavLink
+                            path={Paths.options}
+                            linkStyle={style.link}
+                            srcImage={setting}
+                            isCollapsed={isCollapsed}
+                            text='Настройки'
+                        />
+                    )}
                     <Button onClick={handleLogout} className={style.exit}>
                         <Image
                             preview={false}

@@ -38,6 +38,10 @@
 }
 .table_container td span {
     font-weight: 500;
+    cursor: pointer;
+}
+.file td {
+    padding-bottom: 1.5vh;
 }
 .file span:hover {
     color: #4a6089;

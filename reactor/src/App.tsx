@@ -1,6 +1,5 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Authorization from './pages/Auth/Authorization';
-import TableOrders from './components/tables/tableOrder/TableOrders';
 import Home from './pages/MainPage';
 import { RequareAuth } from './hoc/RequaireAuth';
 import BossPage from './pages/BossPage';
@@ -11,7 +10,6 @@ import './App.css';
 import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
 import FilePage from './pages/FilePage/FilePage';
-import TableFiles from './components/tables/tableFiles/TableFiles';
 import TableOrderFiles from './components/tables/tableOrderFiles/TableOrderFiles';
 import FilesPage from './pages/FilesPage/FilesPage';
 const theme: ThemeConfig = {
@@ -83,14 +81,6 @@ function App() {
                             }
                         />
                         <Route
-                            path={Paths.adminMain}
-                            element={
-                                <RequareAuth>
-                                    <BossPage />
-                                </RequareAuth>
-                            }
-                        />
-                        <Route
                             path={Paths.nomenclature}
                             element={<BossPage />}
                         />
@@ -109,7 +99,11 @@ function App() {
                         />
                         <Route
                             path={Paths.orderFiles}
-                            element={<TableOrderFiles />}
+                            element={
+                                <RequareAuth>
+                                    <TableOrderFiles />
+                                </RequareAuth>
+                            }
                         />
                         <Route
                             path={Paths.file}
@@ -119,7 +113,6 @@ function App() {
                                 </RequareAuth>
                             }
                         />
-                        <Route></Route>
                         <Route
                             path={Paths.options}
                             element={

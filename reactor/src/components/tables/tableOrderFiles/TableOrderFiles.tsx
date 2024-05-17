@@ -6,6 +6,7 @@ import { useGetAllFilesByKKSQuery } from '../../../app/services/orders';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 import { statuses } from '../../../constans/statusData';
+import { openFile } from '../../../functions/openFile';
 
 const TableOrderFiles = () => {
     const { kks } = useParams();
@@ -23,8 +24,7 @@ const TableOrderFiles = () => {
         navigate('/files');
     };
     const handleClick = (path: string) => {
-        const securePath = encodeURIComponent(path);
-        navigate(`/file/${securePath}`);
+        openFile(path);
     };
     return (
         <Flex vertical className={styles.page}>
@@ -47,26 +47,28 @@ const TableOrderFiles = () => {
                     </tr>
                 </thead>
                 {isLoading ? (
-                    <tr>
-                        <td
-                            colSpan={3}
-                            style={{
-                                textAlign: 'center',
-                            }}
-                        >
-                            <Spin
-                                indicator={
-                                    <LoadingOutlined
-                                        style={{
-                                            marginTop: '16px',
-                                            fontSize: 36,
-                                        }}
-                                        spin
-                                    />
-                                }
-                            />
-                        </td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td
+                                colSpan={3}
+                                style={{
+                                    textAlign: 'center',
+                                }}
+                            >
+                                <Spin
+                                    indicator={
+                                        <LoadingOutlined
+                                            style={{
+                                                marginTop: '16px',
+                                                fontSize: 36,
+                                            }}
+                                            spin
+                                        />
+                                    }
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
                 ) : (
                     <tbody>
                         {data &&
