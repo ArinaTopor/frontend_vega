@@ -26,11 +26,11 @@ const TableOrders = () => {
         null
     );
     const { data } = useGetPagesQuery();
-    const [open, setOpen] = useState(false); //onOpen
+    const [open, setOpen] = useState(false);
 
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [pages, setPages] = useState<undefined | number>(data);
-    const { data: orderData, isLoading } = useGetInfoOrdersQuery(currentPage);
+    const { data: orderData } = useGetInfoOrdersQuery(currentPage);
     const [typeModal, setTypeModal] = useState<ModalTypes | null>(null);
     const [stepData, setStepData] = useState<Orders | undefined>();
     const [visible, setVisible] = useState<boolean[]>([]);

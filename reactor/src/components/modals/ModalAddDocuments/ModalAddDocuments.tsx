@@ -1,6 +1,4 @@
 import { Button, Form, Modal, Typography } from 'antd';
-import FormInput from '../../custom-input/FormInput/FormInput';
-import { FileInput } from '../../custom-input/FileInput/FileInput';
 import { CustomTextarea } from '../../custom-input/CustomTextarea/CustomTextarea';
 import style from './ModalAddDocuments.module.css';
 import { Step } from '../../../utils/Step';

@@ -1,7 +1,6 @@
 import { Button, Flex, Form, Image, Modal, Typography } from 'antd';
 import { CustomTextarea } from '../../custom-input/CustomTextarea/CustomTextarea';
 import style from './ModalOrderApproval.module.css';
-import { FileInput } from '../../custom-input/FileInput/FileInput';
 import srcFile from '../../../assets/icons/file.svg';
 
 type Props = {
@@ -78,13 +77,6 @@ export const ModalOrderApproval = ({ open, setOpen }: Props) => {
                 <Typography.Text className={style.titleSection}>
                     Замечания
                 </Typography.Text>
-                {/* <FileInput
-                    name='files'
-                    required={true}
-                    inputFileStyle={style.inputFile}
-                    maxCount={2}
-                    f
-                /> */}
                 <CustomTextarea
                     name='description'
                     label='Комментарий/описание'
