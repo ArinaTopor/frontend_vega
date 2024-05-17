@@ -11,12 +11,12 @@ import {
 
 type Props = {
     open: boolean;
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    onOpen: React.Dispatch<React.SetStateAction<boolean>>;
     kks: string;
     step: Step;
 };
 
-export const ModalAddDocuments = ({ open, setOpen, kks, step }: Props) => {
+export const ModalAddDocuments = ({ open, onOpen, kks, step }: Props) => {
     const [form] = Form.useForm();
     const [fileList, setFiles] = useState<File[] | undefined>();
     const [completeStep, { isLoading }] = useCompleteStepMutation();
@@ -36,7 +36,7 @@ export const ModalAddDocuments = ({ open, setOpen, kks, step }: Props) => {
     };
 
     const handleCLose = () => {
-        setOpen(false);
+        onOpen(false);
         form.resetFields();
     };
 

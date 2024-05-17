@@ -16,7 +16,7 @@ import styles from './Login.module.css';
 const Login = () => {
     const [loginUser, { isLoading }] = useLoginMutation();
     const navigate = useNavigate();
-    const { data, refetch } = useCurrentQuery();
+    const { refetch } = useCurrentQuery();
     const user = useSelector(selectUser);
     const [isError, setIsErrors] = useState<boolean>(false);
 
