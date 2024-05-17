@@ -8,9 +8,8 @@ import { useCurrentQuery } from '../app/services/auth';
 const { Content } = Layout;
 
 export function CustomLayout() {
-    const { data } = useCurrentQuery(); //подумать
+    const { data } = useCurrentQuery();
     const user = useSelector(selectUser);
-    console.log(user);
     return (
         <Layout>
             {user && user.role !== 'Рабочий' && <Sidebar user={user} />}

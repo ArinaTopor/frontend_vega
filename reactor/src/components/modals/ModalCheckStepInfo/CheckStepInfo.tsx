@@ -1,19 +1,18 @@
 import { Button, Modal } from 'antd';
 import styles from './CheckStepInfo.module.css';
-import { useNavigate } from 'react-router';
 import { Step } from '../../../utils/Step';
 import { openFile } from '../../../functions/openFile';
 
 type Props = {
     open: boolean;
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    onOpen: React.Dispatch<React.SetStateAction<boolean>>;
     kks: string;
     step: Step;
 };
 
-export const CheckStepInfo = ({ open, setOpen, kks, step }: Props) => {
+export const CheckStepInfo = ({ open, onOpen, kks, step }: Props) => {
     const handleCLose = () => {
-        setOpen(false);
+        onOpen(false);
     };
 
     const readFile = (path: string) => {
