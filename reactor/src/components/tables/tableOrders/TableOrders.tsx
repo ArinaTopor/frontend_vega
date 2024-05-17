@@ -1,6 +1,6 @@
+import React from 'react';
 import { Checkbox, Col, Flex, Pagination, PaginationProps, Row } from 'antd';
 import { useEffect, useState } from 'react';
-import styles from './TableOrders.module.css';
 import CheckStepInfo from '../../modals/ModalCheckStepInfo/CheckStepInfo';
 import RowOrder from '../tableOrdersComponents/RowOrders';
 import RowOrdersWithChildren from '../tableOrdersComponents/RowOrderWithChild';
@@ -10,24 +10,20 @@ import {
 } from '../../../app/services/orders';
 import { Step } from '../../../utils/Step';
 import { Orders, Step_info } from '../../../utils/Orders';
-import React from 'react';
 import { ModalTypes } from '../../../constans/typeModals';
 import { selectUser } from '../../../features/auth/authSlice';
 import { useSelector } from 'react-redux';
 import { ModalAddDocuments } from '../../modals/ModalAddDocuments/ModalAddDocuments';
 import { isCanAddDocument } from '../../../functions/checkPrivilegesUser';
+import { ModalInfo } from '../../../utils/ModalInfo';
+import styles from './TableOrders.module.css';
 
-export type ModalInfo = {
-    kks: string;
-    step_info?: Step;
-};
 const TableOrders = () => {
     const [selectedStepData, setSelectedStepData] = useState<ModalInfo | null>(
         null
     );
     const { data } = useGetPagesQuery();
     const [open, setOpen] = useState(false);
-
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [pages, setPages] = useState<undefined | number>(data);
     const { data: orderData } = useGetInfoOrdersQuery(currentPage);
@@ -294,7 +290,7 @@ const TableOrders = () => {
                     typeModal === ModalTypes.addDocument && (
                         <ModalAddDocuments
                             open={open}
-                            setOpen={setOpen}
+                            onOpen={setOpen}
                             kks={selectedStepData.kks}
                             step={selectedStepData.step_info}
                         />
@@ -304,7 +300,7 @@ const TableOrders = () => {
                     typeModal === ModalTypes.showInfo && (
                         <CheckStepInfo
                             open={open}
-                            setOpen={setOpen}
+                            onOpen={setOpen}
                             kks={selectedStepData.kks}
                             step={selectedStepData.step_info}
                         ></CheckStepInfo>

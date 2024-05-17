@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Button, Flex, Popover, Typography, Image, Spin } from 'antd';
 import styles from './OrdersPage.module.css';
 import { ModalAddOrder } from '../../components/modals/ModalAddOrder/ModalAddOrder';
-import TableOrders from '../../components/tables/tableOrder/TableOrders';
+import TableOrders from '../../components/tables/tableOrders/TableOrders';
 import {
     useGetInfoOrdersQuery,
     useGetStatQuery,
