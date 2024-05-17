@@ -14,18 +14,12 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { getDate } from '../../functions/date';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/auth/authSlice';
-let globalUser: any = null;
 export const OrdersPage = () => {
     const [open, setOpen] = useState(false);
     const { data: dataStat, isLoading } = useGetStatQuery();
     const { data: orderData } = useGetInfoOrdersQuery(1);
     const [dataLoaded, setDataLoaded] = useState(false);
     const user = useSelector(selectUser);
-
-    if (user !== globalUser) {
-        console.log({ user, globalUser });
-        globalUser = user;
-    }
     useEffect(() => {
         if (dataStat) {
             setDataLoaded(true);

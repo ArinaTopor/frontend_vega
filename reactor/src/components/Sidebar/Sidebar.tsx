@@ -92,13 +92,15 @@ export function Sidebar({ user }: Props) {
                 vertical
                 gap='4.9vh'
             >
-                <SidebarNavLink
-                    path={Paths.nomenclature}
-                    linkStyle={style.link}
-                    srcImage={nomenclature}
-                    isCollapsed={isCollapsed}
-                    text='Номенклатура'
-                />
+                {user && Object.keys(user.privileges).includes('23') && (
+                    <SidebarNavLink
+                        path={Paths.nomenclature}
+                        linkStyle={style.link}
+                        srcImage={nomenclature}
+                        isCollapsed={isCollapsed}
+                        text='Номенклатура'
+                    />
+                )}
                 <SidebarNavLink
                     path={Paths.tasksBoard}
                     linkStyle={style.link}
