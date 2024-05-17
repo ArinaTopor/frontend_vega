@@ -43,10 +43,12 @@ export const OrdersPage = () => {
                         <LoadingOutlined style={{ fontSize: 24 }} spin />
                     }
                 />
-            ) : dataStat && orderData && Object.keys(orderData).length > 0 ? (
+            ) : orderData && Object.keys(orderData).length > 0 ? (
                 <>
                     <TableOrders />
-                    <OrderStatistics stat={dataStat} />
+                    {user && Object.keys(user.privileges).includes('2') && (
+                        <OrderStatistics />
+                    )}
                 </>
             ) : (
                 <WaitingList />
