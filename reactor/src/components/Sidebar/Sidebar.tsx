@@ -18,7 +18,7 @@ import { Typography } from 'antd';
 const { Text } = Typography;
 
 type Props = {
-    user: InfoUser | null;
+    user: InfoUser;
 };
 
 export function Sidebar({ user }: Props) {
@@ -92,7 +92,7 @@ export function Sidebar({ user }: Props) {
                 vertical
                 gap='4.9vh'
             >
-                {user && Object.keys(user.privileges).includes('23') && (
+                {Object.keys(user.privileges).includes('23') && (
                     <SidebarNavLink
                         path={Paths.nomenclature}
                         linkStyle={style.link}
