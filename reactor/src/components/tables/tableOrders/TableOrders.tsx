@@ -17,6 +17,7 @@ import { ModalAddDocuments } from '../../modals/ModalAddDocuments/ModalAddDocume
 import { isCanAddDocument } from '../../../functions/checkPrivilegesUser';
 import { ModalInfo } from '../../../utils/ModalInfo';
 import styles from './TableOrders.module.css';
+import { ModalOrderApproval } from '../../modals/ModalOrderApproval/ModalOrderApproval';
 
 const TableOrders = () => {
     const [selectedStepData, setSelectedStepData] = useState<ModalInfo | null>(
@@ -113,87 +114,6 @@ const TableOrders = () => {
                     setTypeModal(null);
                 }
             }
-
-            //         isCanAddDocument(
-            //             user,
-            //             'Разработка технических данных',
-            //             selectedData.step_info,
-            //             '16',
-            //             stepData[kksId].steps_info,
-            //             id
-            //         )
-            //     ) {
-            //         setTypeModal(ModalTypes.addDocument);
-            //     } else if (
-            //         isCanAddDocument(
-            //             user,
-            //             'Разработка чертежей и спецификации',
-            //             selectedData.step_info,
-            //             '17',
-            //             stepData[kksId].steps_info,
-            //             id
-            //         )
-            //     ) {
-            //         setTypeModal(ModalTypes.addDocument);
-            //     } else if (
-            //         isCanAddDocument(
-            //             user,
-            //             'Разработка электросхемы',
-            //             selectedData.step_info,
-            //             '18',
-            //             stepData[kksId].steps_info,
-            //             id
-            //         )
-            //     ) {
-            //         setTypeModal(ModalTypes.addDocument);
-            //     } else if (
-            //         isCanAddDocument(
-            //             user,
-            //             'Разработка ИДП и ПС',
-            //             selectedData.step_info,
-            //             '19',
-            //             stepData[kksId].steps_info,
-            //             id
-            //         )
-            //     ) {
-            //         setTypeModal(ModalTypes.addDocument);
-            //     } else if (
-            //         isCanAddDocument(
-            //             user,
-            //             'Согласование АЭП',
-            //             selectedData.step_info,
-            //             '20',
-            //             stepData[kksId].steps_info,
-            //             id
-            //         )
-            //     ) {
-            //         setTypeModal(ModalTypes.approvalSteps);
-            //     } else if (
-            //         isCanAddDocument(
-            //             user,
-            //             'Отдел снабжения',
-            //             selectedData.step_info,
-            //             '0',
-            //             stepData[kksId].steps_info,
-            //             id
-            //         )
-            //     ) {
-            //         setTypeModal(ModalTypes.addDocument);
-            //     } else if (
-            //         isCanAddDocument(
-            //             user,
-            //             'Склад',
-            //             selectedData.step_info,
-            //             '0',
-            //             stepData[kksId].steps_info,
-            //             id
-            //         )
-            //     ) {
-            //         setTypeModal(ModalTypes.stage);
-            //     } else {
-            //         setTypeModal(null);
-            //     }
-            // }
             setOpen(true);
         }
     };
@@ -361,6 +281,16 @@ const TableOrders = () => {
                             kks={selectedStepData.kks}
                             step={selectedStepData.step_info}
                         ></CheckStepInfo>
+                    )}
+                {selectedStepData &&
+                    selectedStepData.step_info &&
+                    typeModal === ModalTypes.stage && (
+                        <ModalOrderApproval
+                            open={open}
+                            setOpen={setOpen}
+                            kks={selectedStepData.kks}
+                            step={selectedStepData.step_info}
+                        ></ModalOrderApproval>
                     )}
             </Flex>
         </>

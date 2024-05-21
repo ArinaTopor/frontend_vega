@@ -1,0 +1,15 @@
+.btnFile {
+    width: 15.1vw;
+    height: 5.37vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 2px solid #c5c5c5;
+    margin-right: 1.77vw;
+    /*margin-bottom: 1.68vh;*/
+}
+.titleFile {
+    font-size: 1.85vh;
+    font-weight: 400;
+}
