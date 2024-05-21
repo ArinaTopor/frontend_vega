@@ -23,13 +23,15 @@ export function isCanAddDocument(
     user: InfoUser,
     role: string,
     step: Step,
-    idPrivelege: string,
+    userPrivilege: string,
     stepsInfo: Step_info[],
     idStep: number
 ) {
     return (
         step.step_name === role &&
-        Object.keys(user.privileges).includes(idPrivelege) &&
+        Object.keys(user.privileges).find((privilege) =>
+            user.privileges[privilege].name.localeCompare(userPrivilege)
+        ) &&
         checkPrivileges(stepsInfo, idStep)
     );
 }

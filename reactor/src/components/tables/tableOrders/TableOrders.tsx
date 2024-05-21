@@ -52,91 +52,148 @@ const TableOrders = () => {
                 kks: stepData[kksId].kks,
                 step_info: findStep(id, stepData[kksId].steps_info),
             };
-            if (selectedData.step_info && user) {
-                setSelectedStepData(selectedData);
-                if (selectedData.step_info.is_completed) {
-                    setTypeModal(ModalTypes.showInfo);
-                } else if (
+
+            if (!selectedData.step_info || !user) return;
+            const docChecks: {
+                type: ModalTypes;
+                docType: string;
+                privilege: string;
+            }[] = [
+                {
+                    type: ModalTypes.addDocument,
+                    docType: 'Разработка технических данных',
+                    privilege: 'tech data create',
+                },
+                {
+                    type: ModalTypes.addDocument,
+                    docType: 'Разработка чертежей и спецификации',
+                    privilege: 'draft create',
+                },
+                {
+                    type: ModalTypes.addDocument,
+                    docType: 'Разработка электросхемы',
+                    privilege: 'wiring diagram create',
+                },
+                {
+                    type: ModalTypes.addDocument,
+                    docType: 'Разработка ИДП и ПС',
+                    privilege: 'idp create',
+                },
+                {
+                    type: ModalTypes.approvalSteps,
+                    docType: 'Согласование АЭП',
+                    privilege: 'agree create',
+                },
+                {
+                    type: ModalTypes.addDocument,
+                    docType: 'Отдел снабжения',
+                    privilege: '0',
+                },
+                { type: ModalTypes.stage, docType: 'Склад', privilege: '0' },
+            ];
+            setSelectedStepData(selectedData);
+
+            if (selectedData.step_info.is_completed) {
+                setTypeModal(ModalTypes.showInfo);
+            } else {
+                const docCheck = docChecks.find(({ docType, privilege }) =>
                     isCanAddDocument(
                         user,
-                        'Разработка технических данных',
-                        selectedData.step_info,
-                        '16',
+                        docType,
+                        selectedData.step_info!,
+                        privilege,
                         stepData[kksId].steps_info,
                         id
                     )
-                ) {
-                    setTypeModal(ModalTypes.addDocument);
-                } else if (
-                    isCanAddDocument(
-                        user,
-                        'Разработка чертежей и спецификации',
-                        selectedData.step_info,
-                        '17',
-                        stepData[kksId].steps_info,
-                        id
-                    )
-                ) {
-                    setTypeModal(ModalTypes.addDocument);
-                } else if (
-                    isCanAddDocument(
-                        user,
-                        'Разработка электросхемы',
-                        selectedData.step_info,
-                        '18',
-                        stepData[kksId].steps_info,
-                        id
-                    )
-                ) {
-                    setTypeModal(ModalTypes.addDocument);
-                } else if (
-                    isCanAddDocument(
-                        user,
-                        'Разработка ИДП и ПС',
-                        selectedData.step_info,
-                        '19',
-                        stepData[kksId].steps_info,
-                        id
-                    )
-                ) {
-                    setTypeModal(ModalTypes.addDocument);
-                } else if (
-                    isCanAddDocument(
-                        user,
-                        'Согласование АЭП',
-                        selectedData.step_info,
-                        '20',
-                        stepData[kksId].steps_info,
-                        id
-                    )
-                ) {
-                    setTypeModal(ModalTypes.approvalSteps);
-                } else if (
-                    isCanAddDocument(
-                        user,
-                        'Отдел снабжения',
-                        selectedData.step_info,
-                        '0',
-                        stepData[kksId].steps_info,
-                        id
-                    )
-                ) {
-                    setTypeModal(ModalTypes.addDocument);
-                } else if (
-                    isCanAddDocument(
-                        user,
-                        'Склад',
-                        selectedData.step_info,
-                        '0',
-                        stepData[kksId].steps_info,
-                        id
-                    )
-                ) {
-                    setTypeModal(ModalTypes.stage);
+                );
+
+                if (docCheck) {
+                    setTypeModal(docCheck.type);
                 } else {
                     setTypeModal(null);
                 }
             }
+
+            //         isCanAddDocument(
+            //             user,
+            //             'Разработка технических данных',
+            //             selectedData.step_info,
+            //             '16',
+            //             stepData[kksId].steps_info,
+            //             id
+            //         )
+            //     ) {
+            //         setTypeModal(ModalTypes.addDocument);
+            //     } else if (
+            //         isCanAddDocument(
+            //             user,
+            //             'Разработка чертежей и спецификации',
+            //             selectedData.step_info,
+            //             '17',
+            //             stepData[kksId].steps_info,
+            //             id
+            //         )
+            //     ) {
+            //         setTypeModal(ModalTypes.addDocument);
+            //     } else if (
+            //         isCanAddDocument(
+            //             user,
+            //             'Разработка электросхемы',
+            //             selectedData.step_info,
+            //             '18',
+            //             stepData[kksId].steps_info,
+            //             id
+            //         )
+            //     ) {
+            //         setTypeModal(ModalTypes.addDocument);
+            //     } else if (
+            //         isCanAddDocument(
+            //             user,
+            //             'Разработка ИДП и ПС',
+            //             selectedData.step_info,
+            //             '19',
+            //             stepData[kksId].steps_info,
+            //             id
+            //         )
+            //     ) {
+            //         setTypeModal(ModalTypes.addDocument);
+            //     } else if (
+            //         isCanAddDocument(
+            //             user,
+            //             'Согласование АЭП',
+            //             selectedData.step_info,
+            //             '20',
+            //             stepData[kksId].steps_info,
+            //             id
+            //         )
+            //     ) {
+            //         setTypeModal(ModalTypes.approvalSteps);
+            //     } else if (
+            //         isCanAddDocument(
+            //             user,
+            //             'Отдел снабжения',
+            //             selectedData.step_info,
+            //             '0',
+            //             stepData[kksId].steps_info,
+            //             id
+            //         )
+            //     ) {
+            //         setTypeModal(ModalTypes.addDocument);
+            //     } else if (
+            //         isCanAddDocument(
+            //             user,
+            //             'Склад',
+            //             selectedData.step_info,
+            //             '0',
+            //             stepData[kksId].steps_info,
+            //             id
+            //         )
+            //     ) {
+            //         setTypeModal(ModalTypes.stage);
+            //     } else {
+            //         setTypeModal(null);
+            //     }
+            // }
             setOpen(true);
         }
     };

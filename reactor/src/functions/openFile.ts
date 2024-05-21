@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { loadDataIntoIframe, loadDocFile } from './fetchFiles';
 
 export const openFile = async (path: string) => {

@@ -11,17 +11,11 @@ const UploadFile = ({
     uploadedFiles: File[] | undefined;
 }) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newFiles = event.target.files;
-        if (newFiles) {
-            let currentFiles: File[];
-            if (uploadedFiles) currentFiles = Array.from(uploadedFiles);
-            else {
-                currentFiles = [];
-            }
-            for (let i = 0; i < newFiles.length; i++) {
-                currentFiles.push(newFiles[i]);
-            }
-            updateUploadFiles(currentFiles);
+        if (event.target.files) {
+            updateUploadFiles([
+                ...(uploadedFiles ?? []),
+                ...event.target.files,
+            ]);
         }
     };
     const removeFile = (indexI: number) => {

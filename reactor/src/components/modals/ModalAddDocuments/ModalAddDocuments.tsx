@@ -33,6 +33,7 @@ export const ModalAddDocuments = ({ open, onOpen, kks, step }: Props) => {
         formData.append('Description', infoStep.description ?? '');
         completeStep(formData);
         form.resetFields();
+        setFiles([]);
     };
 
     const handleCLose = () => {

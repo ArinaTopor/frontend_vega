@@ -1,11 +1,10 @@
 import { Card, Flex, Typography } from 'antd';
 import styles from './stat.module.css';
-import { CommonResponse } from '../../utils/CommonResponse';
 import { NameStage } from '../../constans/stageData';
 import { useGetStatQuery } from '../../app/services/orders';
 
 const OrderStatistics = () => {
-    const { data: stat, isLoading } = useGetStatQuery();
+    const { data: stat } = useGetStatQuery();
     return (
         <Flex vertical className={styles.wrapper}>
             <Typography.Text className={styles.title}>

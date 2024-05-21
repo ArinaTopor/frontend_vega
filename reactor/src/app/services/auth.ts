@@ -8,12 +8,8 @@ export type LoginData = {
     login: string;
     password: string;
 };
-export type Privilege = {
-    [key: string]: {
-        name: string;
-        description: string;
-    };
-};
+export type Privilege = Record<string, { name: string; description: string }>;
+
 export type InfoUser = {
     login: string;
     name: string | null;

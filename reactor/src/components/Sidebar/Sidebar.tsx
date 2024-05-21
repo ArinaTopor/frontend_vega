@@ -27,8 +27,8 @@ export function Sidebar({ user }: Props) {
     const dispatch = useDispatch();
     const createName = function (nameBack: string) {
         const nameArray: string[] = nameBack.split(' ');
-        const initials: string = 'Admin'; //`${nameArray[0][0]}${nameArray[1][0]}`;
-        const name: string = 'A'; //nameArray && `${nameArray[0]} ${nameArray[1][0]}.`;
+        const initials: string = 'AA'; //`${nameArray[0][0]}${nameArray[1][0]}`;
+        const name: string = 'IVAN'; //nameArray && `${nameArray[0]} ${nameArray[1][0]}.`; пока что заглушки, потому что на бэке нет фамилий/имен и тд
         return {
             initials,
             name,
@@ -79,11 +79,10 @@ export function Sidebar({ user }: Props) {
                         isCollapsed ? style.avatar_collapsed : style.avatar
                     }
                 >
-                    hh
-                    {/* {names.initials} */}
+                    {names.initials}
                 </Flex>
                 {!isCollapsed && (
-                    <Text className={style.name}></Text> //{names.name}
+                    <Text className={style.name}>{names.name}</Text>
                 )}
             </Flex>
             <Flex
