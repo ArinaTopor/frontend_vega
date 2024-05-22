@@ -6,22 +6,50 @@ import { Step } from '../../../utils/Step';
 import UploadFile from '../../custom-input/UploadFile/UploadFile';
 import { useState } from 'react';
 import ButtonFile from '../../ButtonFile/ButtonFile';
+import {
+    CompleteStep,
+    useCompleteStepMutation,
+} from '../../../app/services/orders';
+import { Orders, Step_info } from '../../../utils/Orders';
+import { getFileApproval } from '../../../functions/getFilesApproval';
 
 type Props = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     kks: string;
     step: Step;
+    stepInfo: Step_info[];
 };
 
-export const ModalOrderApproval = ({ open, setOpen, kks, step }: Props) => {
+export const ModalOrderApproval = ({
+    open,
+    setOpen,
+    kks,
+    step,
+    stepInfo,
+}: Props) => {
     const [form] = Form.useForm();
     const [fileList, setFiles] = useState<File[] | undefined>();
+    const [completeStep, { isLoading }] = useCompleteStepMutation();
+    const [isApproved, setIsApproved] = useState<boolean>(false);
+    const idpAndPsFile = getFileApproval(stepInfo, step.step_id);
 
-    const handleSubmit = () => {
+    const handleSubmit = (infoStep: CompleteStep) => {
+        const formData = new FormData();
+        if (fileList)
+            for (let i = 0; i < fileList.length; i++) {
+                const file = fileList[i];
+                formData.append('files', file);
+            }
+        formData.append('KKS', kks);
+        formData.append('StepId', step.step_id.toString());
+        formData.append('Description', infoStep.description ?? '');
+        formData.append('isApproved', isApproved.toString());
+        completeStep(formData);
         form.resetFields();
+        setFiles([]);
+        setOpen(false);
     };
-
     const handleCLose = () => {
         setOpen(false);
         form.resetFields();
@@ -45,12 +73,14 @@ export const ModalOrderApproval = ({ open, setOpen, kks, step }: Props) => {
                 <Typography.Text className={style.titleSection}>
                     Файлы для согласования
                 </Typography.Text>
-                <Flex className={style.wrapperFilesApproval}>
-                    <Flex className={style.filesApproval}>
-                        {step.files.map((file) => (
-                            <ButtonFile file={file}></ButtonFile>
+                <Flex className={style.filesApproval}>
+                    {idpAndPsFile &&
+                        idpAndPsFile.files.map((file) => (
+                            <ButtonFile
+                                file={file}
+                                key={file.upload_date}
+                            ></ButtonFile>
                         ))}
-                    </Flex>
                 </Flex>
                 <Typography.Text className={style.titleSection}>
                     Замечания
@@ -64,10 +94,18 @@ export const ModalOrderApproval = ({ open, setOpen, kks, step }: Props) => {
                     label='Комментарий/описание'
                 />
                 <Flex className={style.buttons}>
-                    <Button className={style.buttonNoApprove} htmlType='submit'>
+                    <Button
+                        className={style.buttonNoApprove}
+                        htmlType='submit'
+                        onClick={() => setIsApproved(false)}
+                    >
                         Не согласовать
                     </Button>
-                    <Button className={style.buttonApprove} htmlType='submit'>
+                    <Button
+                        className={style.buttonApprove}
+                        htmlType='submit'
+                        onClick={() => setIsApproved(true)}
+                    >
                         Согласовать
                     </Button>
                 </Flex>

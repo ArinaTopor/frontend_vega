@@ -11,7 +11,7 @@ const ButtonFile = ({ file }: { file: CustomFile }) => {
         <Button
             className={styles.btnFile}
             icon={<FileOutlined />}
-            iconPosition='start'
+            iconPosition='end'
             onClick={() => handleOpenFile(file.path)}
         >
             <Typography.Text className={styles.titleFile}>

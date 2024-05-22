@@ -34,6 +34,7 @@ export type CompleteStep = {
     KKS: string;
     StepId: number;
     description: string;
+    IsApproved?: boolean;
 };
 export const ordersApi = api.injectEndpoints({
     endpoints: (builder) => ({

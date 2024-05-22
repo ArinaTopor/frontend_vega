@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Checkbox, Col, Flex, Pagination, PaginationProps, Row } from 'antd';
 import { useEffect, useState } from 'react';
 import CheckStepInfo from '../../modals/ModalCheckStepInfo/CheckStepInfo';
@@ -32,6 +32,7 @@ const TableOrders = () => {
     const [stepData, setStepData] = useState<Orders | undefined>();
     const [visible, setVisible] = useState<boolean[]>([]);
     const user = useSelector(selectUser);
+    let currentId = useRef('');
     useEffect(() => {
         if (orderData) {
             setStepData(orderData);
@@ -49,11 +50,11 @@ const TableOrders = () => {
     };
     const onSelectRow = (kksId: string, id: number) => {
         if (stepData) {
+            currentId.current = kksId;
             const selectedData: ModalInfo = {
                 kks: stepData[kksId].kks,
                 step_info: findStep(id, stepData[kksId].steps_info),
             };
-
             if (!selectedData.step_info || !user) return;
             const docChecks: {
                 type: ModalTypes;
@@ -93,7 +94,6 @@ const TableOrders = () => {
                 { type: ModalTypes.stage, docType: 'Склад', privilege: '0' },
             ];
             setSelectedStepData(selectedData);
-
             if (selectedData.step_info.is_completed) {
                 setTypeModal(ModalTypes.showInfo);
             } else {
@@ -283,13 +283,15 @@ const TableOrders = () => {
                         ></CheckStepInfo>
                     )}
                 {selectedStepData &&
+                    stepData &&
                     selectedStepData.step_info &&
-                    typeModal === ModalTypes.stage && (
+                    typeModal === ModalTypes.approvalSteps && (
                         <ModalOrderApproval
                             open={open}
                             setOpen={setOpen}
                             kks={selectedStepData.kks}
                             step={selectedStepData.step_info}
+                            stepInfo={stepData[currentId.current].steps_info}
                         ></ModalOrderApproval>
                     )}
             </Flex>
