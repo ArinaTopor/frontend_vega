@@ -6,8 +6,12 @@ export const Paths = {
     workerMain: '/home',
     adminMain: '/adminHome',
     stkMain: '/stkHome',
-    options: '/options'
-} as const;
+    options: '/options',
+    file: '/file/:path',
+    tableFiles: '/files',
+    orderFiles: '/files/:kks',
+};
+
 export const MainPageRoles: {
     worker: string;
     admin: string;
@@ -15,7 +19,7 @@ export const MainPageRoles: {
     storage: string;
 } = {
     worker: '/home',
-    admin: '/adminHome',
+    admin: '/taskBoard',
     stk: '/stkHome',
     storage: 'storageHome',
 };

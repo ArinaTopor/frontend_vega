@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
-import { CommonResponse, employeesApi } from '../app/services/employees';
+import {employeesApi } from '../app/services/employees';
+import { CommonResponse } from '../utils/CommonResponse';
 
 interface InitialState {
     areas: CommonResponse | null;

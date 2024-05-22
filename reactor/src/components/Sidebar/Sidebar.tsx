@@ -18,18 +18,17 @@ import { Typography } from 'antd';
 const { Text } = Typography;
 
 type Props = {
-    user: InfoUser | null;
+    user: InfoUser;
 };
 
 export function Sidebar({ user }: Props) {
     const [isCollapsed, setIsCollapsed] = useState(true);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const createName = function (nameBack: string) {
         const nameArray: string[] = nameBack.split(' ');
-        const initials: string = `${nameArray[0][0]}${nameArray[1][0]}`;
-        const name: string = nameArray && `${nameArray[0]} ${nameArray[1][0]}.`;
+        const initials: string = 'AA'; //`${nameArray[0][0]}${nameArray[1][0]}`;
+        const name: string = 'IVAN'; //nameArray && `${nameArray[0]} ${nameArray[1][0]}.`; пока что заглушки, потому что на бэке нет фамилий/имен и тд
         return {
             initials,
             name,
@@ -44,7 +43,6 @@ export function Sidebar({ user }: Props) {
 
     const handleLogout = () => {
         dispatch(logout());
-        
         navigate('/');
     };
 
@@ -54,6 +52,8 @@ export function Sidebar({ user }: Props) {
                 height: '100vh',
                 background: '#314659',
                 transition: 'all 0.5s',
+                position: 'absolute',
+                zIndex: '999999',
             }}
             width='12.8vw'
             collapsedWidth='6.3vw'
@@ -91,13 +91,15 @@ export function Sidebar({ user }: Props) {
                 vertical
                 gap='4.9vh'
             >
-                <SidebarNavLink
-                    path={Paths.nomenclature}
-                    linkStyle={style.link}
-                    srcImage={nomenclature}
-                    isCollapsed={isCollapsed}
-                    text='Номенклатура'
-                />
+                {Object.keys(user.privileges).includes('23') && (
+                    <SidebarNavLink
+                        path={Paths.nomenclature}
+                        linkStyle={style.link}
+                        srcImage={nomenclature}
+                        isCollapsed={isCollapsed}
+                        text='Номенклатура'
+                    />
+                )}
                 <SidebarNavLink
                     path={Paths.tasksBoard}
                     linkStyle={style.link}
@@ -106,7 +108,7 @@ export function Sidebar({ user }: Props) {
                     text='Заказы'
                 />
                 <SidebarNavLink
-                    path={Paths.products}
+                    path={Paths.tableFiles}
                     linkStyle={style.link}
                     srcImage={list}
                     isCollapsed={isCollapsed}
@@ -122,13 +124,15 @@ export function Sidebar({ user }: Props) {
                     vertical
                     align={isCollapsed ? 'center' : 'start'}
                 >
-                    <SidebarNavLink
-                        path={Paths.options}
-                        linkStyle={style.link}
-                        srcImage={setting}
-                        isCollapsed={isCollapsed}
-                        text='Настройки'
-                    />
+                    {user && user.role === 'Администратор' && (
+                        <SidebarNavLink
+                            path={Paths.options}
+                            linkStyle={style.link}
+                            srcImage={setting}
+                            isCollapsed={isCollapsed}
+                            text='Настройки'
+                        />
+                    )}
                     <Button onClick={handleLogout} className={style.exit}>
                         <Image
                             preview={false}

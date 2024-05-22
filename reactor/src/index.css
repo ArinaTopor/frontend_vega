@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Roboto:wght@400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -15,6 +15,7 @@
     );
     --accent: '#314659';
     --hover-background-green: '#24323E';
+    --red: '#D13D3D';
 }
 body {
     margin: 0;
@@ -33,6 +34,9 @@ h1 {
     font-size: 25px;
     font-weight: 700;
 }
+p {
+    padding: 0;
+}
 a {
     text-decoration: none;
 }
@@ -41,21 +45,93 @@ code {
         monospace;
 }
 
-:root {
-    --auth-background: linear-gradient(
-        296deg,
-        #314659 8.26%,
-        rgba(49, 70, 89, 0) 81.63%
-    );
+.ant-modal-content {
+    padding: 8.4vh 5.83vw 4.9vh 4.11vw !important;
+    border-radius: 0 !important;
+}
+
+.ant-upload-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 1.77vw;
+    max-height: 15.9vh;
+    overflow: auto;
+    width: 100%;
+    row-gap: 1.68vh;
+}
+
+.ant-upload-list::-webkit-scrollbar {
+    width: 0.57vw;
+}
+
+.ant-upload-list::-webkit-scrollbar-track {
+    background: #fff;
+    border-radius: 20px;
+    padding-left: 10px !important;
+}
+.ant-upload-list::-webkit-scrollbar-thumb {
+    background: #717171;
+    border-radius: 20px;
+}
+
+.ant-upload-list-item-container {
+    margin-right: 1.77vw;
+}
+
+.ant-upload-list-item {
+    height: 5.37vh !important;
+    width: 15.3vw;
+    margin-top: 0 !important;
+    border-radius: 2px !important;
+    border: 2px solid #c5c5c5 !important;
+}
+
+.ant-upload-list-item-thumbnail {
+    display: none;
+}
+
+.ant-upload-list-item-name {
+    display: inline-flex;
+    font-size: 1.85vh;
+    color: #314659;
+    padding-left: 1vw !important;
+}
+
+::-webkit-scrollbar {
+    width: 0.57vw;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #717171;
+    border-radius: 20px;
+}
+
+.ant-select-focused.ant-select-single:not(.ant-select-customize-input)
+    .ant-select-selector {
+    border-color: #000 !important;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+.ant-select-focused.ant-select-single:not(.ant-select-customize-input)
+    .ant-select-selector {
+    border-color: #24323e !important;
+    box-shadow: none !important;
 }
 
 .ant-select-single .ant-select-selector {
     font-size: 1.1vw !important;
 }
+
 .ant-select-selector {
     box-shadow: none !important;
     --ant-color-primary: #24323e;
 }
+
 
 .ant-picker-calendar-header{
     justify-content: start !important;
