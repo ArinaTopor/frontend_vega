@@ -4,7 +4,7 @@ import { ColumnTableWorker } from '../ColumnTableWorker/ColumnTableWorker';
 import {useState } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { InitialState, selectOrdersWorker, update } from '../../features/ordersWorkerSlice';
+import { InitialState, selectOrdersWorker, update } from '../../features/tasksWorkerSlice';
 
 export const TableWorker = () => {
 	const dispatch = useAppDispatch();

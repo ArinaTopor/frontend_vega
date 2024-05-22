@@ -5,13 +5,14 @@ import styles from './Clock.module.css'
 export const Clock = () => {
 	const [time, setTime] = useState(new Date());
 	useEffect(()=>{
-		setInterval(()=>{
+		const interval = setInterval(()=>{
 			setTime(new Date())
-		}, 1000)
+		}, 1000);
+		return () => clearInterval(interval);
 	},[])
 
-	const hours = time.getHours();
-  	const minutes = time.getMinutes();
+	const hours = String(time.getHours()).padStart(2,'0');
+  	const minutes = String(time.getMinutes()).padStart(2,'0');
 
 	const timeString = `${hours}:${minutes}`
 

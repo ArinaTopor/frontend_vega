@@ -40,7 +40,7 @@ const initialState: InitialState = {
 };
 
 const slice = createSlice({
-	name: 'ordersWorker',
+	name: 'tasksWorker',
 	initialState,
 	reducers: {
 		update: (state, action) => {
@@ -55,4 +55,4 @@ const slice = createSlice({
 export default slice.reducer;
 export const { update } = slice.actions;
 
-export const selectOrdersWorker = (state: RootState) => state.ordersWorker;
+export const selectOrdersWorker = (state: RootState) => state.tasksWorker;

@@ -1,35 +1,9 @@
-import { Card, Flex, Image, Typography } from 'antd';
+import {Flex, Image, Typography } from 'antd';
 import styles from './ColumnTableWorker.module.css';
-import srcSquare from '../../assets/icons/square.svg';
-import srcClock from '../../assets/icons/clock.svg';
-import srcReady from '../../assets/icons/ready.svg';
 import { CardTableWorker } from '../CardTableWorker/CardTableWorker';
-import { useAppSelector } from '../../app/hooks';
-import { InitialState, selectOrdersWorker } from '../../features/ordersWorkerSlice';
+import { InitialState} from '../../features/tasksWorkerSlice';
 import { Droppable } from 'react-beautiful-dnd';
-
-
-type InfoColumns = {
-	[key: string]: {
-		srcImage: string;
-		title: string;
-	};
-};
-
-const typesColumn: InfoColumns = {
-	made: {
-		srcImage: srcSquare,
-		title: 'Сделать',
-	},
-	process: {
-		srcImage: srcClock,
-		title: 'В процессе',
-	},
-	ready: {
-		srcImage: srcReady,
-		title: 'Готово',
-	},
-};
+import { typesColumnTableWorker } from '../../constans/typesColumnTableWorker';
 
 type Props = {
 	name: string;
@@ -45,9 +19,9 @@ export const ColumnTableWorker = ({ name, table }: Props) => {
 			gap="0.88vw"
 		>
 			<Flex align="center" gap="0.78vw">
-				<Image src={typesColumn[name].srcImage} preview={false} />
+				<Image src={typesColumnTableWorker[name].srcImage} preview={false} />
 				<Typography.Text className={styles.title_column}>
-					{typesColumn[name].title}
+					{typesColumnTableWorker[name].title}
 				</Typography.Text>
 			</Flex >
 			<Droppable droppableId={name}>

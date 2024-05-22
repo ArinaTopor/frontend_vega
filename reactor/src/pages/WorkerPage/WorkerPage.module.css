@@ -72,3 +72,10 @@
 	width: 2.1vw !important;
 	height: 2.5vw !important;
 }
+
+.wrapperCalendar{
+	min-width:18.6vw;
+	max-width: 18.6vw;
+	min-height: 18.6vw;
+	max-height: 18.6vw;
+}

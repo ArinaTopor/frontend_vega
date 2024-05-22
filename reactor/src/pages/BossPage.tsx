@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router';
 import { logout } from '../features/auth/authSlice';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../app/hooks';
-import { selectOrdersWorker } from '../features/ordersWorkerSlice';
+import { selectOrdersWorker } from '../features/tasksWorkerSlice';
 
 const BossPage = () => {
     const navigate = useNavigate();

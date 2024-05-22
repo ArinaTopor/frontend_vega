@@ -3,7 +3,7 @@ import styles from './CardTableWorker.module.css';
 import srcUser from '../../assets/image/user.png';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { InitialState, selectOrdersWorker, update } from '../../features/ordersWorkerSlice';
+import { InitialState, selectOrdersWorker, update } from '../../features/tasksWorkerSlice';
 import { Draggable } from 'react-beautiful-dnd';
 
 type Props = {
@@ -25,9 +25,8 @@ export const CardTableWorker = ({ id, name, index, table }: Props) => {
 				<Flex className={styles.card} vertical gap="0.78vw" {...provided.dragHandleProps} {...provided.draggableProps} ref={provided.innerRef}>
 					<Flex justify="center">
 						{name === 'process' || name === 'ready' ? (
-							<Image
+							<img
 								src={srcUser}
-								preview={false}
 								className={styles.image}
 							/>
 						) : (
