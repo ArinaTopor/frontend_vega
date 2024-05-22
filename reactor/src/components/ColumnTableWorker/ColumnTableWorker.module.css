@@ -1,0 +1,46 @@
+.column{
+	min-width: 21.1vw;
+	padding: 0.78vw;
+	border-radius: 15px;
+}
+
+.title_column{
+	font-family: 'Roboto';
+	font-size: 1.29vw;
+	line-height: 1.7vw;
+	font-weight: 500;
+}
+
+.cards{
+	min-height: 80%;
+}
+
+.made{
+	border: 1.24px solid rgba(202, 217, 246, 1);
+	box-shadow: 0px 1.24px 12.38px 0px rgba(242, 113, 84, 0.1);
+	background-color: rgba(238, 242, 252, 1);
+}
+
+.process{
+	border: 1.24px solid rgba(255, 228, 194, 1);
+	box-shadow: 0px 1.24px 12.38px 0px rgba(255, 175, 71, 0.1);
+	background-color: rgba(255, 246, 235, 1);
+}
+
+.ready{
+	border: 1.24px solid rgba(250, 208, 198, 1);
+	box-shadow: 0px 1.24px 12.38px 0px rgba(131, 195, 140, 0.1);
+	background-color: rgba(253, 240, 236, 1);
+}
+
+.made span{
+	color: rgba(20, 54, 123, 1);
+}
+
+.process span{
+	color:rgba(143, 79, 0, 1);
+}
+
+.ready span{
+	color:rgba(129, 41, 14, 1);
+}

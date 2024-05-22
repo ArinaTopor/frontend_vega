@@ -1,0 +1,81 @@
+
+.wrapper_body{
+	margin: 6.1vh 5.4vw 11.1vh 6.5vw;
+}
+
+.main{
+	width: 100%;
+}
+
+.title{
+	margin-left: 2vw;
+}
+
+.title_text{
+	color:rgba(49, 70, 89, 1);
+	font-family: 'Roboto';
+	font-size: 2.4vw;
+	font-weight: 600;
+	line-height: 2.8vw;
+}	
+
+.btnExit{
+	background-color: rgba(129, 41, 14, 1);
+	height: 6.57vh;
+	padding-left: 1.25vw;
+	padding-right: 1.4vw;
+	border-radius: 8px;
+	position: fixed;
+	right: 2.2vw;
+	top: 3.5vh;
+	cursor: pointer;
+}
+
+.btnExit:hover{
+	opacity: 0.7;
+}
+
+.btnText{
+	font-size: 1.56vw;
+	font-weight: 500;
+	line-height: 2vw;
+	color:#fff;
+}
+
+.footer{
+	position: fixed;
+	bottom: 0;
+	height: 7.4vh;
+	width: 100%;
+	background-color: rgba(49, 70, 89, 1);
+	box-shadow: 0px 4px 14.2px 12px rgba(49, 70, 89, 0.25);
+	padding-left: 2.8vw;
+	padding-right: 1.5vw;
+}
+
+.name{
+	font-size: 2.08vw;
+	font-weight: 500;
+	line-height: 2.4vw;
+	color:#fff;
+}
+
+.time{
+	font-size: 2.6vw;
+	font-weight: 500;
+	line-height: 3vw;
+	color:#fff;
+	text-decoration: underline;
+}
+
+.image{
+	width: 2.1vw !important;
+	height: 2.5vw !important;
+}
+
+.wrapperCalendar{
+	min-width:18.6vw;
+	max-width: 18.6vw;
+	min-height: 18.6vw;
+	max-height: 18.6vw;
+}
