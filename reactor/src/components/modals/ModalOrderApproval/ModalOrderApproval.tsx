@@ -1,7 +1,6 @@
-import { Button, Flex, Form, Image, Modal, Typography } from 'antd';
+import { Button, Flex, Form, Modal, Typography } from 'antd';
 import { CustomTextarea } from '../../custom-input/CustomTextarea/CustomTextarea';
 import style from './ModalOrderApproval.module.css';
-import srcFile from '../../../assets/icons/file.svg';
 import { Step } from '../../../utils/Step';
 import UploadFile from '../../custom-input/UploadFile/UploadFile';
 import { useState } from 'react';
@@ -10,7 +9,7 @@ import {
     CompleteStep,
     useCompleteStepMutation,
 } from '../../../app/services/orders';
-import { Orders, Step_info } from '../../../utils/Orders';
+import { Step_info } from '../../../utils/Orders';
 import { getFileApproval } from '../../../functions/getFilesApproval';
 
 type Props = {
@@ -98,6 +97,7 @@ export const ModalOrderApproval = ({
                         className={style.buttonNoApprove}
                         htmlType='submit'
                         onClick={() => setIsApproved(false)}
+                        disabled={isLoading}
                     >
                         Не согласовать
                     </Button>
@@ -105,6 +105,7 @@ export const ModalOrderApproval = ({
                         className={style.buttonApprove}
                         htmlType='submit'
                         onClick={() => setIsApproved(true)}
+                        disabled={isLoading}
                     >
                         Согласовать
                     </Button>
