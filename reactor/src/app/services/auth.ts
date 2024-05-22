@@ -8,10 +8,13 @@ export type LoginData = {
     login: string;
     password: string;
 };
+export type Privilege = Record<string, { name: string; description: string }>;
+
 export type InfoUser = {
     login: string;
     name: string | null;
-    role: string[];
+    privileges: Privilege;
+    role: string;
 };
 
 export const authApi = api.injectEndpoints({

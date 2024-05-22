@@ -16,14 +16,17 @@ import styles from './Login.module.css';
 const Login = () => {
     const [loginUser, { isLoading }] = useLoginMutation();
     const navigate = useNavigate();
-    const { data, refetch } = useCurrentQuery();
+    const { refetch } = useCurrentQuery();
     const user = useSelector(selectUser);
-    console.log(user);
     const [isError, setIsErrors] = useState<boolean>(false);
 
     useEffect(() => {
         if (user) {
-            navigate(MainPageRoles.admin);
+            if (user.role !== 'Рабочий') {
+                navigate(MainPageRoles.admin);
+            } else {
+                navigate(MainPageRoles.worker);
+            }
         }
     }, [user, navigate]);
 

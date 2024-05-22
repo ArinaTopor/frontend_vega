@@ -1,10 +1,7 @@
+import { CommonResponse } from '../../utils/CommonResponse';
 import { ReturnedData } from '../../utils/ReturnedData';
 import { api } from './api';
 import { InfoUser } from './auth';
-
-export type CommonResponse = {
-    [key: string]: string;
-};
 
 export type NewUser = {
     login: string;
