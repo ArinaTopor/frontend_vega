@@ -28,7 +28,7 @@ export function isCanAddDocument(
     idStep: number
 ) {
     return (
-        step.step_name === role &&
+        step.step_name === user.role &&
         Object.keys(user.privileges).find((privilege) =>
             user.privileges[privilege].name.localeCompare(userPrivilege)
         ) &&

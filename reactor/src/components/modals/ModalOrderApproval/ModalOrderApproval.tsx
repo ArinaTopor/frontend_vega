@@ -1,20 +1,54 @@
-import { Button, Flex, Form, Image, Modal, Typography } from 'antd';
+import { Button, Flex, Form, Modal, Typography } from 'antd';
 import { CustomTextarea } from '../../custom-input/CustomTextarea/CustomTextarea';
 import style from './ModalOrderApproval.module.css';
-import srcFile from '../../../assets/icons/file.svg';
+import { Step } from '../../../utils/Step';
+import UploadFile from '../../custom-input/UploadFile/UploadFile';
+import { useState } from 'react';
+import ButtonFile from '../../ButtonFile/ButtonFile';
+import {
+    CompleteStep,
+    useCompleteStepMutation,
+} from '../../../app/services/orders';
+import { Step_info } from '../../../utils/Orders';
+import { getFileApproval } from '../../../functions/getFilesApproval';
 
 type Props = {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    kks: string;
+    step: Step;
+    stepInfo: Step_info[];
 };
 
-export const ModalOrderApproval = ({ open, setOpen }: Props) => {
+export const ModalOrderApproval = ({
+    open,
+    setOpen,
+    kks,
+    step,
+    stepInfo,
+}: Props) => {
     const [form] = Form.useForm();
+    const [fileList, setFiles] = useState<File[] | undefined>();
+    const [completeStep, { isLoading }] = useCompleteStepMutation();
+    const [isApproved, setIsApproved] = useState<boolean>(false);
+    const idpAndPsFile = getFileApproval(stepInfo, step.step_id);
 
-    const handleSubmit = () => {
+    const handleSubmit = (infoStep: CompleteStep) => {
+        const formData = new FormData();
+        if (fileList)
+            for (let i = 0; i < fileList.length; i++) {
+                const file = fileList[i];
+                formData.append('files', file);
+            }
+        formData.append('KKS', kks);
+        formData.append('StepId', step.step_id.toString());
+        formData.append('Description', infoStep.description ?? '');
+        formData.append('isApproved', isApproved.toString());
+        completeStep(formData);
         form.resetFields();
+        setFiles([]);
+        setOpen(false);
     };
-
     const handleCLose = () => {
         setOpen(false);
         form.resetFields();
@@ -29,63 +63,50 @@ export const ModalOrderApproval = ({ open, setOpen }: Props) => {
             centered
             maskClosable={false}
         >
-            <Typography.Text className={style.numOrder}>
-                30SAM46AH501
-            </Typography.Text>
+            <Typography.Text className={style.numOrder}>{kks}</Typography.Text>
             <br />
             <Typography.Text className={style.titleModal}>
-                Согласование КД в АЭП
+                {step.step_name}
             </Typography.Text>
             <Form form={form} onFinish={handleSubmit} className={style.form}>
                 <Typography.Text className={style.titleSection}>
                     Файлы для согласования
                 </Typography.Text>
-                <Flex className={style.wrapperFilesApproval}>
-                    <Flex className={style.filesApproval}>
-                        <Button className={style.btnFile}>
-                            <Typography.Text className={style.titleFile}>
-                                ИДП и ПС.pdf
-                            </Typography.Text>
-                            <Image
-                                src={srcFile}
-                                preview={false}
-                                style={{ width: '1.3vw', height: '1.56vw' }}
-                            />
-                        </Button>
-                        <Button className={style.btnFile}>
-                            <Typography.Text className={style.titleFile}>
-                                ИДП и ПС.pdf
-                            </Typography.Text>
-                            <Image
-                                src={srcFile}
-                                preview={false}
-                                style={{ width: '1.3vw', height: '1.56vw' }}
-                            />
-                        </Button>
-                        <Button className={style.btnFile}>
-                            <Typography.Text className={style.titleFile}>
-                                ИДП и ПС.pdf
-                            </Typography.Text>
-                            <Image
-                                src={srcFile}
-                                preview={false}
-                                style={{ width: '1.3vw', height: '1.56vw' }}
-                            />
-                        </Button>
-                    </Flex>
+                <Flex className={style.filesApproval}>
+                    {idpAndPsFile &&
+                        idpAndPsFile.files.map((file) => (
+                            <ButtonFile
+                                file={file}
+                                key={file.upload_date}
+                            ></ButtonFile>
+                        ))}
                 </Flex>
                 <Typography.Text className={style.titleSection}>
                     Замечания
                 </Typography.Text>
+                <UploadFile
+                    updateUploadFiles={setFiles}
+                    uploadedFiles={fileList}
+                />
                 <CustomTextarea
                     name='description'
                     label='Комментарий/описание'
                 />
                 <Flex className={style.buttons}>
-                    <Button className={style.buttonNoApprove} htmlType='submit'>
+                    <Button
+                        className={style.buttonNoApprove}
+                        htmlType='submit'
+                        onClick={() => setIsApproved(false)}
+                        disabled={isLoading}
+                    >
                         Не согласовать
                     </Button>
-                    <Button className={style.buttonApprove} htmlType='submit'>
+                    <Button
+                        className={style.buttonApprove}
+                        htmlType='submit'
+                        onClick={() => setIsApproved(true)}
+                        disabled={isLoading}
+                    >
                         Согласовать
                     </Button>
                 </Flex>
