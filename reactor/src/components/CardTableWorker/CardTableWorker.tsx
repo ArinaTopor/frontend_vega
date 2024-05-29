@@ -6,7 +6,7 @@ import {
 	InitialState,
 } from '../../features/ordersWorkerSlice';
 import { Draggable } from 'react-beautiful-dnd';
-import { ModalWorkerOrder } from '../modal/ModalWorkerOrder/ModalWorkerOrder';
+import { ModalWorkerOrder } from '../modals/ModalWorkerOrder/ModalWorkerOrder';
 
 type Props = {
 	id: number;
