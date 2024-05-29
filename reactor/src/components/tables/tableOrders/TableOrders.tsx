@@ -33,7 +33,7 @@ const TableOrders = () => {
     const [stepData, setStepData] = useState<Orders | undefined>();
     const [visible, setVisible] = useState<boolean[]>([]);
     const user = useSelector(selectUser);
-    let [currentId, setCurrentId] = useState<string>('');
+    let currentId = useRef('');
     useEffect(() => {
         if (orderData) {
             setStepData(orderData);
@@ -51,7 +51,7 @@ const TableOrders = () => {
     };
     const onSelectRow = (kksId: string, id: number) => {
         if (stepData) {
-            setCurrentId(kksId);
+            currentId.current = kksId;
             const selectedData: ModalInfo = {
                 kks: stepData[kksId].kks,
                 step_info: findStep(id, stepData[kksId].steps_info),
@@ -294,7 +294,7 @@ const TableOrders = () => {
                             setOpen={setOpen}
                             kks={selectedStepData.kks}
                             step={selectedStepData.step_info}
-                            stepInfo={stepData[currentId].steps_info}
+                            stepInfo={stepData[currentId.current].steps_info}
                         ></ModalOrderApproval>
                     )}
                 {selectedStepData &&
@@ -306,7 +306,9 @@ const TableOrders = () => {
                             open={open}
                             setOpen={setOpen}
                             kks={selectedStepData.kks}
-                            materialInfo={stepData[currentId].component_info}
+                            materialInfo={
+                                stepData[currentId.current].component_info
+                            }
                         />
                     )}
             </Flex>

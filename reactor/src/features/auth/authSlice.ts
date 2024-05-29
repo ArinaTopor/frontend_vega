@@ -13,15 +13,7 @@ const initialState: InitialState = {
     user: null,
     isAuth: false,
 };
-// const logout = () => {
-//     const navigate = useNavigate();
 
-//     return () => {
-//         localStorage.clear();
-//         navigate('/login');
-//         return initialState;
-//     };
-// };
 const slice = createSlice({
     name: 'auth',
     initialState,
