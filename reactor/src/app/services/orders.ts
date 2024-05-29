@@ -30,11 +30,13 @@ export type NewOrder = {
 };
 
 export type CompleteStep = {
-    files: File[];
+    files?: File[];
     KKS: string;
     StepId: number;
-    description: string;
+    description?: string;
     IsApproved?: boolean;
+    IsCompleted?: boolean;
+    Storage?: { [key: string]: number };
 };
 export const ordersApi = api.injectEndpoints({
     endpoints: (builder) => ({

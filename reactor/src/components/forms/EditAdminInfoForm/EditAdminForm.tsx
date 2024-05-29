@@ -8,7 +8,7 @@ import {
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Button, Form } from 'antd';
-import style from './EditAdminInfoForm.module.css'
+import style from './EditAdminInfoForm.module.css';
 
 const EditAdminInfoForm = () => {
     const [editProfile] = useEditAdminInfoMutation();
@@ -34,7 +34,6 @@ const EditAdminInfoForm = () => {
             editProfile(formData);
             dispatch(logout());
             navigate('/');
-            console.log(formData);
         } catch (error) {
             console.error('Ошибка при отправке данных:', error);
         }

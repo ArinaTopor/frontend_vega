@@ -10,7 +10,7 @@ export const loadDataIntoIframe = (path: string) => {
     })
         .then((response) => {
             if (!response.ok) {
-                throw new Error('Network response was not ok.');
+                throw new Error('Ошибка при загрузке данных.');
             }
             return response.blob();
         })
@@ -35,8 +35,7 @@ export const loadDocFile = (path: string) => {
             if (response.ok) {
                 return response.blob();
             }
-            console.log(response);
-            throw new Error('Network response was not ok.');
+            throw new Error('Ошибка при загрузке данных');
         })
         .then((blob) => {
             return URL.createObjectURL(blob);

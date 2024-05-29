@@ -18,6 +18,7 @@ import { isCanAddDocument } from '../../../functions/checkPrivilegesUser';
 import { ModalInfo } from '../../../utils/ModalInfo';
 import styles from './TableOrders.module.css';
 import { ModalOrderApproval } from '../../modals/ModalOrderApproval/ModalOrderApproval';
+import ModalInfoStage from '../../modals/ModalInfoStage/ModalInfoStage';
 
 const TableOrders = () => {
     const [selectedStepData, setSelectedStepData] = useState<ModalInfo | null>(
@@ -32,7 +33,7 @@ const TableOrders = () => {
     const [stepData, setStepData] = useState<Orders | undefined>();
     const [visible, setVisible] = useState<boolean[]>([]);
     const user = useSelector(selectUser);
-    let currentId = useRef('');
+    let [currentId, setCurrentId] = useState<string>('');
     useEffect(() => {
         if (orderData) {
             setStepData(orderData);
@@ -50,7 +51,7 @@ const TableOrders = () => {
     };
     const onSelectRow = (kksId: string, id: number) => {
         if (stepData) {
-            currentId.current = kksId;
+            setCurrentId(kksId);
             const selectedData: ModalInfo = {
                 kks: stepData[kksId].kks,
                 step_info: findStep(id, stepData[kksId].steps_info),
@@ -89,12 +90,15 @@ const TableOrders = () => {
                 {
                     type: ModalTypes.addDocument,
                     docType: 'Отдел снабжения',
-                    privilege: '0',
+                    privilege: 'storage create',
                 },
                 { type: ModalTypes.stage, docType: 'Склад', privilege: '0' },
             ];
             setSelectedStepData(selectedData);
-            if (selectedData.step_info.is_completed) {
+            if (
+                selectedData.step_info.is_completed &&
+                selectedData.step_info.step_name !== 'Склад'
+            ) {
                 setTypeModal(ModalTypes.showInfo);
             } else {
                 const docCheck = docChecks.find(({ docType, privilege }) =>
@@ -107,7 +111,6 @@ const TableOrders = () => {
                         id
                     )
                 );
-
                 if (docCheck) {
                     setTypeModal(docCheck.type);
                 } else {
@@ -291,8 +294,20 @@ const TableOrders = () => {
                             setOpen={setOpen}
                             kks={selectedStepData.kks}
                             step={selectedStepData.step_info}
-                            stepInfo={stepData[currentId.current].steps_info}
+                            stepInfo={stepData[currentId].steps_info}
                         ></ModalOrderApproval>
+                    )}
+                {selectedStepData &&
+                    typeModal === ModalTypes.stage &&
+                    stepData &&
+                    selectedStepData.step_info && (
+                        <ModalInfoStage
+                            isComplete={selectedStepData.step_info.is_completed}
+                            open={open}
+                            setOpen={setOpen}
+                            kks={selectedStepData.kks}
+                            materialInfo={stepData[currentId].component_info}
+                        />
                     )}
             </Flex>
         </>
