@@ -7,7 +7,7 @@ export type NewUser = {
     login: string;
     password: string;
     name: string;
-    roleIds: string[];
+    roleId: number;
     areaId?: number;
     [key: string]: string | number | string[] | undefined;
 };

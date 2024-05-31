@@ -25,7 +25,7 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
     const [updateRoles, setUpdateRoles] = useState<Option[]>(roles);
     const [currentRole, setCurrentRole] = useState<string[]>([]);
 
-    const arrayAreas: Array<{ value: number; label: string}> = dataAreas
+    const arrayAreas: Array<{ value: number; label: string }> = dataAreas
         ? Object.keys(dataAreas).map((key) => {
               const item = {
                   value: Number(key),
@@ -39,48 +39,49 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
         setCurrentRole(value[0] ? value[0] : []);
         const updatedRoles = updateRoles;
         const roleValues = value as string[][];
-        const traverseTree = (
-            tree: Option[],
-            callback: (node: Option) => void
-        ) => {
-            tree.forEach((node) => {
-                if (
-                    !roleValues.some((sub: string[]) =>
-                        sub.includes(node.value)
-                    )
-                ) {
-                    node.disableCheckbox = true;
-                    callback(node);
-                }
-                if (
-                    roleValues.some((sub: string[]) =>
-                        sub.includes(mainStageRole)
-                    ) &&
-                    stages.includes(node.value)
-                ) {
-                    node.disableCheckbox = false;
-                    callback(node);
-                }
+        console.log(currentRole);
+        // const traverseTree = (
+        //     tree: Option[],
+        //     callback: (node: Option) => void
+        // ) => {
+        //     tree.forEach((node) => {
+        //         if (
+        //             !roleValues.some((sub: string[]) =>
+        //                 sub.includes(node.value)
+        //             )
+        //         ) {
+        //             node.disableCheckbox = true;
+        //             callback(node);
+        //         }
+        //         if (
+        //             roleValues.some((sub: string[]) =>
+        //                 sub.includes(mainStageRole)
+        //             ) &&
+        //             stages.includes(node.value)
+        //         ) {
+        //             node.disableCheckbox = false;
+        //             callback(node);
+        //         }
 
-                if (roleValues.length === 0) {
-                    node.disableCheckbox = false;
-                }
-                if (node.children) {
-                    traverseTree(node.children, callback);
-                }
-                callback(node);
-            });
-        };
-        traverseTree(updateRoles, () => {});
+        //         if (roleValues.length === 0) {
+        //             node.disableCheckbox = false;
+        //         }
+        //         if (node.children) {
+        //             traverseTree(node.children, callback);
+        //         }
+        //         callback(node);
+        //     });
+        // };
+        // traverseTree(updateRoles, () => {});
         setUpdateRoles(updatedRoles);
     };
 
     const handleAdd = async (data: NewUser) => {
         try {
-            const newRoleIds = Array.from(
-                new Set(data.roleIds.flat().filter((num) => num !== '5'))
-            );
-            data.roleIds = newRoleIds;
+            // const newRoleIds = Array.from(
+            //     new Set(data.roleIds.filter((num) => num !== '5'))
+            // );
+            data.roleId = +currentRole;
             addUser(data);
             form.resetFields();
         } catch (e) {
@@ -118,7 +119,7 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                         Роль
                     </Typography.Text>
                     <Form.Item
-                        name={'roleIds'}
+                        name={'roleId'}
                         rules={[
                             {
                                 required: true,
@@ -131,7 +132,7 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
                             expandTrigger='hover'
                             displayRender={displayRender}
                             showCheckedStrategy={SHOW_CHILD}
-                            multiple
+                            // multiple
                             maxTagCount='responsive'
                             style={{
                                 height: '5.3vh',

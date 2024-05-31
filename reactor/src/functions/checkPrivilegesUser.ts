@@ -27,6 +27,10 @@ export function isCanAddDocument(
     stepsInfo: Step_info[],
     idStep: number
 ) {
+    console.log(user);
+    console.log(role);
+    console.log(step);
+    console.log(userPrivilege);
     return (
         step.step_name === user.role &&
         step.step_name === role &&

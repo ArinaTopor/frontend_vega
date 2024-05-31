@@ -111,6 +111,7 @@ const TableOrders = () => {
                         id
                     )
                 );
+                console.log(docCheck);
                 if (docCheck) {
                     setTypeModal(docCheck.type);
                 } else {

@@ -4,7 +4,7 @@ headers.append(
     `Bearer ${localStorage.getItem('accessToken')}`
 );
 export const loadDataIntoIframe = (path: string) => {
-    return fetch(`https://localhost:7185/api/Order/files/?path=${path}`, {
+    return fetch(`https://localhost:17185/api/Order/files/?path=${path}`, {
         method: 'GET',
         headers: headers,
     })
@@ -25,7 +25,7 @@ export const loadDataIntoIframe = (path: string) => {
 
 export const loadDocFile = (path: string) => {
     return fetch(
-        `https://localhost:7185/api/File/convert-to-pdf?path=${path}`,
+        `https://localhost:17185/api/File/convert-to-pdf?path=${path}`,
         {
             method: 'POST',
             headers: headers,
