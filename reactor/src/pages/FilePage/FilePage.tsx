@@ -24,6 +24,7 @@ const FilePage = () => {
     return (
         <div>
             <a
+                href='/'
                 className={styles.file}
                 target='_blank'
                 rel='noopener noreferrer'
