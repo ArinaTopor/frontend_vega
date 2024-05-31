@@ -11,7 +11,7 @@ import {
 import { WaitingList } from '../../components/WaitingList/WaitingList';
 import OrderStatistics from '../../components/statistics/stat';
 import { LoadingOutlined } from '@ant-design/icons';
-import { getDate } from '../../functions/date';
+import { getDate } from '../../functions/dateFunc';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/auth/authSlice';
 export const OrdersPage = () => {
