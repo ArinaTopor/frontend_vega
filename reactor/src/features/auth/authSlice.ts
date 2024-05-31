@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ResponseLoginData, InfoUser, authApi } from '../../app/services/auth';
 import { RootState } from '../../app/store';
-import { redirect, useNavigate } from 'react-router';
 
 interface InitialState {
     token: ResponseLoginData | null;
