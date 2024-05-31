@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import styles from './FilePage.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { loadDataIntoIframe, loadDocFile } from '../../functions/fetchFiles';
 const FilePage = () => {
     const params = useParams();
