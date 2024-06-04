@@ -3,8 +3,9 @@ headers.append(
     'Authorization',
     `Bearer ${localStorage.getItem('accessToken')}`
 );
+headers.set('Access-Control-Allow-Origin', 'no-cors');
 export const loadDataIntoIframe = (path: string) => {
-    return fetch(`https://localhost:7185/api/Order/files/?path=${path}`, {
+    return fetch(`https://project-vega.ru/api/Order/files/?path=${path}`, {
         method: 'GET',
         headers: headers,
     })
@@ -25,7 +26,7 @@ export const loadDataIntoIframe = (path: string) => {
 
 export const loadDocFile = (path: string) => {
     return fetch(
-        `https://localhost:7185/api/File/convert-to-pdf?path=${path}`,
+        `https://project-vega.ru/api/File/convert-to-pdf?path=${path}`,
         {
             method: 'POST',
             headers: headers,
