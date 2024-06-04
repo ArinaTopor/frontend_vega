@@ -39,7 +39,6 @@ const AddEmployeeForm = ({ isAdmin }: Props) => {
         setCurrentRole(value[0] ? value[0] : []);
         const updatedRoles = updateRoles;
         const roleValues = value as string[][];
-        console.log(currentRole);
         // const traverseTree = (
         //     tree: Option[],
         //     callback: (node: Option) => void

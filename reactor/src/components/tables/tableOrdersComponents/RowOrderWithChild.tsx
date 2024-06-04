@@ -2,19 +2,19 @@ import { Col, Row } from 'antd';
 import { useState } from 'react';
 import styles from './CommonOrder.module.css';
 import RowOrder from './RowOrders';
-import { Step_info } from '../../../utils/Orders';
+import { Step } from '../../../utils/Step';
 type StepProps = {
-    step: Step_info;
+    step: Step;
     stepIndex: number;
     onChange: (id: number) => void;
     kks: string;
-    onSelectRow: (kksId: string, index: number) => void;
+    selectRow: (kksId: string, index: number) => void;
 };
 const RowOrdersWithChildren = ({
     step,
     stepIndex,
     onChange,
-    onSelectRow,
+    selectRow,
     kks,
 }: StepProps) => {
     const [visible, setVisible] = useState(Object.keys(step).map(() => false));
@@ -60,16 +60,17 @@ const RowOrdersWithChildren = ({
                         marginLeft: '1.5vw',
                     }}
                 >
-                    {step.children?.map((prechild, prechildIndex) => (
-                        <RowOrder
-                            key={prechild.step_id}
-                            step={prechild}
-                            stepIndex={prechildIndex}
-                            kks={kks}
-                            onChange={onChange}
-                            onSelectRow={onSelectRow}
-                        />
-                    ))}
+                    {step.children &&
+                        step.children.map((prechild, prechildIndex) => (
+                            <RowOrder
+                                key={prechild.step_id}
+                                step={prechild}
+                                stepIndex={prechildIndex}
+                                kks={kks}
+                                onChange={onChange}
+                                onSelectRow={selectRow}
+                            />
+                        ))}
                 </div>
             )}
         </>

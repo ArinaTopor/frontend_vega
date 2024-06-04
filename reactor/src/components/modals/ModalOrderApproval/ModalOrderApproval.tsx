@@ -9,7 +9,6 @@ import {
     CompleteStep,
     useCompleteStepMutation,
 } from '../../../app/services/orders';
-import { Step_info } from '../../../utils/Orders';
 import { getFileApproval } from '../../../functions/getFilesApproval';
 
 type Props = {
@@ -17,7 +16,7 @@ type Props = {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     kks: string;
     step: Step;
-    stepInfo: Step_info[];
+    stepInfo: Step[];
 };
 
 export const ModalOrderApproval = ({
@@ -45,9 +44,9 @@ export const ModalOrderApproval = ({
         formData.append('Description', infoStep.description ?? '');
         formData.append('isApproved', isApproved.toString());
         completeStep(formData);
+        setOpen(false);
         form.resetFields();
         setFiles([]);
-        setOpen(false);
     };
     const handleCLose = () => {
         setOpen(false);
@@ -87,6 +86,7 @@ export const ModalOrderApproval = ({
                 <UploadFile
                     updateUploadFiles={setFiles}
                     uploadedFiles={fileList}
+                    required={false}
                 />
                 <CustomTextarea
                     name='description'

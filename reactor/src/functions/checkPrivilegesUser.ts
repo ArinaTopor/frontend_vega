@@ -1,19 +1,31 @@
 import { InfoUser } from '../app/services/auth';
-import { Step_info } from '../utils/Orders';
 import { Step } from '../utils/Step';
 
 export function checkPrivileges(
-    stepsInfo: Step_info[],
+    stepsInfo: Step[],
     idStepCurrentUser: number
 ): boolean {
-    let addDocuments = stepsInfo.find((step) =>
-        step.step_id === idStepCurrentUser - 1 ? step.is_completed : false
-    );
+    let addDocuments = stepsInfo.find((step) => {
+        return step.step_id === idStepCurrentUser - 1
+            ? step.is_completed
+            : false;
+    });
+    if (!addDocuments && idStepCurrentUser === 4) {
+        addDocuments = stepsInfo.find((step) => {
+            return step.step_id === idStepCurrentUser - 2
+                ? step.is_completed
+                : false;
+        });
+    }
     if (!addDocuments) {
-        addDocuments = stepsInfo.find((step) =>
-            step.children.find(
-                (stepChild) => stepChild.step_id === idStepCurrentUser - 1
-            )
+        addDocuments = stepsInfo.find(
+            (step) =>
+                step.children &&
+                step.children.find((stepChild) => {
+                    return stepChild.step_id === idStepCurrentUser - 1
+                        ? true
+                        : false;
+                })
         );
     }
     return addDocuments ? true : false;
@@ -24,13 +36,9 @@ export function isCanAddDocument(
     role: string,
     step: Step,
     userPrivilege: string,
-    stepsInfo: Step_info[],
+    stepsInfo: Step[],
     idStep: number
 ) {
-    console.log(user);
-    console.log(role);
-    console.log(step);
-    console.log(userPrivilege);
     return (
         step.step_name === user.role &&
         step.step_name === role &&

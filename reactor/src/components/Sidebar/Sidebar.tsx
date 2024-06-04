@@ -26,9 +26,9 @@ export function Sidebar({ user }: Props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const createName = function (nameBack: string) {
-        // const nameArray: string[] = nameBack.split(' ');
-        const initials: string = 'AA'; //`${nameArray[0][0]}${nameArray[1][0]}`;
-        const name: string = 'IVAN'; //nameArray && `${nameArray[0]} ${nameArray[1][0]}.`; пока что заглушки, потому что на бэке нет фамилий/имен и тд
+        const nameArray: string[] = nameBack.split(' ');
+        const initials: string = `${nameArray[0][0]}${nameArray[1][0]}`;
+        const name: string = nameArray && `${nameArray[0]} ${nameArray[1][0]}.`;
         return {
             initials,
             name,

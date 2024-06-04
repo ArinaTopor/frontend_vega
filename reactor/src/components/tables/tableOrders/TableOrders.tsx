@@ -9,7 +9,7 @@ import {
     useGetPagesQuery,
 } from '../../../app/services/orders';
 import { Step } from '../../../utils/Step';
-import { Orders, Step_info } from '../../../utils/Orders';
+import { Orders } from '../../../utils/Orders';
 import { ModalTypes } from '../../../constans/typeModals';
 import { selectUser } from '../../../features/auth/authSlice';
 import { useSelector } from 'react-redux';
@@ -69,12 +69,12 @@ const TableOrders = () => {
                 },
                 {
                     type: ModalTypes.addDocument,
-                    docType: 'Разработка чертежей и спецификации',
+                    docType: 'Внесение чертежей и спецификации',
                     privilege: 'draft create',
                 },
                 {
                     type: ModalTypes.addDocument,
-                    docType: 'Разработка электросхемы',
+                    docType: 'Внесение электросхемы',
                     privilege: 'wiring diagram create',
                 },
                 {
@@ -89,7 +89,7 @@ const TableOrders = () => {
                 },
                 {
                     type: ModalTypes.addDocument,
-                    docType: 'Отдел снабжения',
+                    docType: 'Отдел поставки',
                     privilege: 'storage create',
                 },
                 { type: ModalTypes.stage, docType: 'Склад', privilege: '0' },
@@ -111,7 +111,6 @@ const TableOrders = () => {
                         id
                     )
                 );
-                console.log(docCheck);
                 if (docCheck) {
                     setTypeModal(docCheck.type);
                 } else {
@@ -122,18 +121,22 @@ const TableOrders = () => {
         }
     };
 
-    const findStep = (id: number, steps_info: Step_info[]) => {
-        function recursionFindStep(stepsData: Step_info[]) {
-            return stepsData.find((step) => {
-                if (step.step_id !== id) {
-                    return findStepChildren(step.children);
+    const findStep = (id: number, steps_info: Step[]): Step | undefined => {
+        function recursionFindStep(stepsData: Step[]): Step | undefined {
+            for (const step of stepsData) {
+                if (step.step_id === id) {
+                    return step;
                 }
-                return true;
-            });
+                if (step.children) {
+                    const found = recursionFindStep(step.children);
+                    if (found) {
+                        return found;
+                    }
+                }
+            }
+            return undefined;
         }
-        function findStepChildren(subStep: Step[]) {
-            return subStep.find((step) => step.step_id === id);
-        }
+
         return recursionFindStep(steps_info);
     };
     const onChange = (id: number) => {
@@ -224,8 +227,9 @@ const TableOrders = () => {
                                                 <React.Fragment
                                                     key={step.step_id}
                                                 >
-                                                    {step.children.length !==
-                                                    0 ? (
+                                                    {step.children &&
+                                                    step.children.length !==
+                                                        0 ? (
                                                         <RowOrdersWithChildren
                                                             step={step}
                                                             stepIndex={
@@ -233,7 +237,7 @@ const TableOrders = () => {
                                                             }
                                                             kks={id}
                                                             onChange={onChange}
-                                                            onSelectRow={
+                                                            selectRow={
                                                                 onSelectRow
                                                             }
                                                         />
