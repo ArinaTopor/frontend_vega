@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 const { Content } = Layout;
 
 export function CustomLayout() {
-    const { data, error } = useCurrentQuery();
+    const { error } = useCurrentQuery();
     const user = useSelector(selectUser);
     const navigate = useNavigate();
     useEffect(() => {

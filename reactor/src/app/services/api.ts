@@ -19,6 +19,7 @@ const baseQuery: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> =
             if (token) {
                 headers.set('authorization', `Bearer ${token}`);
             }
+            headers.set('Access-Control-Allow-Origin', 'no-cors');
             return headers;
         },
     });
