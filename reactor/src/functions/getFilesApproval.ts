@@ -1,7 +1,7 @@
-import { Step_info } from '../utils/Orders';
+import { Step } from '../utils/Step';
 
 export const getFileApproval = (
-    stepsInfo: Step_info[],
+    stepsInfo: Step[],
     idStepCurrentUser: number
 ) => {
     return stepsInfo.find((step) => step.step_id === idStepCurrentUser - 1);

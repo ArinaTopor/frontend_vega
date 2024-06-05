@@ -1,7 +1,5 @@
 import { Step } from './Step';
 
-export type Step_info = Step & { children: Step[] };
-
 export type MaterialTable = {
     [key: string]: {
         amount: number;
@@ -23,6 +21,6 @@ export type Orders = {
         component_info: MaterialTable;
         kks: string;
         is_completed: boolean;
-        steps_info: Step_info[];
+        steps_info: Step[];
     };
 };

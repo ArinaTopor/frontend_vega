@@ -7,6 +7,7 @@ export type Step = {
         login: string;
         name: string;
     };
+    children?: Step[];
     is_completed: boolean;
     comment?: string;
     files: CustomFile[];

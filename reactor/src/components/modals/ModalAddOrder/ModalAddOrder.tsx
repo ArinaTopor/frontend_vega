@@ -36,6 +36,7 @@ export const ModalAddOrder = ({ open, setOpen }: Props) => {
         formData.append('Description', order.Description ?? '');
         addOrder(formData);
         setFiles([]);
+        setOpen(false);
         form.resetFields();
     };
 
@@ -58,12 +59,11 @@ export const ModalAddOrder = ({ open, setOpen }: Props) => {
             </Typography.Text>
             <Form form={form} onFinish={handleSubmit} className={style.form}>
                 <FormInput name='KKS' type='text' required={true} label='ККС' />
-                <Form.Item name='files'>
-                    <UploadFile
-                        updateUploadFiles={setFiles}
-                        uploadedFiles={fileList}
-                    />
-                </Form.Item>
+                <UploadFile
+                    updateUploadFiles={setFiles}
+                    uploadedFiles={fileList}
+                    required={true}
+                />
                 <CustomTextarea
                     name='Description'
                     label='Комментарий/описание'

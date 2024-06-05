@@ -32,6 +32,7 @@ export const ModalAddDocuments = ({ open, onOpen, kks, step }: Props) => {
         formData.append('StepId', step.step_id.toString());
         formData.append('Description', infoStep.description ?? '');
         completeStep(formData);
+        onOpen(false);
         form.resetFields();
         setFiles([]);
     };
@@ -61,6 +62,7 @@ export const ModalAddDocuments = ({ open, onOpen, kks, step }: Props) => {
                 <UploadFile
                     updateUploadFiles={setFiles}
                     uploadedFiles={fileList}
+                    required={true}
                 />
                 <CustomTextarea
                     name='description'
