@@ -3,7 +3,6 @@ headers.append(
     'Authorization',
     `Bearer ${localStorage.getItem('accessToken')}`
 );
-headers.set('Access-Control-Allow-Origin', 'no-cors');
 export const loadDataIntoIframe = (path: string) => {
     return fetch(`https://project-vega.ru/api/Order/files/?path=${path}`, {
         method: 'GET',
