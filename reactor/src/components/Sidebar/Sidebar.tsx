@@ -22,6 +22,7 @@ type Props = {
 };
 
 export function Sidebar({ user }: Props) {
+    console.log(user)
     const [isCollapsed, setIsCollapsed] = useState(true);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -91,28 +92,29 @@ export function Sidebar({ user }: Props) {
                 vertical
                 gap='4.9vh'
             >
+                <SidebarNavLink
+                    path={Paths.tableFiles}
+                    linkStyle={style.link}
+                    srcImage={nomenclature}
+                    isCollapsed={isCollapsed}
+                    firstText='Архив КД'
+                />
                 {Object.keys(user.privileges).includes('23') && (
                     <SidebarNavLink
-                        path={Paths.nomenclature}
+                    path={Paths.nomenclature}
                         linkStyle={style.link}
-                        srcImage={nomenclature}
+                        srcImage={plan}
                         isCollapsed={isCollapsed}
-                        text='Номенклатура'
+                        firstText='Заказы'
+                        secondText = 'на производство'
                     />
                 )}
                 <SidebarNavLink
                     path={Paths.tasksBoard}
                     linkStyle={style.link}
-                    srcImage={plan}
-                    isCollapsed={isCollapsed}
-                    text='Заказы'
-                />
-                <SidebarNavLink
-                    path={Paths.tableFiles}
-                    linkStyle={style.link}
                     srcImage={list}
                     isCollapsed={isCollapsed}
-                    text='Лист ожидания'
+                    firstText='Заказы КТО'
                 />
                 <Flex
                     style={{
@@ -130,7 +132,7 @@ export function Sidebar({ user }: Props) {
                             linkStyle={style.link}
                             srcImage={setting}
                             isCollapsed={isCollapsed}
-                            text='Настройки'
+                            firstText='Настройки'
                         />
                     )}
                     <Button onClick={handleLogout} className={style.exit}>

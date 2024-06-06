@@ -1,4 +1,4 @@
-import { Image } from 'antd';
+import { Flex, Image } from 'antd';
 import { NavLink } from 'react-router-dom';
 import style from '../Sidebar/Sidebar.module.css';
 import { Typography } from 'antd';
@@ -10,7 +10,8 @@ type Props = {
 	linkStyle: string;
 	srcImage: string;
 	isCollapsed: boolean;
-	text: string;
+	firstText: string;
+	secondText?: string;
 };
 
 export function SidebarNavLink({
@@ -18,7 +19,8 @@ export function SidebarNavLink({
 	linkStyle,
 	srcImage,
 	isCollapsed,
-	text,
+	firstText,
+	secondText,
 }: Props) {
 	return (
 		<NavLink
@@ -33,7 +35,12 @@ export function SidebarNavLink({
 				src={srcImage}
 				style={{ width: '1.8vw', transition: 'all 0s' }}
 			/>
-			{!isCollapsed && <Text className={style.textLink}>{text}</Text>}
+			{!isCollapsed && (
+				<Flex vertical>
+					<Text className={style.textLink}>{firstText}</Text>
+					<Text className={style.textLink}>{secondText}</Text>
+				</Flex>
+			)}
 		</NavLink>
 	);
 }
