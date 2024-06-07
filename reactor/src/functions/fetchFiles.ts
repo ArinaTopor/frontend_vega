@@ -1,26 +1,23 @@
 const headers = new Headers();
-headers.append(
-    'Authorization',
-    `Bearer ${localStorage.getItem('accessToken')}`
-);
-export const loadDataIntoIframe = (path: string) => {
-    return fetch(`https://project-vega.ru/api/Order/files/?path=${path}`, {
-        method: 'GET',
-        headers: headers,
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error('Ошибка при загрузке данных.');
+headers.set('Authorization', `Bearer ${localStorage.getItem('accessToken')}`);
+export const loadDataIntoIframe = async (path: string) => {
+    try {
+        const response = await fetch(
+            `https://project-vega.ru/api/Order/files/?path=${path}`,
+            {
+                method: 'GET',
+                headers: headers,
             }
-            return response.blob();
-        })
-        .then((blob) => {
-            return URL.createObjectURL(blob);
-        })
-        .catch((error) => {
-            console.error('Ошибка при загрузке данных:', error);
-            throw error;
-        });
+        );
+        if (!response.ok) {
+            throw new Error('Ошибка при загрузке данных.');
+        }
+        const blob = await response.blob();
+        return URL.createObjectURL(blob);
+    } catch (error) {
+        console.error('Ошибка при загрузке данных:', error);
+        throw error;
+    }
 };
 
 export const loadDocFile = (path: string) => {
