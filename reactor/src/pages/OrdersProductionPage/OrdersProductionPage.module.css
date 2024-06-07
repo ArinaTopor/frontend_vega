@@ -1,0 +1,16 @@
+.page {
+    padding: 5.7vh 3.95vw 0 4.1vw;
+    position: relative;
+    flex-grow: 1;
+    height: 100vh;
+    background-color: #fff;
+}
+
+.date {
+    color: #314659;
+    font-size: 4.62vh;
+    font-weight: 800;
+    margin-bottom: 7vh;
+    font-family: Roboto;
+    position: absolute;
+}

@@ -12,6 +12,7 @@ import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
 import FilePage from './pages/FilePage/FilePage';
 import TableOrderFiles from './components/tables/tableOrderFiles/TableOrderFiles';
 import FilesPage from './pages/FilesPage/FilesPage';
+import OrdersProductionPage from './pages/OrdersProductionPage/OrdersProductionPage';
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -82,7 +83,7 @@ function App() {
                         />
                         <Route
                             path={Paths.nomenclature}
-                            element={<BossPage />}
+                            element={<OrdersProductionPage />}
                         />
                         <Route path={Paths.products} element={<BossPage />} />
                         <Route

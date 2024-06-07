@@ -45,7 +45,7 @@ export const OrdersPage = () => {
                     )}
                 </>
             ) : (
-                <WaitingList />
+                <WaitingList place='orders'/>
             )}
             <Popover
                 placement='leftTop'
