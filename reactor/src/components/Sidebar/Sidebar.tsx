@@ -22,7 +22,6 @@ type Props = {
 };
 
 export function Sidebar({ user }: Props) {
-    console.log(user)
     const [isCollapsed, setIsCollapsed] = useState(true);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -101,12 +100,12 @@ export function Sidebar({ user }: Props) {
                 />
                 {Object.keys(user.privileges).includes('23') && (
                     <SidebarNavLink
-                    path={Paths.nomenclature}
+                        path={Paths.nomenclature}
                         linkStyle={style.link}
                         srcImage={plan}
                         isCollapsed={isCollapsed}
                         firstText='Заказы'
-                        secondText = 'на производство'
+                        secondText='на производство'
                     />
                 )}
                 <SidebarNavLink
