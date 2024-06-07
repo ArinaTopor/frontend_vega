@@ -8,6 +8,7 @@ import {
     CompleteStep,
     useCompleteStepMutation,
 } from '../../../app/services/orders';
+import ButtonFile from '../../ButtonFile/ButtonFile';
 
 type Props = {
     open: boolean;
@@ -64,6 +65,9 @@ export const ModalAddDocuments = ({ open, onOpen, kks, step }: Props) => {
                     uploadedFiles={fileList}
                     required={true}
                 />
+                {step.files.map((file) => (
+                    <ButtonFile file={file}></ButtonFile>
+                ))}
                 <CustomTextarea
                     name='description'
                     label='Комментарий/описание'

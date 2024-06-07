@@ -4,6 +4,7 @@ import styles from './ButtonFile.module.css';
 import { CustomFile } from '../../utils/FileType';
 import { openFile } from '../../functions/openFile';
 const ButtonFile = ({ file }: { file: CustomFile }) => {
+    console.log(file as unknown as File);
     const handleOpenFile = (path: string) => {
         openFile(path);
     };

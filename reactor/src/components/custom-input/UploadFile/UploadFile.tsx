@@ -20,12 +20,14 @@ const UploadFile = ({
                 ...event.target.files,
             ]);
         }
+        console.log(uploadedFiles);
     };
     const removeFile = (indexI: number) => {
         if (uploadedFiles) {
             const currentFiles = uploadedFiles.filter(
                 (file, index) => index !== indexI
             );
+
             updateUploadFiles(
                 currentFiles.length > 0 ? currentFiles : undefined
             );

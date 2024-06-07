@@ -34,6 +34,7 @@ const TableOrders = () => {
     const [visible, setVisible] = useState<boolean[]>([]);
     const user = useSelector(selectUser);
     let currentId = useRef('');
+    console.log(user);
     useEffect(() => {
         if (orderData) {
             setStepData(orderData);
@@ -90,6 +91,11 @@ const TableOrders = () => {
                 {
                     type: ModalTypes.addDocument,
                     docType: 'Отдел поставки',
+                    privilege: 'storage create',
+                },
+                {
+                    type: ModalTypes.addDocument,
+                    docType: 'Внесение входной документации',
                     privilege: 'storage create',
                 },
                 { type: ModalTypes.stage, docType: 'Склад', privilege: '0' },
