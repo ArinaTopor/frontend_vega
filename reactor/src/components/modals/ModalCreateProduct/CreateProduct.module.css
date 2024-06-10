@@ -1,0 +1,7 @@
+.form_container {
+    display: grid;
+    grid-template-columns: 146px 93px 555px 93px 555px 93px;
+}
+.column_wrapper {
+    border: 2px solid #b9b9b9;
+}

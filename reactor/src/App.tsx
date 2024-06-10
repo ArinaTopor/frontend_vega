@@ -13,6 +13,7 @@ import FilePage from './pages/FilePage/FilePage';
 import TableOrderFiles from './components/tables/tableOrderFiles/TableOrderFiles';
 import FilesPage from './pages/FilesPage/FilesPage';
 import OrdersProductionPage from './pages/OrdersProductionPage/OrdersProductionPage';
+import CreateProduct from './components/modals/ModalCreateProduct/CreateProduct';
 const theme: ThemeConfig = {
     components: {
         Button: {
@@ -70,7 +71,7 @@ function App() {
         <ConfigProvider theme={theme}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<Authorization />} />
+                    <Route path='/' element={<CreateProduct />} />
 
                     <Route element={<CustomLayout />}>
                         <Route
