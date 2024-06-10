@@ -27,7 +27,7 @@ export const ModalOrderApproval = ({
     stepInfo,
 }: Props) => {
     const [form] = Form.useForm();
-    const [fileList, setFiles] = useState<File[] | undefined>();
+    const [fileList, setFiles] = useState<File[]>([]);
     const [completeStep, { isLoading }] = useCompleteStepMutation();
     const [isApproved, setIsApproved] = useState<boolean>(false);
     const idpAndPsFile = getFileApproval(stepInfo, step.step_id);

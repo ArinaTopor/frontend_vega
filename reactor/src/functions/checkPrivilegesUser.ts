@@ -28,6 +28,9 @@ export function checkPrivileges(
                 })
         );
     }
+    if (idStepCurrentUser === 1) {
+        return true;
+    }
     return addDocuments ? true : false;
 }
 

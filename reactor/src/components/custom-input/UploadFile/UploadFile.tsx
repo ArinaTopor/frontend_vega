@@ -7,12 +7,11 @@ const UploadFile = ({
     uploadedFiles,
     required,
 }: {
-    updateUploadFiles: (
-        value: React.SetStateAction<File[] | undefined>
-    ) => void;
-    uploadedFiles: File[] | undefined;
+    updateUploadFiles: (value: React.SetStateAction<File[]>) => void;
+    uploadedFiles: File[];
     required: boolean;
 }) => {
+    console.log(uploadedFiles);
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
             updateUploadFiles([
@@ -20,7 +19,6 @@ const UploadFile = ({
                 ...event.target.files,
             ]);
         }
-        console.log(uploadedFiles);
     };
     const removeFile = (indexI: number) => {
         if (uploadedFiles) {
@@ -28,9 +26,7 @@ const UploadFile = ({
                 (file, index) => index !== indexI
             );
 
-            updateUploadFiles(
-                currentFiles.length > 0 ? currentFiles : undefined
-            );
+            updateUploadFiles(currentFiles);
         }
     };
     return (

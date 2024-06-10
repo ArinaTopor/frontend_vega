@@ -3,6 +3,20 @@ headers.append(
     'Authorization',
     `Bearer ${localStorage.getItem('accessToken')}`
 );
+export const getFile = async (path: string) => {
+    const response = await fetch(
+        `https://project-vega.ru/api/Order/files/?path=${path}`,
+        {
+            method: 'GET',
+            headers: headers,
+        }
+    );
+    if (!response.ok) {
+        throw new Error('Ошибка при загрузке данных.');
+    }
+    return await response.blob();
+};
+
 export const loadDataIntoIframe = (path: string) => {
     return fetch(`https://project-vega.ru/api/Order/files/?path=${path}`, {
         method: 'GET',
