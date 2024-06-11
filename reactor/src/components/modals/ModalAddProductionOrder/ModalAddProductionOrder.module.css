@@ -1,0 +1,60 @@
+.group{
+	display: flex;
+	flex-direction: column;
+	gap: 2.9vw;
+	max-height: 60vh;
+	overflow: scroll;
+	margin-bottom: 5.2vw;
+}
+
+.radio{
+	--ant-color-primary: #1D2433CC !important;
+    --ant-color-border: #1D2433CC !important;
+    --ant-color-primary-hover: #1D2433CC !important;
+	--ant-font-size: 1.27vw;
+	--ant-font-family: 'Inter' !important;
+	--ant-radio-radio-size:24 !important;
+}
+
+
+.radio_active{
+	--ant-color-primary: #4A505C !important;
+    --ant-color-border: #4A505C !important;
+    --ant-color-primary-hover: #4A505C !important;
+	--ant-color-bg-container: #4A505C !important;
+	--ant-radio-radio-bg-color: #4A505C !important;
+	--ant-radio-radio-color: #4A505C !important;
+	--ant-font-size: 1.27vw;
+	--ant-font-family: 'Inter' !important;
+	--ant-radio-radio-size:24 !important;
+}
+
+.title{
+	display: inline-block;
+	font-weight: 700;
+	font-family: 'Roboto';
+	font-size: 1.1vw;
+	color: #2D3748;
+	margin-left: 6vw;
+	margin-bottom: 2.6vw;
+}
+
+.buttonSave{
+	position:absolute;
+	bottom:0;
+	right:0;
+	margin-right:2.3vw;
+	margin-bottom:4.9vh;
+	width:11.6vw;
+	height: 4.9vh;
+	font-size:2.4vh;
+	font-family:Roboto;
+	font-weight:500;
+	background-color:#314659;
+	color: #fff !important;
+}
+
+.buttonSave:hover{
+	background-color:#24323E !important;
+}
+

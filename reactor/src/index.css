@@ -133,3 +133,12 @@ code {
 .ant-select-single .ant-select-selector {
     font-size: 1.1vw !important;
 }
+
+.ant-radio-inner{
+    border-radius: 2px !important;
+    border-width: 2px !important;
+}
+
+.ant-wave-target{
+    margin-right: 4.4vw !important;
+}
