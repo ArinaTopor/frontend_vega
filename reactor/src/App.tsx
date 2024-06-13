@@ -9,7 +9,6 @@ import { ConfigProvider, ThemeConfig } from 'antd';
 import './App.css';
 import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 import AddEmployeePage from './pages/AddEmployeePage/AddEmployeePage';
-import FilePage from './pages/FilePage/FilePage';
 import TableOrderFiles from './components/tables/tableOrderFiles/TableOrderFiles';
 import FilesPage from './pages/FilesPage/FilesPage';
 const theme: ThemeConfig = {
@@ -102,14 +101,6 @@ function App() {
                             element={
                                 <RequareAuth>
                                     <TableOrderFiles />
-                                </RequareAuth>
-                            }
-                        />
-                        <Route
-                            path={Paths.file}
-                            element={
-                                <RequareAuth>
-                                    <FilePage />
                                 </RequareAuth>
                             }
                         />

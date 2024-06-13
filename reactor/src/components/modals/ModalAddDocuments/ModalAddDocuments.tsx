@@ -26,7 +26,7 @@ export const ModalAddDocuments = ({ open, onOpen, kks, step }: Props) => {
         if (step.files.length !== 0) {
             for (const fileInfo of step.files) {
                 const blob = await getFile(fileInfo.path);
-                const fileName = fileInfo.path.split('/')[2].split('.')[0];
+                const fileName = fileInfo.path.split('/')[2];
                 const file = new File([blob], fileName);
                 setFiles([...fileList, file]);
             }
@@ -62,6 +62,7 @@ export const ModalAddDocuments = ({ open, onOpen, kks, step }: Props) => {
         formData.append('Description', infoStep.description ?? '');
         completeStep(formData);
         onOpen(false);
+
         form.resetFields();
         setFiles([]);
     };
@@ -93,9 +94,6 @@ export const ModalAddDocuments = ({ open, onOpen, kks, step }: Props) => {
                     uploadedFiles={fileList}
                     required={true}
                 />
-                {/* {step.files.map((file) => (
-                    <ButtonFile file={file}></ButtonFile>
-                ))} */}
                 <CustomTextarea
                     name='description'
                     label='Комментарий/описание'

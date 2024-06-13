@@ -11,7 +11,6 @@ const UploadFile = ({
     uploadedFiles: File[];
     required: boolean;
 }) => {
-    console.log(uploadedFiles);
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
             updateUploadFiles([
@@ -35,7 +34,7 @@ const UploadFile = ({
                 name={'files'}
                 rules={[
                     {
-                        required: required,
+                        required: uploadedFiles.length > 0 ? false : required,
                         message: 'Обязательное поле',
                     },
                 ]}

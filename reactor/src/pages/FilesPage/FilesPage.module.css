@@ -1,3 +1,7 @@
+.file {
+    height: 99vh;
+    width: 90vw;
+}
 .page {
     padding: 5.7vh 3.95vw 0 4.1vw;
     position: relative;

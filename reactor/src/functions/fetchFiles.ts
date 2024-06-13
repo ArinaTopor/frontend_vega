@@ -1,11 +1,37 @@
-const headers = new Headers();
-headers.append(
-    'Authorization',
-    `Bearer ${localStorage.getItem('accessToken')}`
-);
+const getHeaders = () => {
+    const headers = new Headers();
+    headers.append(
+        'Authorization',
+        `Bearer ${localStorage.getItem('accessToken')}`
+    );
+    return headers;
+};
+
+export const fetchFile = async (url: string, options: RequestInit) => {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+        throw new Error(`Ошибка при загрузке данных:, ${response.statusText}`);
+    }
+    return response.blob();
+};
+
+export const loadPDF = async (path: string) => {
+    const headers = getHeaders();
+    const url = `https://localhost:17185/api/Order/files/?path=${path}`;
+    const blob = await fetchFile(url, { method: 'GET', headers: headers });
+    return URL.createObjectURL(blob);
+};
+export const loadDocFile = async (path: string) => {
+    const url = `https://localhost:17185/api/File/convert-to-pdf?path=${path}`;
+    const headers = getHeaders();
+    const blob = await fetchFile(url, { method: 'POST', headers: headers });
+    return URL.createObjectURL(blob);
+};
+
 export const getFile = async (path: string) => {
+    const headers = getHeaders();
     const response = await fetch(
-        `https://project-vega.ru/api/Order/files/?path=${path}`,
+        `https://localhost:17185/api/Order/files/?path=${path}`,
         {
             method: 'GET',
             headers: headers,
@@ -15,47 +41,4 @@ export const getFile = async (path: string) => {
         throw new Error('Ошибка при загрузке данных.');
     }
     return await response.blob();
-};
-
-export const loadDataIntoIframe = (path: string) => {
-    return fetch(`https://project-vega.ru/api/Order/files/?path=${path}`, {
-        method: 'GET',
-        headers: headers,
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error('Ошибка при загрузке данных.');
-            }
-            return response.blob();
-        })
-        .then((blob) => {
-            return URL.createObjectURL(blob);
-        })
-        .catch((error) => {
-            console.error('Ошибка при загрузке данных:', error);
-            throw error;
-        });
-};
-
-export const loadDocFile = (path: string) => {
-    return fetch(
-        `https://project-vega.ru/api/File/convert-to-pdf?path=${path}`,
-        {
-            method: 'POST',
-            headers: headers,
-        }
-    )
-        .then((response) => {
-            if (response.ok) {
-                return response.blob();
-            }
-            throw new Error('Ошибка при загрузке данных');
-        })
-        .then((blob) => {
-            return URL.createObjectURL(blob);
-        })
-        .catch((error) => {
-            console.error('Ошибка при загрузке данных:', error);
-            throw error;
-        });
 };

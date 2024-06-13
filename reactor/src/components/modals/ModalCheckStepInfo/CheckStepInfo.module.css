@@ -12,6 +12,7 @@
 }
 .filesWrapper {
     display: flex;
+    flex-wrap: wrap;
     margin-top: 6.4vh;
     margin-bottom: 3vh;
     gap: 1vw;
