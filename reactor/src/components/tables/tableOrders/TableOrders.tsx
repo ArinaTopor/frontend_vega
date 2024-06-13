@@ -28,7 +28,7 @@ const TableOrders = () => {
     const [open, setOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [pages, setPages] = useState<undefined | number>(data);
-    const { data: orderData } = useGetInfoOrdersQuery(currentPage);
+    const { data: orderData, refetch } = useGetInfoOrdersQuery(currentPage);
     const [typeModal, setTypeModal] = useState<ModalTypes | null>(null);
     const [stepData, setStepData] = useState<Orders | undefined>();
     const [visible, setVisible] = useState<boolean[]>([]);
@@ -39,7 +39,12 @@ const TableOrders = () => {
             setStepData(orderData);
             setPages(data);
         }
-    }, [orderData, data]);
+        const intervalId = setInterval(() => {
+            refetch();
+        }, 60000);
+
+        return () => clearInterval(intervalId);
+    }, [orderData, data, refetch]); //сомнительно
     if (visible.length === 0) {
         setVisible(Object.keys(orderData!).map(() => false));
     }
@@ -90,6 +95,11 @@ const TableOrders = () => {
                 {
                     type: ModalTypes.addDocument,
                     docType: 'Отдел поставки',
+                    privilege: 'storage create',
+                },
+                {
+                    type: ModalTypes.addDocument,
+                    docType: 'Внесение входной документации',
                     privilege: 'storage create',
                 },
                 { type: ModalTypes.stage, docType: 'Склад', privilege: '0' },

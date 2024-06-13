@@ -23,7 +23,7 @@ type NewOrderSubmit = {
 export const ModalAddOrder = ({ open, setOpen }: Props) => {
     const [form] = Form.useForm();
     const [addOrder, { isLoading }] = useAddOrdersMutation();
-    const [fileList, setFiles] = useState<File[] | undefined>([]);
+    const [fileList, setFiles] = useState<File[]>([]);
 
     const handleSubmit = (order: NewOrderSubmit) => {
         const formData = new FormData();

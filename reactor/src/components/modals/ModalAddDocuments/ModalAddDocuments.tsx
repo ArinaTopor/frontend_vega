@@ -3,11 +3,12 @@ import { CustomTextarea } from '../../custom-input/CustomTextarea/CustomTextarea
 import style from './ModalAddDocuments.module.css';
 import { Step } from '../../../utils/Step';
 import UploadFile from '../../custom-input/UploadFile/UploadFile';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
     CompleteStep,
     useCompleteStepMutation,
 } from '../../../app/services/orders';
+import { getFile } from '../../../functions/fetchFiles';
 
 type Props = {
     open: boolean;
@@ -18,8 +19,36 @@ type Props = {
 
 export const ModalAddDocuments = ({ open, onOpen, kks, step }: Props) => {
     const [form] = Form.useForm();
-    const [fileList, setFiles] = useState<File[] | undefined>();
+    const [fileList, setFiles] = useState<File[]>([]);
     const [completeStep, { isLoading }] = useCompleteStepMutation();
+    const handleFiles = async () => {
+        //useCallback
+        if (step.files.length !== 0) {
+            for (const fileInfo of step.files) {
+                const blob = await getFile(fileInfo.path);
+                const fileName = fileInfo.path.split('/')[2];
+                const file = new File([blob], fileName);
+                setFiles([...fileList, file]);
+            }
+        }
+    };
+    // const handleFiles = useCallback(async () => {
+    //     if (step.files.length !== 0) {
+    //         const newFiles: File[] = [];
+    //         for (const fileInfo of step.files) {
+    //             const blob = await getFile(fileInfo.path);
+    //             const fileName = fileInfo.path.split('/')[2].split('.')[0];
+    //             const file = new File([blob], fileName);
+    //             newFiles.push(file);
+    //         }
+    //         setFiles((prevFiles = []) => [...prevFiles, ...newFiles]);
+    //     }
+    // }, [step.files]); //useEffect выполняется в дев режиме 2 раза из за чего 2 раза срабатывает эта
+    //добавить useCallback позже
+
+    useEffect(() => {
+        handleFiles();
+    }, [step.files]);
 
     const handleSubmit = (infoStep: CompleteStep) => {
         const formData = new FormData();
@@ -33,6 +62,7 @@ export const ModalAddDocuments = ({ open, onOpen, kks, step }: Props) => {
         formData.append('Description', infoStep.description ?? '');
         completeStep(formData);
         onOpen(false);
+
         form.resetFields();
         setFiles([]);
     };

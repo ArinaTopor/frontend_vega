@@ -1,6 +1,6 @@
 import { Flex, Typography } from 'antd';
 import TableFiles from '../../components/tables/tableFiles/TableFiles';
-import styles from './FilePage.module.css';
+import styles from './FilesPage.module.css';
 import { getDate } from '../../functions/dateFunc';
 const FilesPage = () => {
     return (

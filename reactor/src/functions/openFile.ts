@@ -1,4 +1,4 @@
-import { loadDataIntoIframe, loadDocFile } from './fetchFiles';
+import { loadPDF, loadDocFile } from './fetchFiles';
 
 export const openFile = async (path: string) => {
     const formatFile = path?.split('/')[2].split('.')[1];
@@ -6,7 +6,7 @@ export const openFile = async (path: string) => {
         const fileUrl = await loadDocFile(path);
         window.open(fileUrl, '_blank');
     } else if (path) {
-        const fileUrl = await loadDataIntoIframe(path);
+        const fileUrl = await loadPDF(path);
         window.open(fileUrl, '_blank');
     }
 };

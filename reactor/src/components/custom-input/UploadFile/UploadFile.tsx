@@ -7,10 +7,8 @@ const UploadFile = ({
     uploadedFiles,
     required,
 }: {
-    updateUploadFiles: (
-        value: React.SetStateAction<File[] | undefined>
-    ) => void;
-    uploadedFiles: File[] | undefined;
+    updateUploadFiles: (value: React.SetStateAction<File[]>) => void;
+    uploadedFiles: File[];
     required: boolean;
 }) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,9 +24,8 @@ const UploadFile = ({
             const currentFiles = uploadedFiles.filter(
                 (file, index) => index !== indexI
             );
-            updateUploadFiles(
-                currentFiles.length > 0 ? currentFiles : undefined
-            );
+
+            updateUploadFiles(currentFiles);
         }
     };
     return (
@@ -37,7 +34,7 @@ const UploadFile = ({
                 name={'files'}
                 rules={[
                     {
-                        required: required,
+                        required: uploadedFiles.length > 0 ? false : required,
                         message: 'Обязательное поле',
                     },
                 ]}

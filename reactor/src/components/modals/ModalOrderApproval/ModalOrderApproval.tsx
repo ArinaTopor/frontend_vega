@@ -3,13 +3,14 @@ import { CustomTextarea } from '../../custom-input/CustomTextarea/CustomTextarea
 import style from './ModalOrderApproval.module.css';
 import { Step } from '../../../utils/Step';
 import UploadFile from '../../custom-input/UploadFile/UploadFile';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ButtonFile from '../../ButtonFile/ButtonFile';
 import {
     CompleteStep,
     useCompleteStepMutation,
 } from '../../../app/services/orders';
 import { getFileApproval } from '../../../functions/getFilesApproval';
+import { getFile } from '../../../functions/fetchFiles';
 
 type Props = {
     open: boolean;
@@ -27,10 +28,25 @@ export const ModalOrderApproval = ({
     stepInfo,
 }: Props) => {
     const [form] = Form.useForm();
-    const [fileList, setFiles] = useState<File[] | undefined>();
+    const [fileList, setFiles] = useState<File[]>([]);
     const [completeStep, { isLoading }] = useCompleteStepMutation();
     const [isApproved, setIsApproved] = useState<boolean>(false);
     const idpAndPsFile = getFileApproval(stepInfo, step.step_id);
+
+    const handleFiles = async () => {
+        //useCallback
+        if (step.files.length !== 0) {
+            for (const fileInfo of step.files) {
+                const blob = await getFile(fileInfo.path);
+                const fileName = fileInfo.path.split('/')[2].split('.')[0];
+                const file = new File([blob], fileName);
+                setFiles([...fileList, file]);
+            }
+        }
+    };
+    useEffect(() => {
+        handleFiles();
+    }, [step.files]);
 
     const handleSubmit = (infoStep: CompleteStep) => {
         const formData = new FormData();
